@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="viewport" content="width=device-width, initial-scale=1"><title>سُكون — تطبيق عربي شامل للعافية النفسية | بديل Calm و Headspace و تَوازن</title><meta name="description" content="سُكون تطبيق عربي شامل للعافية النفسية: تسجيلات صوتية أصلية، ثمانية تمارين تنفّس، متابعة عادات، منبّهات وتذكيرات، وألعاب ذهنية. محتوى عربي أصلي غير مترجم بصوت مدرّبة معتمدة في البرمجة اللغوية العصبية. انضم لقائمة الانتظار."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
+*{box-sizing:border-box}
+body{margin:0;background:#F6F8FA;font-family:"IBM Plex Sans Arabic",Figtree,-apple-system,"Segoe UI",system-ui,sans-serif;color:#000;-webkit-font-smoothing:antialiased}
+a{color:#0F7CB8;text-decoration:none}a:hover{color:#8B33C7}
+input,select,button{font-family:inherit}
+input:focus,select:focus{outline:2px solid rgba(78,188,255,.55);outline-offset:2px}
+::placeholder{color:#A7B0B6}
+h1,h2,h3{text-wrap:pretty}
+@keyframes ringpulse{0%,100%{transform:scale(1);opacity:.55}50%{transform:scale(1.07);opacity:.25}}
+[data-hero="m"]{display:none}
+[data-map="wide"],[data-map="mob"]{display:none}
+@media (min-width:1400px){[data-map="wide"]{display:block}#map>img:first-of-type{display:none}}
+@media (max-width:600px){
+#map{aspect-ratio:941/1672!important;min-height:0!important;align-items:flex-start!important;padding:44px 20px 0!important}
+[data-map="mob"]{display:block!important}
+#map>img:not([data-map="mob"]){display:none!important}
+#sk-mapscrim{background:linear-gradient(180deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.52) 34%,rgba(255,255,255,.08) 56%,rgba(255,255,255,0) 70%)!important}
+#map>div:last-child{min-height:0!important}
+}
+@media (max-width:820px){
+[data-hero="d"]{display:none}
+[data-hero="m"]{display:block}
+section[data-screen-label]{padding:56px 20px!important}
+#sk-hero{padding:0!important;min-height:100svh!important}
+#sk-head{padding:16px 20px!important}
+#sk-nav a[data-nav="link"]{display:none}
+#sk-heroinner{padding:28px 20px 44px!important}
+#sk-hero h1{font-size:38px!important;letter-spacing:-1.2px!important}
+#sk-hero p{font-size:16px!important}
+h2{font-size:27px!important;letter-spacing:-.8px!important}
+#sk-mapscrim{background:linear-gradient(0deg,rgba(255,255,255,.86) 0%,rgba(255,255,255,.78) 46%,rgba(255,255,255,.4) 74%,rgba(255,255,255,.12) 100%)!important}
+#map{aspect-ratio:941/1672!important;min-height:0!important;align-items:flex-start!important;padding:44px 20px 0!important}
+[data-map="mob"]{display:block!important}
+#map>img:not([data-map="mob"]){display:none!important}
+#sk-mapscrim{background:linear-gradient(180deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.52) 34%,rgba(255,255,255,.08) 56%,rgba(255,255,255,0) 70%)!important}
+#map>div:last-child{min-height:0!important}
+
+#sk-compare{overflow-x:auto}
+#sk-compare>div{min-width:600px}
+footer{padding:28px 20px!important}
+}
+@media (prefers-reduced-motion:reduce){video[data-ambient]{display:none}*{animation-duration:.001ms!important}}
+</style></helmet>
+
+<div style="direction:rtl;width:100%;overflow-x:hidden">
+
+<!-- ══════ HERO ══════ -->
+<section id="sk-hero" data-screen-label="Hero" style="position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;background:#C3CBEE;overflow:hidden">
+  <img data-hero="d" src="assets/hero-mascot.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:38% center;transform:scaleX(-1)"/>
+  <video data-hero="d" data-ambient="1" src="assets/hero-desktop.mp4" poster="assets/hero-mascot.png" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:38% center;transform:scaleX(-1)"></video>
+  <img data-hero="m" src="assets/hero-mobile.jpeg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/>
+  <video data-hero="m" data-ambient="1" src="assets/hero-mobile.mp4" poster="assets/hero-mobile.jpeg" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"></video>
+  <div style="position:absolute;inset:0;background:radial-gradient(95% 85% at 88% 52%,rgba(18,28,58,.72) 0%,rgba(18,28,58,.66) 30%,rgba(18,28,58,.48) 50%,rgba(18,28,58,.18) 68%,rgba(18,28,58,0) 84%)"></div>
+  <div data-hero="m" style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,32,66,.62) 0%,rgba(20,32,66,.34) 40%,rgba(20,32,66,.04) 70%,rgba(20,32,66,0) 100%)"></div>
+
+  <header id="sk-head" style="position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 40px">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="width:34px;height:34px;border-radius:999px;background:rgba(255,255,255,.86);border:1px solid rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;line-height:1;color:#8B33C7">س</div>
+      <div style="font-weight:700;font-size:21px;line-height:1;color:#FFF;letter-spacing:-.3px;text-shadow:0 1px 6px rgba(16,42,66,.3)">سُكون</div>
+    </div>
+    <nav id="sk-nav" style="display:flex;align-items:center;gap:4px;padding:6px;border-radius:999px;background:rgba(18,28,58,.34);border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);box-shadow:0 8px 32px rgba(16,42,66,.12)">
+      <a href="#offer" data-nav="link" style="padding:9px 15px;border-radius:999px;font-weight:500;font-size:14px;line-height:1;color:rgba(255,255,255,.92)">ما نقدّمه</a>
+      <a href="#map" data-nav="link" style="padding:9px 15px;border-radius:999px;font-weight:500;font-size:14px;line-height:1;color:rgba(255,255,255,.92)">خريطتك</a>
+      <a href="#experience" data-nav="link" style="padding:9px 15px;border-radius:999px;font-weight:500;font-size:14px;line-height:1;color:rgba(255,255,255,.92)">التجربة</a>
+      <a href="#difference" data-nav="link" style="padding:9px 15px;border-radius:999px;font-weight:500;font-size:14px;line-height:1;color:rgba(255,255,255,.92)">الفرق</a>
+      <a href="#waitlist" style="padding:10px 18px;border-radius:999px;font-weight:600;font-size:14px;line-height:1;color:#14181b;background:rgba(255,255,255,.86);border:1px solid rgba(255,255,255,.92)">انضم للقائمة</a>
+    </nav>
+  </header>
+
+  <div id="sk-heroinner" style="position:relative;z-index:2;flex:1;display:flex;align-items:center;padding:40px 40px 80px">
+    <div style="width:100%;max-width:1200px;margin:0 auto;display:flex">
+      <div style="flex:1 1 580px;min-width:0;max-width:580px;display:flex;flex-direction:column;gap:22px">
+        <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:9px;padding:8px 15px;border-radius:999px;background:rgba(18,28,58,.36);border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);font-weight:600;font-size:12px;line-height:1;color:#FFF;white-space:nowrap"><span style="width:7px;height:7px;border-radius:999px;background:#C877FF"></span>قائمة الانتظار مفتوحة الآن</div>
+        <h1 style="margin:0;font-weight:700;font-size:62px;line-height:1.2;letter-spacing:-2px;color:#FFF;max-width:420px;text-shadow:0 2px 14px rgba(16,42,66,.4)">راحتك النفسية،<br/>في تطبيق واحد.</h1>
+        <p style="margin:0;font-weight:400;font-size:18px;line-height:1.7;color:#FFF;max-width:390px;text-shadow:0 1px 8px rgba(16,42,66,.4)">تنفّس بهدوء، نم أعمق، ركّز أكثر، وابنِ عاداتك اليومية. كل ما تحتاجه لعافيتك النفسية في مكان واحد — بالعربية، كل يوم.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:2px">
+          <a href="#waitlist" style="height:54px;padding:0 30px;border-radius:999px;background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.9);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);box-shadow:0 8px 32px rgba(16,42,66,.16);color:#14181b;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:15px;line-height:1">انضم لقائمة الانتظار</a>
+          <a href="#experience" style="height:54px;padding:0 26px;border-radius:999px;background:rgba(18,28,58,.34);border:1px solid rgba(255,255,255,.6);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);color:#FFF;display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;line-height:1;text-shadow:0 1px 6px rgba(16,42,66,.28)">جرّب ٤٠ ثانية الآن<span style="font-size:13px;color:rgba(255,255,255,.8)">↓</span></a>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px">
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 15px;border-radius:999px;background:rgba(18,28,58,.34);border:1px solid rgba(255,255,255,.44);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);font-weight:500;font-size:13px;line-height:1;color:#FFF"><span style="width:9px;height:9px;border-radius:999px;background:#FF8A5C"></span>تسجيلات صوتية</div>
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 15px;border-radius:999px;background:rgba(18,28,58,.34);border:1px solid rgba(255,255,255,.44);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);font-weight:500;font-size:13px;line-height:1;color:#FFF"><span style="width:9px;height:9px;border-radius:999px;background:#4EBCFF"></span>تمارين تنفّس</div>
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 15px;border-radius:999px;background:rgba(18,28,58,.34);border:1px solid rgba(255,255,255,.44);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);font-weight:500;font-size:13px;line-height:1;color:#FFF"><span style="width:9px;height:9px;border-radius:999px;background:#A9E765"></span>عادات يومية</div>
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 15px;border-radius:999px;background:rgba(18,28,58,.34);border:1px solid rgba(255,255,255,.44);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);font-weight:500;font-size:13px;line-height:1;color:#FFF"><span style="width:9px;height:9px;border-radius:999px;background:#FFCE44"></span>منبّهات وتذكيرات</div>
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 15px;border-radius:999px;background:rgba(18,28,58,.34);border:1px solid rgba(255,255,255,.44);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);font-weight:500;font-size:13px;line-height:1;color:#FFF"><span style="width:9px;height:9px;border-radius:999px;background:#C877FF"></span>ألعاب ذهنية</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ WHAT WE OFFER ══════ -->
+<section id="offer" data-screen-label="What we offer" style="padding:88px 40px;background:#F6F8FA">
+  <div style="max-width:1200px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px">
+      <div style="max-width:640px;display:flex;flex-direction:column;gap:12px">
+        <div style="font-weight:600;font-size:12px;line-height:1;color:#5F9227">ما نقدّمه</div>
+        <h2 style="margin:0;font-weight:700;font-size:40px;line-height:1.3;letter-spacing:-1.2px;color:#000">كل أدوات يومك، بلا تطبيقات متفرّقة</h2>
+        <p style="margin:0;font-weight:400;font-size:17px;line-height:1.65;color:#2A2E31">من لحظة استيقاظك إلى لحظة نومك — أداة لكل حاجة، وكلها تعمل معًا.</p>
+      </div>
+      <div style="padding:10px 16px;border-radius:999px;background:#FFF;border:1px solid #DCE3E8;font-weight:500;font-size:13px;line-height:1;color:#646464">٦ أدوات · تطبيق واحد</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:12px">
+      <article style="background:#FFF;border-radius:20px;padding:24px;box-shadow:0 8px 24px rgba(16,42,66,.10);display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <div style="width:40px;height:40px;border-radius:999px;background:#FF8A5C;display:flex;align-items:center;justify-content:center;color:#fff;font:600 15px/1 Figtree,sans-serif">▶</div>
+          <div style="padding:6px 12px;border-radius:999px;background:#FFEDE5;font-weight:600;font-size:11px;line-height:1.4;color:#C4512A">الأكثر تميّزًا</div>
+        </div>
+        <h3 style="margin:0;font-weight:600;font-size:21px;line-height:1.4;color:#000">تسجيلات صوتية أصلية</h3>
+        <p style="margin:0;font-weight:400;font-size:15px;line-height:1.65;color:#2A2E31">جلسات للهدوء والنوم والتركيز، ودروس قصيرة — مكتوبة ومسجّلة بالعربية من البداية، لا ترجمة ولا صوت آلي.</p>
+      </article>
+
+      <article style="background:#FFF;border-radius:20px;padding:24px;box-shadow:0 8px 24px rgba(16,42,66,.10);display:flex;flex-direction:column;gap:14px">
+        <div style="width:40px;height:40px;border-radius:999px;background:#4EBCFF;display:flex;align-items:center;justify-content:center;color:#fff;font:600 15px/1 Figtree,sans-serif">◯</div>
+        <h3 style="margin:0;font-weight:600;font-size:21px;line-height:1.4;color:#000">ثمانية تمارين تنفّس</h3>
+        <p style="margin:0;font-weight:400;font-size:15px;line-height:1.65;color:#2A2E31">من التنفّس البطني الأساسي إلى ٤-٧-٨ قبل النوم، ولكل تمرين وقته المناسب في يومك.</p>
+      </article>
+
+      <article style="background:#FFF;border-radius:20px;padding:24px;box-shadow:0 8px 24px rgba(16,42,66,.10);display:flex;flex-direction:column;gap:14px">
+        <div style="width:40px;height:40px;border-radius:999px;background:#A9E765;display:flex;align-items:center;justify-content:center;color:#2A2E31;font:600 15px/1 Figtree,sans-serif">✓</div>
+        <h3 style="margin:0;font-weight:600;font-size:21px;line-height:1.4;color:#000">عادات تبنيها وعادات تتركها</h3>
+        <p style="margin:0;font-weight:400;font-size:15px;line-height:1.65;color:#2A2E31">قوالب جاهزة بتكرار وتذكير مقترح، أو عادة تصنعها بنفسك — والمتابعة تظهر على خريطتك.</p>
+      </article>
+
+      <article style="background:#FFF;border-radius:20px;padding:24px;box-shadow:0 8px 24px rgba(16,42,66,.10);display:flex;flex-direction:column;gap:14px">
+        <div style="width:40px;height:40px;border-radius:999px;background:#FFCE44;display:flex;align-items:center;justify-content:center;color:#2A2E31;font:600 15px/1 Figtree,sans-serif">◔</div>
+        <h3 style="margin:0;font-weight:600;font-size:21px;line-height:1.4;color:#000">منبّهات وتذكيرات لطيفة</h3>
+        <p style="margin:0;font-weight:400;font-size:15px;line-height:1.65;color:#2A2E31">صمّم يومك: وقت استيقاظك، وقت تهدئتك، ودقائق تخصّها لنفسك. بلا إلحاح، وبلا لوم.</p>
+      </article>
+
+      <article style="background:#FFF;border-radius:20px;padding:24px;box-shadow:0 8px 24px rgba(16,42,66,.10);display:flex;flex-direction:column;gap:14px">
+        <div style="width:40px;height:40px;border-radius:999px;background:#C877FF;display:flex;align-items:center;justify-content:center;color:#fff;font:600 15px/1 Figtree,sans-serif">◈</div>
+        <h3 style="margin:0;font-weight:600;font-size:21px;line-height:1.4;color:#000">ألعاب ذهنية</h3>
+        <p style="margin:0;font-weight:400;font-size:15px;line-height:1.65;color:#2A2E31">دقائق قصيرة لتدريب التركيز أو للاسترخاء، مثل «التقط الفكرة» — تمرين حقيقي، بلا ضغط.</p>
+      </article>
+
+      <article style="background:#FFF;border-radius:20px;padding:24px;box-shadow:0 8px 24px rgba(16,42,66,.10);display:flex;flex-direction:column;gap:14px">
+        <div style="width:40px;height:40px;border-radius:999px;background:#4EBCFF;display:flex;align-items:center;justify-content:center;color:#fff;font:600 15px/1 Figtree,sans-serif">✎</div>
+        <h3 style="margin:0;font-weight:600;font-size:21px;line-height:1.4;color:#000">تدوين ومراجعة كل أسبوعين</h3>
+        <p style="margin:0;font-weight:400;font-size:15px;line-height:1.65;color:#2A2E31">أفرغ ما في ذهنك، وأجب على سؤال واحد لكل جانب كل أسبوعين لتبقى خريطتك صادقة.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ RADAR ══════ -->
+<section id="map" data-screen-label="Sukun Map" style="position:relative;display:flex;align-items:center;padding:80px 40px;background:#D9D6F0;overflow:hidden;width:100%;aspect-ratio:1672/941">
+  <img src="assets/radar-scene.png" alt="خريطة سُكون: سبعة جوانب — سُكون، الحيوية، التركيز، التأمل، الأهداف، التواصل، النوم" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:20% center"/>
+  <img data-map="wide" src="assets/radar-scene-wide.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:20% center"/>
+  <img data-map="mob" src="assets/radar-scene-mobile.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top"/>
+  <div id="sk-mapscrim" style="position:absolute;inset:0;background:linear-gradient(270deg,rgba(255,255,255,.62) 0%,rgba(255,255,255,.38) 34%,rgba(255,255,255,.06) 62%,rgba(255,255,255,0) 82%)"></div>
+  <div style="position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:56px;min-height:440px">
+    <div style="flex:1 1 460px;min-width:0;max-width:520px;display:flex;flex-direction:column;gap:18px">
+      <div style="font-weight:600;font-size:12px;line-height:1;color:#0F7CB8">خريطة سُكون</div>
+      <h2 style="margin:0;font-weight:700;font-size:40px;line-height:1.3;letter-spacing:-1.2px;color:#000">رحلتك، مرسومة على سبعة جوانب</h2>
+      <p style="margin:0;font-weight:400;font-size:17px;line-height:1.7;color:#2A2E31;max-width:490px">إجاباتك في البداية ترسم نقطة انطلاقك، وكل جلسة تنفّس أو استماع أو عادة تحقّقها تحرّك الخريطة. مرآة صادقة لتقدّمك — بلا أرقام تحاسبك، وبلا مقارنة بأحد.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:4px">
+        <div style="display:flex;align-items:flex-start;gap:10px"><span style="width:6px;height:6px;border-radius:999px;background:#A9E765;margin-top:9px;flex:none"></span><span style="font-weight:400;font-size:15px;line-height:1.6;color:#2A2E31">تتحرّك مع ما تفعله فعلًا، لا مع ما تنوي فعله.</span></div>
+        <div style="display:flex;align-items:flex-start;gap:10px"><span style="width:6px;height:6px;border-radius:999px;background:#4EBCFF;margin-top:9px;flex:none"></span><span style="font-weight:400;font-size:15px;line-height:1.6;color:#2A2E31">تخفت بهدوء حيث لا توجد بيانات كافية، ولا تخمّن عنك.</span></div>
+        <div style="display:flex;align-items:flex-start;gap:10px"><span style="width:6px;height:6px;border-radius:999px;background:#C877FF;margin-top:9px;flex:none"></span><span style="font-weight:400;font-size:15px;line-height:1.6;color:#2A2E31">لا مكافأة على شعورك — المكافأة على حضورك فقط.</span></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">
+        <div style="padding:8px 14px;border-radius:999px;background:#E5F5FF;font-weight:600;font-size:12px;line-height:1;color:#0F7CB8">سُكون</div>
+        <div style="padding:8px 14px;border-radius:999px;background:#F0FAE3;font-weight:600;font-size:12px;line-height:1;color:#5F9227">الحيوية</div>
+        <div style="padding:8px 14px;border-radius:999px;background:#FFF6DF;font-weight:600;font-size:12px;line-height:1;color:#B98A0A">التركيز</div>
+        <div style="padding:8px 14px;border-radius:999px;background:#F6EBFF;font-weight:600;font-size:12px;line-height:1;color:#8B33C7">التأمل</div>
+        <div style="padding:8px 14px;border-radius:999px;background:#F0FAE3;font-weight:600;font-size:12px;line-height:1;color:#5F9227">الأهداف</div>
+        <div style="padding:8px 14px;border-radius:999px;background:#FFEDE5;font-weight:600;font-size:12px;line-height:1;color:#C4512A">التواصل</div>
+        <div style="padding:8px 14px;border-radius:999px;background:#E5F5FF;font-weight:600;font-size:12px;line-height:1;color:#0F7CB8">النوم</div>
+      </div>
+      <div style="font-weight:400;font-size:12px;line-height:1.5;color:#646464;margin-top:4px">مثال توضيحي لشكل الخريطة — بلا أرقام، وبلا درجات معروضة.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════ EXPERIENCE ══════ -->
+<section id="experience" data-screen-label="Experience" style="padding:88px 40px;background:linear-gradient(180deg,#F6F8FA 0%,#E9F2F8 100%)">
+  <div style="max-width:1200px;margin:0 auto">
+    <div style="max-width:640px;display:flex;flex-direction:column;gap:12px;margin-bottom:36px">
+      <div style="font-weight:600;font-size:12px;line-height:1;color:#8B33C7">التجربة</div>
+      <h2 style="margin:0;font-weight:700;font-size:40px;line-height:1.3;letter-spacing:-1.2px;color:#000">جرّب سُكون قبل أن ينزل</h2>
+      <p style="margin:0;font-weight:400;font-size:17px;line-height:1.65;color:#2A2E31">تمرين تنفّس كامل، ومقطع من تسجيلاتنا الصوتية. الآن، من هنا.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:12px;align-items:stretch">
+      <div style="background:#FFF;border-radius:28px;padding:32px;box-shadow:0 16px 40px rgba(16,42,66,.10);display:flex;flex-direction:column;align-items:center;gap:20px">
+        <div style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <div style="display:flex;flex-direction:column;gap:5px"><div style="font-weight:600;font-size:18px;line-height:1.3;color:#000">تنفّس ٤-٧-٨</div><div style="font-weight:400;font-size:13px;line-height:1.4;color:#646464">قبل النوم · ٤ دورات</div></div>
+          <div style="padding:7px 13px;border-radius:999px;background:#E5F5FF;font-weight:600;font-size:12px;line-height:1;color:#0F7CB8">{{ cycleLabel }}</div>
+        </div>
+        <div style="position:relative;width:250px;height:250px;display:flex;align-items:center;justify-content:center">
+          <div style="position:absolute;width:240px;height:240px;border-radius:999px;background:#E5F5FF;animation:ringpulse 6s ease-in-out infinite"></div>
+          <div ref="{{ breathRef }}" style="position:absolute;width:200px;height:200px;border-radius:999px;background:#4EBCFF;box-shadow:0 16px 40px rgba(78,188,255,.35);transform:scale(.6)"></div>
+          <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:3px;color:#fff">
+            <div style="font-weight:700;font-size:36px;line-height:1;font-variant-numeric:tabular-nums;text-shadow:0 1px 3px rgba(0,0,0,.22)">{{ breathCount }}</div>
+            <div style="font-weight:600;font-size:15px;line-height:1.3;text-shadow:0 1px 3px rgba(0,0,0,.22)">{{ breathPhase }}</div>
+          </div>
+        </div>
+        <button onClick="{{ toggleBreath }}" style="width:100%;height:52px;border:none;border-radius:999px;background:#000;color:#fff;font-weight:600;font-size:15px;line-height:1;cursor:pointer">{{ breathBtn }}</button>
+        <p style="margin:0;font-weight:400;font-size:12px;line-height:1.6;color:#646464;text-align:center">تنفّس براحتك — إن كنتِ حاملًا أو لديك حالة قلبية أو تنفّسية، تجاوز الحبس وتنفّس ببطء فقط.</p>
+      </div>
+
+      <div style="background:#FFF;border-radius:28px;padding:32px;box-shadow:0 16px 40px rgba(16,42,66,.10);display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;flex-direction:column;gap:5px"><div style="font-weight:600;font-size:18px;line-height:1.3;color:#000">استمع لمقطع</div><div style="font-weight:400;font-size:13px;line-height:1.4;color:#646464">{{ trackSub }}</div></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button onClick="{{ pickCalm }}" style="padding:11px 17px;border-radius:999px;border:1px solid #DCE3E8;background:{{ calmBg }};color:{{ calmFg }};font-weight:600;font-size:13px;line-height:1;cursor:pointer">هدوء</button>
+          <button onClick="{{ pickSleep }}" style="padding:11px 17px;border-radius:999px;border:1px solid #DCE3E8;background:{{ sleepBg }};color:{{ sleepFg }};font-weight:600;font-size:13px;line-height:1;cursor:pointer">نوم</button>
+          <button onClick="{{ pickLesson }}" style="padding:11px 17px;border-radius:999px;border:1px solid #DCE3E8;background:{{ lessonBg }};color:{{ lessonFg }};font-weight:600;font-size:13px;line-height:1;cursor:pointer">درس قصير</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;padding:16px;border-radius:20px;background:#FFEDE5">
+          <button onClick="{{ togglePlay }}" style="width:52px;height:52px;flex:none;border:none;border-radius:999px;background:#FF8A5C;color:#fff;font:400 16px/1 Figtree,sans-serif;cursor:pointer">{{ playGlyph }}</button>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:9px">
+            <div style="font-weight:600;font-size:14px;line-height:1.35;color:#000">{{ trackTitle }}</div>
+            <div style="height:8px;border-radius:999px;background:rgba(196,81,42,.16);overflow:hidden"><div style="height:100%;border-radius:999px;background:#C4512A;width:{{ voProgress }}"></div></div>
+          </div>
+          <div style="font-weight:500;font-size:12px;line-height:1;color:#C4512A;flex:none;font-variant-numeric:tabular-nums">{{ voTime }}</div>
+        </div>
+        <div style="height:1px;background:#EDF1F4"></div>
+        <div style="display:flex;align-items:flex-start;gap:14px">
+          <div style="width:48px;height:48px;flex:none;border-radius:999px;background:#F6EBFF;display:flex;align-items:center;justify-content:center;font:600 15px/1 Figtree,sans-serif;color:#8B33C7">◕</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="font-weight:600;font-size:15px;line-height:1.4;color:#000">بصوت مدرّبة معتمدة في البرمجة اللغوية العصبية</div>
+            <div style="font-weight:400;font-size:14px;line-height:1.6;color:#2A2E31">أكثر من ٨ سنوات خبرة، وكل نص مكتوب بالعربية أولًا — لهجة دافئة ومحترمة، لا ترجمة.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ DIFFERENCE ══════ -->
+<section id="difference" data-screen-label="Difference" style="padding:88px 40px;background:#FFF">
+  <div style="max-width:1200px;margin:0 auto">
+    <div style="max-width:680px;display:flex;flex-direction:column;gap:12px;margin-bottom:36px">
+      <div style="font-weight:600;font-size:12px;line-height:1;color:#B98A0A">الفرق</div>
+      <h2 style="margin:0;font-weight:700;font-size:40px;line-height:1.3;letter-spacing:-1.2px;color:#000">أحببت Calm أو Headspace أو تَوازن؟ سُكون بُني لك</h2>
+      <p style="margin:0;font-weight:400;font-size:17px;line-height:1.65;color:#2A2E31">تطبيقات رائعة، لكنها إما مترجمة، أو تغطّي جزءًا واحدًا من يومك. سُكون يغطّي اليوم كله بالعربية.</p>
+    </div>
+
+    <div id="sk-compare" style="border:1px solid #DCE3E8;border-radius:20px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;background:#F6F8FA;border-bottom:1px solid #DCE3E8">
+        <div style="padding:16px 20px;font-weight:600;font-size:12px;line-height:1.4;color:#646464">المقارنة</div>
+        <div style="padding:16px 14px;font-weight:700;font-size:13px;line-height:1.4;color:#000;text-align:center">سُكون</div>
+        <div style="padding:16px 14px;font-weight:600;font-size:13px;line-height:1.4;color:#646464;text-align:center">Calm · Headspace</div>
+        <div style="padding:16px 14px;font-weight:600;font-size:13px;line-height:1.4;color:#646464;text-align:center">تَوازن</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;border-bottom:1px solid #EDF1F4">
+        <div style="padding:16px 20px;font-weight:400;font-size:15px;line-height:1.5;color:#2A2E31">محتوى عربي أصلي غير مترجم</div>
+        <div style="padding:16px 14px;text-align:center;font-weight:600;font-size:15px;line-height:1.5;color:#5F9227">✓</div>
+        <div style="padding:16px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.5;color:#A7B0B6">مترجم</div>
+        <div style="padding:16px 14px;text-align:center;font-weight:600;font-size:15px;line-height:1.5;color:#5F9227">✓</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;background:#F6F8FA;border-bottom:1px solid #EDF1F4">
+        <div style="padding:16px 20px;font-weight:400;font-size:15px;line-height:1.5;color:#2A2E31">بصوت مدرّبة معتمدة في البرمجة اللغوية العصبية</div>
+        <div style="padding:16px 14px;text-align:center;font-weight:600;font-size:15px;line-height:1.5;color:#5F9227">✓</div>
+        <div style="padding:16px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.5;color:#A7B0B6">—</div>
+        <div style="padding:16px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.5;color:#A7B0B6">—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;border-bottom:1px solid #EDF1F4">
+        <div style="padding:16px 20px;font-weight:400;font-size:15px;line-height:1.5;color:#2A2E31">متابعة عادات ومنبّهات في التطبيق نفسه</div>
+        <div style="padding:16px 14px;text-align:center;font-weight:600;font-size:15px;line-height:1.5;color:#5F9227">✓</div>
+        <div style="padding:16px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.5;color:#A7B0B6">جزئيًا</div>
+        <div style="padding:16px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.5;color:#A7B0B6">جزئيًا</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;background:#F6F8FA;border-bottom:1px solid #EDF1F4">
+        <div style="padding:16px 20px;font-weight:400;font-size:15px;line-height:1.5;color:#2A2E31">ألعاب ذهنية للتركيز والاسترخاء</div>
+        <div style="padding:16px 14px;text-align:center;font-weight:600;font-size:15px;line-height:1.5;color:#5F9227">✓</div>
+        <div style="padding:16px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.5;color:#A7B0B6">—</div>
+        <div style="padding:16px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.5;color:#A7B0B6">—</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr">
+        <div style="padding:16px 20px;font-weight:400;font-size:15px;line-height:1.5;color:#2A2E31">خريطة واحدة تجمع تقدّمك كله</div>
+        <div style="padding:16px 14px;text-align:center;font-weight:600;font-size:15px;line-height:1.5;color:#5F9227">✓</div>
+        <div style="padding:16px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.5;color:#A7B0B6">—</div>
+        <div style="padding:16px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.5;color:#A7B0B6">—</div>
+      </div>
+    </div>
+    <p style="margin:14px 0 0;font-weight:400;font-size:12px;line-height:1.6;color:#646464">مقارنة بناءً على الميزات المعلنة لهذه التطبيقات في يوليو ٢٠٢٦. الأسماء التجارية ملك أصحابها.</p>
+  </div>
+</section>
+
+<!-- ══════ WAITLIST ══════ -->
+<section id="waitlist" data-screen-label="Waitlist" style="position:relative;padding:88px 40px;background:linear-gradient(180deg,#06182C 0%,#0E3355 38%,#1C5786 72%,#2F79AC 100%);overflow:hidden">
+  <div style="max-width:1000px;margin:0 auto;display:flex;flex-wrap:wrap;gap:48px;align-items:center">
+    <div style="flex:1 1 340px;min-width:0;display:flex;flex-direction:column;gap:16px">
+      <div style="font-weight:600;font-size:12px;line-height:1;color:#A9E765">قائمة الانتظار</div>
+      <h2 style="margin:0;font-weight:700;font-size:40px;line-height:1.3;letter-spacing:-1.2px;color:#FFF">كن أول من يجرّب سُكون</h2>
+      <p style="margin:0;font-weight:400;font-size:17px;line-height:1.7;color:rgba(255,255,255,.78);max-width:420px">نفتح الأبواب على دفعات صغيرة. اتركي بريدك ونخبرك أول ما يصبح متاحًا في بلدك.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:6px">
+        <div style="display:flex;align-items:center;gap:10px;font-weight:400;font-size:15px;line-height:1.5;color:rgba(255,255,255,.82)"><span style="width:6px;height:6px;border-radius:999px;background:#A9E765;flex:none"></span>وصول مبكر قبل النشر العام</div>
+        <div style="display:flex;align-items:center;gap:10px;font-weight:400;font-size:15px;line-height:1.5;color:rgba(255,255,255,.82)"><span style="width:6px;height:6px;border-radius:999px;background:#4EBCFF;flex:none"></span>رسالة واحدة فقط عند الإطلاق</div>
+        <div style="display:flex;align-items:center;gap:10px;font-weight:400;font-size:15px;line-height:1.5;color:rgba(255,255,255,.82)"><span style="width:6px;height:6px;border-radius:999px;background:#C877FF;flex:none"></span>يمكنك الإلغاء بضغطة واحدة</div>
+      </div>
+    </div>
+
+    <div style="flex:1 1 380px;min-width:0">
+      <div style="padding:28px;border-radius:28px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%)">
+        <sc-if value="{{ notJoined }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:12px">
+            <label style="display:flex;flex-direction:column;gap:8px"><span style="font-weight:500;font-size:13px;line-height:1;color:rgba(255,255,255,.72)">الاسم</span><input type="text" required="required" placeholder="اسمك الأول" style="height:52px;padding:0 18px;border-radius:999px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.12);color:#FFF;font-weight:400;font-size:15px;line-height:1"/></label>
+            <label style="display:flex;flex-direction:column;gap:8px"><span style="font-weight:500;font-size:13px;line-height:1;color:rgba(255,255,255,.72)">البريد الإلكتروني</span><input type="email" required="required" placeholder="name@email.com" dir="ltr" style="height:52px;padding:0 18px;border-radius:999px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.12);color:#FFF;font-weight:400;font-size:15px;line-height:1;text-align:right"/></label>
+            <label style="display:flex;flex-direction:column;gap:8px"><span style="font-weight:500;font-size:13px;line-height:1;color:rgba(255,255,255,.72)">الدولة</span>
+              <select required="required" style="height:52px;padding:0 18px;border-radius:999px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.12);color:#FFF;font-weight:400;font-size:15px;line-height:1;appearance:none">
+                <option value="" style="color:#2A2E31">اختر دولتك</option>
+                <option value="sa" style="color:#2A2E31">السعودية</option>
+                <option value="ae" style="color:#2A2E31">الإمارات</option>
+                <option value="kw" style="color:#2A2E31">الكويت</option>
+                <option value="qa" style="color:#2A2E31">قطر</option>
+                <option value="bh" style="color:#2A2E31">البحرين</option>
+                <option value="om" style="color:#2A2E31">عُمان</option>
+                <option value="jo" style="color:#2A2E31">الأردن</option>
+                <option value="eg" style="color:#2A2E31">مصر</option>
+                <option value="other" style="color:#2A2E31">دولة أخرى</option>
+              </select>
+            </label>
+            <button type="submit" style="height:54px;margin-top:6px;border:none;border-radius:999px;background:#FFF;color:#06182C;font-weight:600;font-size:15px;line-height:1;cursor:pointer">انضم للقائمة</button>
+            <p style="margin:2px 0 0;font-weight:400;font-size:12px;line-height:1.6;color:rgba(255,255,255,.6);text-align:center">بريدك لنا فقط. لا مشاركة، ولا رسائل متكررة.</p>
+          </form>
+        </sc-if>
+        <sc-if value="{{ joined }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:14px;padding:24px 8px;text-align:center">
+            <div style="width:56px;height:56px;border-radius:999px;background:#A9E765;display:flex;align-items:center;justify-content:center;font:600 22px/1 Figtree,sans-serif;color:#2A2E31">✓</div>
+            <div style="font-weight:700;font-size:22px;line-height:1.35;color:#FFF">حجزنا مكانك.</div>
+            <div style="font-weight:400;font-size:15px;line-height:1.6;color:rgba(255,255,255,.78);max-width:280px">نراسلك أول ما يفتح سُكون في بلدك. حتى ذلك الحين، خُذ نفسًا عميقًا.</div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FOUNDER ══════ -->
+<section data-screen-label="Founder" style="padding:88px 40px;background:#F6F8FA">
+  <div style="max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:20px">
+    <div style="font-weight:600;font-size:12px;line-height:1;color:#8B33C7">لماذا بنينا سُكون</div>
+    <h2 style="margin:0;font-weight:700;font-size:34px;line-height:1.4;letter-spacing:-1px;color:#000">بحثنا عن تطبيق يخاطبنا بلغتنا، فلم نجده</h2>
+    <p style="margin:0;font-weight:400;font-size:17px;line-height:1.75;color:#2A2E31">التطبيقات الجيدة كانت بلغة أخرى، والترجمة كانت تفقد الدفء. أردنا شيئًا يعرف كيف نتحدث عن أنفسنا، ويرافقنا طول اليوم لا في جلسة واحدة: تنفّس عندما يضيق الصدر، صوت هادئ قبل النوم، عادة صغيرة تُبنى بلا لوم، وخريطة تُظهر أنك تتقدّم. هذا هو سُكون.</p>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:4px">
+      <div style="width:44px;height:44px;border-radius:999px;background:#F6EBFF;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;line-height:1;color:#8B33C7">س</div>
+      <div style="display:flex;flex-direction:column;gap:3px"><div style="font-weight:600;font-size:15px;line-height:1.3;color:#000">فريق سُكون</div><div style="font-weight:400;font-size:13px;line-height:1.3;color:#646464">بالتعاون مع مدرّبة معتمدة في البرمجة اللغوية العصبية</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FAQ ══════ -->
+<section data-screen-label="FAQ" style="padding:88px 40px;background:#FFF">
+  <div style="max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:24px">
+    <h2 style="margin:0;font-weight:700;font-size:34px;line-height:1.4;letter-spacing:-1px;color:#000">أسئلة متكرّرة</h2>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <details style="background:#F6F8FA;border-radius:20px;padding:20px 22px">
+        <summary style="font-weight:600;font-size:16px;line-height:1.5;color:#000;cursor:pointer;list-style:none">هل المحتوى مترجم من الإنجليزية؟</summary>
+        <p style="margin:12px 0 0;font-weight:400;font-size:15px;line-height:1.7;color:#2A2E31">لا. كل نص مكتوب بالعربية أولًا — الأسئلة، الجلسات، ورسائل الطمأنينة — بلهجة دافئة تناسب الخليج، ثم يُسجّل صوتيًا. الإنجليزية تأتي لاحقًا كترجمة لا كأصل.</p>
+      </details>
+      <details style="background:#F6F8FA;border-radius:20px;padding:20px 22px">
+        <summary style="font-weight:600;font-size:16px;line-height:1.5;color:#000;cursor:pointer;list-style:none">هل سُكون بديل عن العلاج النفسي؟</summary>
+        <p style="margin:12px 0 0;font-weight:400;font-size:15px;line-height:1.7;color:#2A2E31">لا. سُكون تطبيق للعافية اليومية، ولا يقدّم تشخيصًا أو علاجًا. إن كنت تمرّ بضيق شديد، نعرض لك موارد الدعم المتاحة في بلدك مباشرة.</p>
+      </details>
+      <details style="background:#F6F8FA;border-radius:20px;padding:20px 22px">
+        <summary style="font-weight:600;font-size:16px;line-height:1.5;color:#000;cursor:pointer;list-style:none">هل أحتاج أن أستخدمه كل يوم؟</summary>
+        <p style="margin:12px 0 0;font-weight:400;font-size:15px;line-height:1.7;color:#2A2E31">لا. لا نلومك على يوم فائت، ولا نضغطك بعدّادات. تعود متى شئت، وخريطتك تنتظرك كما هي.</p>
+      </details>
+      <details style="background:#F6F8FA;border-radius:20px;padding:20px 22px">
+        <summary style="font-weight:600;font-size:16px;line-height:1.5;color:#000;cursor:pointer;list-style:none">ما الفرق بين خريطة سُكون والدرجات في التطبيقات الأخرى؟</summary>
+        <p style="margin:12px 0 0;font-weight:400;font-size:15px;line-height:1.7;color:#2A2E31">الخريطة مرآة لا حكم. لا نكافئك على شعور معيّن، ولا نعرض أرقامًا تقارن بها نفسك — نعرض شكل رحلتك وأين تنمو.</p>
+      </details>
+      <details style="background:#F6F8FA;border-radius:20px;padding:20px 22px">
+        <summary style="font-weight:600;font-size:16px;line-height:1.5;color:#000;cursor:pointer;list-style:none">متى يصدر التطبيق؟</summary>
+        <p style="margin:12px 0 0;font-weight:400;font-size:15px;line-height:1.7;color:#2A2E31">نفتح على دفعات صغيرة أولًا لضمان جودة المحتوى الصوتي. اترك بريدك ونراسلك أول ما يصبح متاحًا في بلدك.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer style="padding:40px;background:#F6F8FA;border-top:1px solid #DCE3E8">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:10px"><div style="width:28px;height:28px;border-radius:999px;background:#F6EBFF;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;line-height:1;color:#8B33C7">س</div><span style="font-weight:600;font-size:15px;line-height:1;color:#2A2E31">سُكون</span></div>
+    <div style="display:flex;flex-wrap:wrap;gap:18px;font-weight:500;font-size:13px;line-height:1"><a href="#offer">ما نقدّمه</a><a href="#map">خريطة سُكون</a><a href="#experience">التجربة</a><a href="#difference">الفرق</a><a href="#waitlist">قائمة الانتظار</a></div>
+    <div style="font-weight:400;font-size:12px;line-height:1.5;color:#646464">سُكون ٢٠٢٦ · تطبيق عافية، لا يقدّم تشخيصًا أو علاجًا</div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280}}">
+const TRACKS = {
+  calm: { title: 'خُذ نفسًا عميقًا', sub: 'جلسة هدوء · ٤ دقائق', len: 240 },
+  sleep: { title: 'اطوِ اليوم بهدوء', sub: 'جلسة نوم · ١٠ دقائق', len: 600 },
+  lesson: { title: 'التقط الفكرة', sub: 'درس قصير · ٣ دقائق', len: 180 }
+};
+const PHASES = [
+  { name: 'شهيق', dur: 4, scale: 1 },
+  { name: 'احبس', dur: 7, scale: 1 },
+  { name: 'زفير', dur: 8, scale: 0.6 }
+];
+const AR = n => String(n).replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[+d]);
+
+class Component extends DCLogic {
+  state = { running: false, phase: 0, left: 4, cycle: 1, track: 'calm', playing: false, pos: 0, joined: false };
+
+  componentDidMount() {
+    this.breathRef = React.createRef();
+    this._video();
+    this._vt = setInterval(() => this._video(), 1500);
+    this._tick = setInterval(() => this._onTick(), 1000);
+    this._applyScale(0.6, 0);
+  }
+  componentWillUnmount() { clearInterval(this._vt); clearInterval(this._tick); }
+
+  _video() {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.querySelectorAll('video[data-ambient]').forEach(v => {
+      if (!v.offsetParent) return;
+      v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true;
+      if (v.paused) v.play().catch(() => {});
+    });
+  }
+
+  _applyScale(scale, dur) {
+    const el = this.breathRef && this.breathRef.current;
+    if (!el) return;
+    el.style.transition = dur ? `transform ${dur}s linear` : 'none';
+    el.style.transform = `scale(${scale})`;
+  }
+
+  _onTick() {
+    const s = this.state;
+    if (s.playing) {
+      const len = TRACKS[s.track].len;
+      const pos = s.pos + 1;
+      if (pos >= len) this.setState({ pos: 0, playing: false }); else this.setState({ pos });
+    }
+    if (!s.running) return;
+    if (s.left > 1) { this.setState({ left: s.left - 1 }); return; }
+    const next = (s.phase + 1) % PHASES.length;
+    const cycle = next === 0 ? s.cycle + 1 : s.cycle;
+    if (cycle > 4) { this.setState({ running: false, phase: 0, left: 4, cycle: 1 }); this._applyScale(0.6, 1); return; }
+    this.setState({ phase: next, left: PHASES[next].dur, cycle });
+    this._applyScale(PHASES[next].scale, PHASES[next].dur);
+  }
+
+  toggleBreath = () => {
+    if (this.state.running) {
+      this.setState({ running: false, phase: 0, left: 4, cycle: 1 });
+      this._applyScale(0.6, 1);
+    } else {
+      this.setState({ running: true, phase: 0, left: 4, cycle: 1 });
+      this._applyScale(1, 4);
+    }
+  };
+  pick = t => () => this.setState({ track: t, pos: 0, playing: false });
+  togglePlay = () => this.setState(s => ({ playing: !s.playing }));
+  onSubmit = e => { e.preventDefault(); this.setState({ joined: true }); };
+
+  renderVals() {
+    const s = this.state, tr = TRACKS[s.track];
+    const mm = Math.floor(s.pos / 60), ss = String(s.pos % 60).padStart(2, '0');
+    const on = t => s.track === t;
+    return {
+      breathRef: this.breathRef,
+      breathCount: s.running ? AR(s.left) : AR(4),
+      breathPhase: s.running ? PHASES[s.phase].name : 'استعد',
+      breathBtn: s.running ? 'إيقاف' : 'ابدأ التمرين',
+      cycleLabel: s.running ? 'الدورة ' + AR(s.cycle) + ' من ٤' : '٤٠ ثانية',
+      toggleBreath: this.toggleBreath,
+      trackTitle: tr.title, trackSub: tr.sub,
+      voProgress: Math.round((s.pos / tr.len) * 100) + '%',
+      voTime: AR(mm) + ':' + AR(ss),
+      playGlyph: s.playing ? '❚❚' : '▶',
+      togglePlay: this.togglePlay,
+      pickCalm: this.pick('calm'), pickSleep: this.pick('sleep'), pickLesson: this.pick('lesson'),
+      calmBg: on('calm') ? '#000' : '#FFF', calmFg: on('calm') ? '#FFF' : '#2A2E31',
+      sleepBg: on('sleep') ? '#000' : '#FFF', sleepFg: on('sleep') ? '#FFF' : '#2A2E31',
+      lessonBg: on('lesson') ? '#000' : '#FFF', lessonFg: on('lesson') ? '#FFF' : '#2A2E31',
+      onSubmit: this.onSubmit, joined: s.joined, notJoined: !s.joined
+    };
+  }
+}
+</script>
+</body>
+</html>
