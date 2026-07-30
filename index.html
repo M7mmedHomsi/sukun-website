@@ -4,12 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet data-dc-atomics><meta name="viewport" content="width=device-width, initial-scale=1"><title>سُكون — تطبيق عربي شامل للعافية النفسية | بديل Calm و Headspace و تَوازن</title><meta name="description" content="سُكون تطبيق عربي شامل للعافية النفسية: تسجيلات صوتية أصلية، ثمانية تمارين تنفّس، متابعة عادات، منبّهات وتذكيرات، وألعاب ذهنية. محتوى عربي أصلي غير مترجم بصوت مدرّبة معتمدة في البرمجة اللغوية العصبية. انضم لقائمة الانتظار."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{margin:0;background:#F6F8FA;font-family:"IBM Plex Sans Arabic",Figtree,-apple-system,"Segoe UI",system-ui,sans-serif;color:#000;-webkit-font-smoothing:antialiased}
+[data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+[data-reveal].is-visible{opacity:1;transform:translateY(0)}
 a{color:#0F7CB8;text-decoration:none}a:hover{color:#8B33C7}
 input,select,button{font-family:inherit}
 input:focus,select:focus{outline:2px solid rgba(78,188,255,.55);outline-offset:2px}
@@ -20,7 +24,7 @@ h1,h2,h3{text-wrap:pretty}
 [data-map="wide"],[data-map="mob"]{display:none}
 @media (min-width:1400px){[data-map="wide"]{display:block}#map>img:first-of-type{display:none}}
 @media (max-width:600px){
-#map{aspect-ratio:941/1672!important;min-height:0!important;align-items:flex-start!important;padding:44px 20px 0!important}
+#map{aspect-ratio:941/1850!important;min-height:0!important;align-items:flex-start!important;padding:44px 20px 0!important}
 [data-map="mob"]{display:block!important}
 #map>img:not([data-map="mob"]){display:none!important}
 #sk-mapscrim{background:linear-gradient(180deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.52) 34%,rgba(255,255,255,.08) 56%,rgba(255,255,255,0) 70%)!important}
@@ -38,7 +42,7 @@ section[data-screen-label]{padding:56px 20px!important}
 #sk-hero p{font-size:16px!important}
 h2{font-size:27px!important;letter-spacing:-.8px!important}
 #sk-mapscrim{background:linear-gradient(0deg,rgba(255,255,255,.86) 0%,rgba(255,255,255,.78) 46%,rgba(255,255,255,.4) 74%,rgba(255,255,255,.12) 100%)!important}
-#map{aspect-ratio:941/1672!important;min-height:0!important;align-items:flex-start!important;padding:44px 20px 0!important}
+#map{aspect-ratio:941/1850!important;min-height:0!important;align-items:flex-start!important;padding:44px 20px 0!important}
 [data-map="mob"]{display:block!important}
 #map>img:not([data-map="mob"]){display:none!important}
 #sk-mapscrim{background:linear-gradient(180deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.52) 34%,rgba(255,255,255,.08) 56%,rgba(255,255,255,0) 70%)!important}
@@ -48,10 +52,15 @@ h2{font-size:27px!important;letter-spacing:-.8px!important}
 #sk-compare>div{min-width:600px}
 footer{padding:28px 20px!important}
 }
-@media (prefers-reduced-motion:reduce){video[data-ambient]{display:none}*{animation-duration:.001ms!important}}
+@media (prefers-reduced-motion:reduce){video[data-ambient]{display:none}*{animation-duration:.001ms!important}#sk-mascot3d{display:none}}
+@media (max-width:820px){#sk-mascot3d{display:none}}
 </style></helmet>
 
 <div style="direction:rtl;width:100%;overflow-x:hidden">
+
+<div id="sk-mascot3d" style="position:fixed;top:0;left:0;width:170px;height:170px;pointer-events:none;z-index:40;will-change:transform">
+  <model-viewer id="sk-mascot-mv" src="assets/untitled_Meshy%20V6_2026-07-30_08-22-37.glb" style="width:100%;height:100%;background:transparent" disable-zoom interaction-prompt="none" shadow-intensity="0" exposure="1.1" camera-orbit="0deg 75deg auto" field-of-view="30deg" autoplay></model-viewer>
+</div>
 
 <!-- ══════ HERO ══════ -->
 <section id="sk-hero" data-screen-label="Hero" style="position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;background:#C3CBEE;overflow:hidden">
@@ -100,7 +109,7 @@ footer{padding:28px 20px!important}
 
 <!-- ══════ WHAT WE OFFER ══════ -->
 <section id="offer" data-screen-label="What we offer" style="padding:88px 40px;background:#F6F8FA">
-  <div style="max-width:1200px;margin:0 auto">
+  <div data-reveal style="max-width:1200px;margin:0 auto">
     <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px">
       <div style="max-width:640px;display:flex;flex-direction:column;gap:12px">
         <div style="font-weight:600;font-size:12px;line-height:1;color:#5F9227">ما نقدّمه</div>
@@ -159,7 +168,7 @@ footer{padding:28px 20px!important}
   <img data-map="wide" src="assets/radar-scene-wide.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:20% center"/>
   <img data-map="mob" src="assets/radar-scene-mobile.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top"/>
   <div id="sk-mapscrim" style="position:absolute;inset:0;background:linear-gradient(270deg,rgba(255,255,255,.62) 0%,rgba(255,255,255,.38) 34%,rgba(255,255,255,.06) 62%,rgba(255,255,255,0) 82%)"></div>
-  <div style="position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:56px;min-height:440px">
+  <div data-reveal style="position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:56px;min-height:440px">
     <div style="flex:1 1 460px;min-width:0;max-width:520px;display:flex;flex-direction:column;gap:18px">
       <div style="font-weight:600;font-size:12px;line-height:1;color:#0F7CB8">خريطة سُكون</div>
       <h2 style="margin:0;font-weight:700;font-size:40px;line-height:1.3;letter-spacing:-1.2px;color:#000">رحلتك، مرسومة على سبعة جوانب</h2>
@@ -186,7 +195,7 @@ footer{padding:28px 20px!important}
 
 <!-- ══════ EXPERIENCE ══════ -->
 <section id="experience" data-screen-label="Experience" style="padding:88px 40px;background:linear-gradient(180deg,#F6F8FA 0%,#E9F2F8 100%)">
-  <div style="max-width:1200px;margin:0 auto">
+  <div data-reveal style="max-width:1200px;margin:0 auto">
     <div style="max-width:640px;display:flex;flex-direction:column;gap:12px;margin-bottom:36px">
       <div style="font-weight:600;font-size:12px;line-height:1;color:#8B33C7">التجربة</div>
       <h2 style="margin:0;font-weight:700;font-size:40px;line-height:1.3;letter-spacing:-1.2px;color:#000">جرّب سُكون قبل أن ينزل</h2>
@@ -213,11 +222,7 @@ footer{padding:28px 20px!important}
 
       <div style="background:#FFF;border-radius:28px;padding:32px;box-shadow:0 16px 40px rgba(16,42,66,.10);display:flex;flex-direction:column;gap:20px">
         <div style="display:flex;flex-direction:column;gap:5px"><div style="font-weight:600;font-size:18px;line-height:1.3;color:#000">استمع لمقطع</div><div style="font-weight:400;font-size:13px;line-height:1.4;color:#646464">{{ trackSub }}</div></div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button onClick="{{ pickCalm }}" style="padding:11px 17px;border-radius:999px;border:1px solid #DCE3E8;background:{{ calmBg }};color:{{ calmFg }};font-weight:600;font-size:13px;line-height:1;cursor:pointer">هدوء</button>
-          <button onClick="{{ pickSleep }}" style="padding:11px 17px;border-radius:999px;border:1px solid #DCE3E8;background:{{ sleepBg }};color:{{ sleepFg }};font-weight:600;font-size:13px;line-height:1;cursor:pointer">نوم</button>
-          <button onClick="{{ pickLesson }}" style="padding:11px 17px;border-radius:999px;border:1px solid #DCE3E8;background:{{ lessonBg }};color:{{ lessonFg }};font-weight:600;font-size:13px;line-height:1;cursor:pointer">درس قصير</button>
-        </div>
+        <audio ref="{{ audioRef }}" src="assets/Episode%201%20-%20Inner%20Peace%20Final.mp3" preload="metadata"></audio>
         <div style="display:flex;align-items:center;gap:14px;padding:16px;border-radius:20px;background:#FFEDE5">
           <button onClick="{{ togglePlay }}" style="width:52px;height:52px;flex:none;border:none;border-radius:999px;background:#FF8A5C;color:#fff;font:400 16px/1 Figtree,sans-serif;cursor:pointer">{{ playGlyph }}</button>
           <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:9px">
@@ -241,7 +246,7 @@ footer{padding:28px 20px!important}
 
 <!-- ══════ DIFFERENCE ══════ -->
 <section id="difference" data-screen-label="Difference" style="padding:88px 40px;background:#FFF">
-  <div style="max-width:1200px;margin:0 auto">
+  <div data-reveal style="max-width:1200px;margin:0 auto">
     <div style="max-width:680px;display:flex;flex-direction:column;gap:12px;margin-bottom:36px">
       <div style="font-weight:600;font-size:12px;line-height:1;color:#B98A0A">الفرق</div>
       <h2 style="margin:0;font-weight:700;font-size:40px;line-height:1.3;letter-spacing:-1.2px;color:#000">أحببت Calm أو Headspace أو تَوازن؟ سُكون بُني لك</h2>
@@ -292,7 +297,7 @@ footer{padding:28px 20px!important}
 
 <!-- ══════ WAITLIST ══════ -->
 <section id="waitlist" data-screen-label="Waitlist" style="position:relative;padding:88px 40px;background:linear-gradient(180deg,#06182C 0%,#0E3355 38%,#1C5786 72%,#2F79AC 100%);overflow:hidden">
-  <div style="max-width:1000px;margin:0 auto;display:flex;flex-wrap:wrap;gap:48px;align-items:center">
+  <div data-reveal style="max-width:1000px;margin:0 auto;display:flex;flex-wrap:wrap;gap:48px;align-items:center">
     <div style="flex:1 1 340px;min-width:0;display:flex;flex-direction:column;gap:16px">
       <div style="font-weight:600;font-size:12px;line-height:1;color:#A9E765">قائمة الانتظار</div>
       <h2 style="margin:0;font-weight:700;font-size:40px;line-height:1.3;letter-spacing:-1.2px;color:#FFF">كن أول من يجرّب سُكون</h2>
@@ -342,7 +347,7 @@ footer{padding:28px 20px!important}
 
 <!-- ══════ FOUNDER ══════ -->
 <section data-screen-label="Founder" style="padding:88px 40px;background:#F6F8FA">
-  <div style="max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:20px">
+  <div data-reveal style="max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:20px">
     <div style="font-weight:600;font-size:12px;line-height:1;color:#8B33C7">لماذا بنينا سُكون</div>
     <h2 style="margin:0;font-weight:700;font-size:34px;line-height:1.4;letter-spacing:-1px;color:#000">بحثنا عن تطبيق يخاطبنا بلغتنا، فلم نجده</h2>
     <p style="margin:0;font-weight:400;font-size:17px;line-height:1.75;color:#2A2E31">التطبيقات الجيدة كانت بلغة أخرى، والترجمة كانت تفقد الدفء. أردنا شيئًا يعرف كيف نتحدث عن أنفسنا، ويرافقنا طول اليوم لا في جلسة واحدة: تنفّس عندما يضيق الصدر، صوت هادئ قبل النوم، عادة صغيرة تُبنى بلا لوم، وخريطة تُظهر أنك تتقدّم. هذا هو سُكون.</p>
@@ -355,7 +360,7 @@ footer{padding:28px 20px!important}
 
 <!-- ══════ FAQ ══════ -->
 <section data-screen-label="FAQ" style="padding:88px 40px;background:#FFF">
-  <div style="max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:24px">
+  <div data-reveal style="max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:24px">
     <h2 style="margin:0;font-weight:700;font-size:34px;line-height:1.4;letter-spacing:-1px;color:#000">أسئلة متكرّرة</h2>
     <div style="display:flex;flex-direction:column;gap:10px">
       <details style="background:#F6F8FA;border-radius:20px;padding:20px 22px">
@@ -394,11 +399,7 @@ footer{padding:28px 20px!important}
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280}}">
-const TRACKS = {
-  calm: { title: 'خُذ نفسًا عميقًا', sub: 'جلسة هدوء · ٤ دقائق', len: 240 },
-  sleep: { title: 'اطوِ اليوم بهدوء', sub: 'جلسة نوم · ١٠ دقائق', len: 600 },
-  lesson: { title: 'التقط الفكرة', sub: 'درس قصير · ٣ دقائق', len: 180 }
-};
+const TRACK = { title: 'الحلقة الأولى: سكون داخلي', sub: 'تسجيل صوتي أصلي' };
 const PHASES = [
   { name: 'شهيق', dur: 4, scale: 1 },
   { name: 'احبس', dur: 7, scale: 1 },
@@ -407,16 +408,49 @@ const PHASES = [
 const AR = n => String(n).replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[+d]);
 
 class Component extends DCLogic {
-  state = { running: false, phase: 0, left: 4, cycle: 1, track: 'calm', playing: false, pos: 0, joined: false };
+  state = { running: false, phase: 0, left: 4, cycle: 1, playing: false, pos: 0, duration: 0, joined: false };
 
   componentDidMount() {
     this.breathRef = React.createRef();
+    this.audioRef = React.createRef();
     this._video();
     this._vt = setInterval(() => this._video(), 1500);
     this._tick = setInterval(() => this._onTick(), 1000);
     this._applyScale(0.6, 0);
+    this._io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          this._io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('[data-reveal]').forEach(el => this._io.observe(el));
   }
-  componentWillUnmount() { clearInterval(this._vt); clearInterval(this._tick); }
+  componentWillUnmount() {
+    clearInterval(this._vt); clearInterval(this._tick);
+    if (this._io) this._io.disconnect();
+    const audio = this.audioRef && this.audioRef.current;
+    if (audio && this._audioBound) {
+      audio.removeEventListener('timeupdate', this._onTime);
+      audio.removeEventListener('loadedmetadata', this._onMeta);
+      audio.removeEventListener('ended', this._onEnd);
+    }
+  }
+
+  _bindAudio() {
+    if (this._audioBound) return;
+    const audio = this.audioRef && this.audioRef.current;
+    if (!audio) return;
+    this._audioBound = true;
+    this._onTime = () => this.setState({ pos: audio.currentTime });
+    this._onMeta = () => this.setState({ duration: audio.duration || 0 });
+    this._onEnd = () => this.setState({ playing: false, pos: 0 });
+    audio.addEventListener('timeupdate', this._onTime);
+    audio.addEventListener('loadedmetadata', this._onMeta);
+    audio.addEventListener('ended', this._onEnd);
+    if (audio.duration) this.setState({ duration: audio.duration });
+  }
 
   _video() {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -435,12 +469,8 @@ class Component extends DCLogic {
   }
 
   _onTick() {
+    this._bindAudio();
     const s = this.state;
-    if (s.playing) {
-      const len = TRACKS[s.track].len;
-      const pos = s.pos + 1;
-      if (pos >= len) this.setState({ pos: 0, playing: false }); else this.setState({ pos });
-    }
     if (!s.running) return;
     if (s.left > 1) { this.setState({ left: s.left - 1 }); return; }
     const next = (s.phase + 1) % PHASES.length;
@@ -459,14 +489,19 @@ class Component extends DCLogic {
       this._applyScale(1, 4);
     }
   };
-  pick = t => () => this.setState({ track: t, pos: 0, playing: false });
-  togglePlay = () => this.setState(s => ({ playing: !s.playing }));
+  togglePlay = () => {
+    const audio = this.audioRef && this.audioRef.current;
+    if (!audio) return;
+    this._bindAudio();
+    if (audio.paused) { audio.play().catch(() => {}); this.setState({ playing: true }); }
+    else { audio.pause(); this.setState({ playing: false }); }
+  };
   onSubmit = e => { e.preventDefault(); this.setState({ joined: true }); };
 
   renderVals() {
-    const s = this.state, tr = TRACKS[s.track];
-    const mm = Math.floor(s.pos / 60), ss = String(s.pos % 60).padStart(2, '0');
-    const on = t => s.track === t;
+    const s = this.state;
+    const mm = Math.floor(s.pos / 60), ss = String(Math.floor(s.pos % 60)).padStart(2, '0');
+    const dmm = Math.floor(s.duration / 60), dss = String(Math.floor(s.duration % 60)).padStart(2, '0');
     return {
       breathRef: this.breathRef,
       breathCount: s.running ? AR(s.left) : AR(4),
@@ -474,19 +509,113 @@ class Component extends DCLogic {
       breathBtn: s.running ? 'إيقاف' : 'ابدأ التمرين',
       cycleLabel: s.running ? 'الدورة ' + AR(s.cycle) + ' من ٤' : '٤٠ ثانية',
       toggleBreath: this.toggleBreath,
-      trackTitle: tr.title, trackSub: tr.sub,
-      voProgress: Math.round((s.pos / tr.len) * 100) + '%',
-      voTime: AR(mm) + ':' + AR(ss),
+      audioRef: this.audioRef,
+      trackTitle: TRACK.title, trackSub: TRACK.sub,
+      voProgress: s.duration ? Math.round((s.pos / s.duration) * 100) + '%' : '0%',
+      voTime: s.duration ? (AR(mm) + ':' + AR(ss) + ' / ' + AR(dmm) + ':' + AR(dss)) : '٠٠:٠٠',
       playGlyph: s.playing ? '❚❚' : '▶',
       togglePlay: this.togglePlay,
-      pickCalm: this.pick('calm'), pickSleep: this.pick('sleep'), pickLesson: this.pick('lesson'),
-      calmBg: on('calm') ? '#000' : '#FFF', calmFg: on('calm') ? '#FFF' : '#2A2E31',
-      sleepBg: on('sleep') ? '#000' : '#FFF', sleepFg: on('sleep') ? '#FFF' : '#2A2E31',
-      lessonBg: on('lesson') ? '#000' : '#FFF', lessonFg: on('lesson') ? '#FFF' : '#2A2E31',
       onSubmit: this.onSubmit, joined: s.joined, notJoined: !s.joined
     };
   }
 }
+</script>
+
+<script>
+(function () {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Fractional waypoints along total scroll progress (0=top, 1=bottom).
+  // xf/yf are fractions of the viewport; s is scale. The mascot lerps between
+  // these as the page scrolls, roughly tracing hero -> offer -> radar -> experience -> difference -> waitlist -> footer.
+  var KEYFRAMES = [
+    { p: 0.00, xf: 0.86, yf: 0.60, s: 0.85 },
+    { p: 0.14, xf: 0.16, yf: 0.28, s: 0.65 },
+    { p: 0.30, xf: 0.55, yf: 0.42, s: 1.05 },
+    { p: 0.46, xf: 0.82, yf: 0.32, s: 0.75 },
+    { p: 0.63, xf: 0.18, yf: 0.55, s: 0.70 },
+    { p: 0.80, xf: 0.75, yf: 0.65, s: 0.60 },
+    { p: 1.00, xf: 0.50, yf: 0.82, s: 0.50 }
+  ];
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function valueAt(progress, key) {
+    for (var i = 0; i < KEYFRAMES.length - 1; i++) {
+      var a = KEYFRAMES[i], b = KEYFRAMES[i + 1];
+      if (progress >= a.p && progress <= b.p) {
+        var t = (progress - a.p) / (b.p - a.p || 1);
+        return lerp(a[key], b[key], t);
+      }
+    }
+    return KEYFRAMES[KEYFRAMES.length - 1][key];
+  }
+
+  // The page's dc-runtime replaces the whole static markup with freshly
+  // React-rendered DOM once React/ReactDOM finish loading from the CDN, so a
+  // reference captured once at script-load time can go stale (still updates
+  // fine, just on a detached node nobody sees). Re-querying by id on every
+  // tick makes this self-healing regardless of when that swap happens.
+  //
+  // We must not touch camera-orbit until model-viewer has finished its own
+  // auto-fit framing (radius="auto") — overwriting it before that resolves
+  // permanently locks in whatever placeholder radius existed pre-load,
+  // making the model look like a zoomed-in blob instead of the whole figure.
+  var radiusCache = new WeakMap();
+  function knownRadius(mv) {
+    if (radiusCache.has(mv)) return radiusCache.get(mv);
+    if (mv.loaded) {
+      try {
+        var o = mv.getCameraOrbit();
+        if (o && o.radius) { radiusCache.set(mv, o.radius); return o.radius; }
+      } catch (e) {}
+    } else if (!mv.__sk3dBound) {
+      mv.__sk3dBound = true;
+      mv.addEventListener('load', function () {
+        try {
+          var o = mv.getCameraOrbit();
+          if (o && o.radius) radiusCache.set(mv, o.radius);
+        } catch (e) {}
+      }, { once: true });
+    }
+    return null;
+  }
+
+  var ticking = false;
+  function update() {
+    ticking = false;
+    var wrap = document.getElementById('sk-mascot3d');
+    var mv = document.getElementById('sk-mascot-mv');
+    if (!wrap || !mv) return;
+
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - window.innerHeight;
+    var progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+
+    var xf = valueAt(progress, 'xf');
+    var yf = valueAt(progress, 'yf');
+    var scale = valueAt(progress, 's');
+    var w = window.innerWidth, h = window.innerHeight;
+    var x = xf * w - 85;
+    var y = yf * h - 85;
+    wrap.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) scale(' + scale + ')';
+
+    var radius = knownRadius(mv);
+    if (radius == null) return; // not auto-fitted yet — leave camera-orbit alone
+    var theta = progress * 720;
+    var phi = 75 + Math.sin(progress * Math.PI * 6) * 15;
+    mv.cameraOrbit = theta + 'deg ' + phi + 'deg ' + radius + 'm';
+  }
+
+  function onScroll() {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+  setInterval(update, 500);
+})();
 </script>
 </body>
 </html>
