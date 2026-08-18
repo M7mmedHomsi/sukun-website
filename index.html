@@ -68,6 +68,26 @@
           display: none
         }
 
+        @keyframes particlerise {
+          0% {
+            transform: translateY(0) scale(1);
+            opacity: 0
+          }
+
+          12% {
+            opacity: var(--pmax, .5)
+          }
+
+          85% {
+            opacity: var(--pmax, .5)
+          }
+
+          100% {
+            transform: translateY(-160px) scale(1.4);
+            opacity: 0
+          }
+        }
+
         @keyframes orbfloat {
 
           0%,
@@ -136,8 +156,8 @@
           }
 
           #sk-head img {
-            width: 52px !important;
-            height: 52px !important
+            width: 68px !important;
+            height: 68px !important
           }
 
           #sk-nav a[data-nav="link"] {
@@ -165,6 +185,11 @@
             display: none !important
           }
 
+          #sk-offer-mobile,
+          #sk-compare-mobile {
+            display: flex !important
+          }
+
           [data-split] {
             grid-template-columns: 1fr !important
           }
@@ -179,7 +204,12 @@
           }
 
           #sk-list h3 {
-            font-size: 24px !important
+            font-size: 24px !important;
+            line-height: 1.4 !important
+          }
+
+          #sk-list button {
+            padding: 24px 4px !important
           }
 
           #sk-exp {
@@ -187,7 +217,8 @@
           }
 
           #sk-bignum {
-            font-size: 120px !important
+            font-size: 96px !important;
+            margin-bottom: 8px !important
           }
 
           #sk-compare {
@@ -203,7 +234,11 @@
           }
 
           #sk-waitimg {
-            min-height: 320px !important
+            min-height: 440px !important
+          }
+
+          #sk-waitimg>div:nth-child(2) {
+            background: linear-gradient(0deg, rgba(20, 14, 42, .84) 0%, rgba(20, 14, 42, .5) 40%, rgba(20, 14, 42, .12) 72%, rgba(20, 14, 42, 0) 100%) !important
           }
 
           footer {
@@ -223,14 +258,16 @@
     <div
       style="direction:rtl;width:100%;overflow-x:hidden;background:radial-gradient(120% 95% at 0% 0%,#A087C8 0%,#BA9BD1 44.97%,#92B8FF 70.98%,#D9CCF1 100%);background-attachment:fixed">
 
+      <audio ref="{{ bgAudioRef }}" src="assets/bgmusic.mp3" loop preload="none"></audio>
+
       <!-- ══════ HERO ══════ -->
       <section id="sk-hero" data-screen-label="Hero"
         style="position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;overflow:hidden">
         <div id="sk-herofig" style="position:absolute;inset:0;overflow:hidden">
           <img data-d="1" src="assets/hero-scene.png" alt="مرشد سُكون في مشهد هادئ"
             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%" />
-          <img data-m="1" src="assets/hero-scene.png" alt="مرشد سُكون في مشهد هادئ"
-            style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 34%" />
+          <img data-m="1" src="assets/mascot-orb.png" alt="مرشد سُكون"
+            style="position:absolute;bottom:0;left:4%;width:52%;max-width:260px;height:auto;object-fit:contain" />
         </div>
         <div
           style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(42,36,80,.72) 0%,rgba(42,36,80,.6) 26%,rgba(42,36,80,.34) 52%,rgba(42,36,80,.16) 78%,rgba(42,36,80,.24) 100%)">
@@ -302,7 +339,7 @@
               من لحظة استيقاظك إلى لحظة نومك — أداة لكل حاجة، وكلها تعمل معًا. اختر واحدة، وشاهد مرشدك يعيشها.</p>
           </div>
 
-          <div id="sk-offer-split" data-split="1"
+          <div id="sk-offer-split" data-split="1" data-d="1"
             style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;min-height:100svh">
             <div id="sk-panel"
               style="position:relative;width:100%;max-width:600px;aspect-ratio:3/4;border-radius:52px;overflow:hidden;background:linear-gradient(180deg,rgba(153,116,216,.92) 0%,rgba(176,154,214,.48) 100%);box-shadow:0 40px 90px rgba(53,30,90,.3)">
@@ -384,6 +421,43 @@
               </button>
             </div>
           </div>
+
+          <div id="sk-panel-mobile" data-m="1"
+            style="position:relative;width:100%;aspect-ratio:4/5;border-radius:44px;overflow:hidden;background:linear-gradient(180deg,rgba(153,116,216,.92) 0%,rgba(176,154,214,.48) 100%);box-shadow:0 30px 70px rgba(53,30,90,.3)">
+            <img src="assets/scene-vo.png" alt="مرشد سُكون يستمع لتسجيل صوتي"
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ s0 }}" />
+            <img src="assets/scene-breath.png" alt="مرشد سُكون في تمرين تنفّس"
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ s1 }}" />
+            <img src="assets/scene-habit.png" alt="مرشد سُكون مع متابعة العادات"
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ s2 }}" />
+            <img src="assets/scene-alarms.png" alt="مرشد سُكون نائم مع منبّه لطيف"
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ s3 }}" />
+            <img src="assets/scene-games.png" alt="مرشد سُكون يلعب لعبة ذهنية"
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ s4 }}" />
+            <img src="assets/scene-journal.png" alt="مرشد سُكون يكتب في دفتره"
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ s5 }}" />
+            <div
+              style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,14,42,.86) 0%,rgba(20,14,42,.5) 32%,rgba(20,14,42,.12) 58%,rgba(20,14,42,0) 76%);pointer-events:none">
+            </div>
+            <div style="position:absolute;top:22px;right:24px;left:24px;display:flex;gap:6px">
+              <span style="flex:1;height:3px;border-radius:999px;background:{{ md0 }};transition:background .3s"></span>
+              <span style="flex:1;height:3px;border-radius:999px;background:{{ md1 }};transition:background .3s"></span>
+              <span style="flex:1;height:3px;border-radius:999px;background:{{ md2 }};transition:background .3s"></span>
+              <span style="flex:1;height:3px;border-radius:999px;background:{{ md3 }};transition:background .3s"></span>
+              <span style="flex:1;height:3px;border-radius:999px;background:{{ md4 }};transition:background .3s"></span>
+              <span style="flex:1;height:3px;border-radius:999px;background:{{ md5 }};transition:background .3s"></span>
+            </div>
+            <div
+              style="position:absolute;right:26px;left:26px;bottom:28px;display:flex;flex-direction:column;gap:10px;pointer-events:none">
+              <div style="display:flex;align-items:center;gap:10px"><span
+                  style="width:10px;height:10px;border-radius:999px;background:{{ activeDot }};box-shadow:0 0 12px {{ activeDot }}"></span><span
+                  style="font-weight:700;font-size:23px;line-height:1.3;letter-spacing:-.02em;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,.4)">{{
+                  activeTitle }}</span></div>
+              <div
+                style="font-weight:400;font-size:15px;line-height:1.65;color:rgba(255,255,255,.88);text-shadow:0 2px 14px rgba(0,0,0,.35)">
+                {{ activeHint }}</div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -409,18 +483,30 @@
           </div>
 
           <div id="sk-exp" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:stretch">
-            <div data-anim="rise"
-              style="position:relative;border-radius:52px;padding:28px 32px 36px;background:radial-gradient(135% 130% at 18% 0%,#FF9A6C 0%,#D97BE0 32%,#8B6FE8 60%,#4EBCFF 100%);box-shadow:0 30px 70px rgba(53,30,90,.38);display:flex;flex-direction:column;align-items:center;gap:20px;overflow:hidden;color:#fff">
+            <div id="sk-breath-card" data-anim="rise"
+              style="position:{{ breathPos }};inset:{{ breathInset }};z-index:{{ breathZ }};border-radius:{{ breathRadius }};padding:28px 32px 36px;background:radial-gradient(135% 130% at 18% 0%,#FF9A6C 0%,#D97BE0 32%,#8B6FE8 60%,#4EBCFF 100%);box-shadow:0 30px 70px rgba(53,30,90,.38);display:flex;flex-direction:column;align-items:center;justify-content:{{ breathJustify }};gap:20px;overflow:{{ breathOverflow }};color:#fff">
               <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,14,42,.22) 0%,rgba(20,14,42,0) 30%,rgba(20,14,42,.1) 65%,rgba(20,14,42,.4) 100%);pointer-events:none"></div>
+              <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:{{ breathParticlesOp }};transition:opacity .6s ease">
+                <span style="position:absolute;bottom:0;left:6%;width:5px;height:5px;border-radius:999px;background:#fff;--pmax:.45;animation:particlerise 7s ease-in infinite;animation-delay:0s"></span>
+                <span style="position:absolute;bottom:0;left:16%;width:3px;height:3px;border-radius:999px;background:#fff;--pmax:.35;animation:particlerise 6s ease-in infinite;animation-delay:.9s"></span>
+                <span style="position:absolute;bottom:0;left:26%;width:6px;height:6px;border-radius:999px;background:#fff;--pmax:.5;animation:particlerise 8s ease-in infinite;animation-delay:1.8s"></span>
+                <span style="position:absolute;bottom:0;left:36%;width:4px;height:4px;border-radius:999px;background:#fff;--pmax:.4;animation:particlerise 6.5s ease-in infinite;animation-delay:.3s"></span>
+                <span style="position:absolute;bottom:0;left:48%;width:3px;height:3px;border-radius:999px;background:#fff;--pmax:.3;animation:particlerise 7.5s ease-in infinite;animation-delay:2.4s"></span>
+                <span style="position:absolute;bottom:0;left:58%;width:5px;height:5px;border-radius:999px;background:#fff;--pmax:.45;animation:particlerise 6s ease-in infinite;animation-delay:1.2s"></span>
+                <span style="position:absolute;bottom:0;left:68%;width:4px;height:4px;border-radius:999px;background:#fff;--pmax:.35;animation:particlerise 8s ease-in infinite;animation-delay:3s"></span>
+                <span style="position:absolute;bottom:0;left:78%;width:6px;height:6px;border-radius:999px;background:#fff;--pmax:.5;animation:particlerise 7s ease-in infinite;animation-delay:.6s"></span>
+                <span style="position:absolute;bottom:0;left:88%;width:3px;height:3px;border-radius:999px;background:#fff;--pmax:.3;animation:particlerise 6.5s ease-in infinite;animation-delay:2.1s"></span>
+                <span style="position:absolute;bottom:0;left:94%;width:5px;height:5px;border-radius:999px;background:#fff;--pmax:.4;animation:particlerise 7.5s ease-in infinite;animation-delay:1.5s"></span>
+              </div>
 
-              <div style="position:relative;width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px">
+              <div style="position:relative;width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex:none">
                 <div
                   style="width:38px;height:38px;flex:none;border-radius:999px;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#2A2450">
                   ›</div>
                 <div style="font-weight:600;font-size:15px;line-height:1;letter-spacing:-.01em">تمرين التنفّس</div>
-                <div
-                  style="width:38px;height:38px;flex:none;border-radius:999px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;font-size:15px;line-height:1;letter-spacing:1px">
-                  •••</div>
+                <button onClick="{{ closeImmersive }}"
+                  style="width:38px;height:38px;flex:none;border:1px solid rgba(255,255,255,.4);border-radius:999px;background:rgba(255,255,255,.2);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;line-height:1;letter-spacing:1px;cursor:pointer">
+                  {{ breathMenuGlyph }}</button>
               </div>
 
               <div
@@ -484,20 +570,33 @@
                   style="position:absolute;right:28px;bottom:26px;left:28px;font-weight:600;font-size:clamp(20px,2vw,28px);line-height:1.35;letter-spacing:-.03em;color:#fff">
                   يتنفّس معك، لا نيابة عنك.</div>
               </div>
-              <div
-                style="position:relative;border-radius:52px;padding:26px 28px 30px;background:radial-gradient(130% 130% at 20% 0%,#FF8A5C 0%,#E0678F 32%,#8B6FE8 62%,#5B7FE0 100%);box-shadow:0 30px 70px rgba(53,30,90,.34);display:flex;flex-direction:column;align-items:center;gap:14px;overflow:hidden;color:#fff">
+              <div id="sk-vo-card"
+                style="position:{{ voPos }};inset:{{ voInset }};z-index:{{ voZ }};border-radius:{{ voRadius }};padding:26px 28px 30px;background:radial-gradient(130% 130% at 20% 0%,#FF8A5C 0%,#E0678F 32%,#8B6FE8 62%,#5B7FE0 100%);box-shadow:0 30px 70px rgba(53,30,90,.34);display:flex;flex-direction:column;align-items:center;justify-content:{{ voJustify }};gap:14px;overflow:{{ voOverflow }};color:#fff">
+                <audio ref="{{ audioRef }}" src="assets/episode-1-inner-peace.mp3" preload="metadata"></audio>
                 <div
                   style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,14,42,.18) 0%,rgba(20,14,42,0) 30%,rgba(20,14,42,.08) 60%,rgba(20,14,42,.4) 100%);pointer-events:none">
                 </div>
+                <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:{{ voParticlesOp }};transition:opacity .6s ease">
+                  <span style="position:absolute;bottom:0;left:8%;width:5px;height:5px;border-radius:999px;background:#fff;--pmax:.45;animation:particlerise 7s ease-in infinite;animation-delay:.4s"></span>
+                  <span style="position:absolute;bottom:0;left:18%;width:3px;height:3px;border-radius:999px;background:#fff;--pmax:.35;animation:particlerise 6.5s ease-in infinite;animation-delay:1.6s"></span>
+                  <span style="position:absolute;bottom:0;left:30%;width:6px;height:6px;border-radius:999px;background:#fff;--pmax:.5;animation:particlerise 8s ease-in infinite;animation-delay:0s"></span>
+                  <span style="position:absolute;bottom:0;left:40%;width:4px;height:4px;border-radius:999px;background:#fff;--pmax:.4;animation:particlerise 6s ease-in infinite;animation-delay:2.2s"></span>
+                  <span style="position:absolute;bottom:0;left:52%;width:3px;height:3px;border-radius:999px;background:#fff;--pmax:.3;animation:particlerise 7.5s ease-in infinite;animation-delay:1s"></span>
+                  <span style="position:absolute;bottom:0;left:62%;width:5px;height:5px;border-radius:999px;background:#fff;--pmax:.45;animation:particlerise 6.5s ease-in infinite;animation-delay:2.8s"></span>
+                  <span style="position:absolute;bottom:0;left:72%;width:4px;height:4px;border-radius:999px;background:#fff;--pmax:.35;animation:particlerise 7s ease-in infinite;animation-delay:.8s"></span>
+                  <span style="position:absolute;bottom:0;left:82%;width:6px;height:6px;border-radius:999px;background:#fff;--pmax:.5;animation:particlerise 8s ease-in infinite;animation-delay:1.9s"></span>
+                  <span style="position:absolute;bottom:0;left:90%;width:3px;height:3px;border-radius:999px;background:#fff;--pmax:.3;animation:particlerise 6s ease-in infinite;animation-delay:.2s"></span>
+                  <span style="position:absolute;bottom:0;left:96%;width:5px;height:5px;border-radius:999px;background:#fff;--pmax:.4;animation:particlerise 7.5s ease-in infinite;animation-delay:2.5s"></span>
+                </div>
 
-                <div style="position:relative;width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <div style="position:relative;width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex:none">
                   <div
                     style="width:36px;height:36px;flex:none;border-radius:999px;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1;color:#2A2450">
                     ›</div>
                   <div style="font-weight:600;font-size:14px;line-height:1;letter-spacing:-.01em">تسجيل صوتي</div>
-                  <div
-                    style="width:36px;height:36px;flex:none;border-radius:999px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1">
-                    ♡</div>
+                  <button onClick="{{ closeImmersive }}"
+                    style="width:36px;height:36px;flex:none;border:1px solid rgba(255,255,255,.4);border-radius:999px;background:rgba(255,255,255,.2);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1;cursor:pointer">
+                    {{ voMenuGlyph }}</button>
                 </div>
 
                 <div
@@ -531,10 +630,7 @@
                 </div>
 
                 <div
-                  style="position:relative;width:100%;display:flex;align-items:center;justify-content:space-around;margin-top:8px;padding-top:14px;border-top:1px solid rgba(255,255,255,.18)">
-                  <div
-                    style="display:flex;flex-direction:column;align-items:center;gap:5px;font-weight:500;font-size:11px;color:rgba(255,255,255,.85)">
-                    <span style="font-size:15px;line-height:1">⭳</span>تنزيل</div>
+                  style="position:relative;width:100%;display:flex;align-items:center;justify-content:center;margin-top:8px;padding-top:14px;border-top:1px solid rgba(255,255,255,.18)">
                   <div
                     style="display:flex;flex-direction:column;align-items:center;gap:5px;font-weight:500;font-size:11px;color:rgba(255,255,255,.85)">
                     <span style="font-size:15px;line-height:1">♫</span>أضِف لقائمتي</div>
@@ -569,7 +665,7 @@
             </div>
           </div>
 
-          <div id="sk-compare" data-anim="rise"
+          <div id="sk-compare" data-anim="rise" data-d="1"
             style="border:1px solid rgba(255,255,255,.7);border-radius:52px;overflow:hidden;background:rgba(255,255,255,.42);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%)">
             <div
               style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;background:rgba(255,255,255,.55);border-bottom:1px solid rgba(42,36,80,.12)">
@@ -655,6 +751,70 @@
                 —</div>
             </div>
           </div>
+
+          <div id="sk-compare-mobile" data-m="1" data-anim="rise" style="flex-direction:column;gap:10px">
+            <div
+              style="padding:18px 20px;border-radius:24px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <div style="font-weight:500;font-size:14px;line-height:1.5;color:rgba(42,36,80,.86);flex:1">محتوى عربي
+                  أصلي غير مترجم</div>
+                <div
+                  style="flex:none;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:rgba(95,146,39,.14);font-weight:700;font-size:13px;color:#5F9227">
+                  ✓ سُكون</div>
+              </div>
+              <div style="font-weight:400;font-size:12px;line-height:1.5;color:rgba(42,36,80,.5)">Calm · Headspace:
+                مترجم &nbsp;·&nbsp; تَوازن: ✓</div>
+            </div>
+            <div
+              style="padding:18px 20px;border-radius:24px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <div style="font-weight:500;font-size:14px;line-height:1.5;color:rgba(42,36,80,.86);flex:1">بصوت مدرّبة
+                  معتمدة في البرمجة اللغوية العصبية</div>
+                <div
+                  style="flex:none;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:rgba(95,146,39,.14);font-weight:700;font-size:13px;color:#5F9227">
+                  ✓ سُكون</div>
+              </div>
+              <div style="font-weight:400;font-size:12px;line-height:1.5;color:rgba(42,36,80,.5)">Calm · Headspace: —
+                &nbsp;·&nbsp; تَوازن: —</div>
+            </div>
+            <div
+              style="padding:18px 20px;border-radius:24px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <div style="font-weight:500;font-size:14px;line-height:1.5;color:rgba(42,36,80,.86);flex:1">متابعة
+                  عادات ومنبّهات في التطبيق نفسه</div>
+                <div
+                  style="flex:none;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:rgba(95,146,39,.14);font-weight:700;font-size:13px;color:#5F9227">
+                  ✓ سُكون</div>
+              </div>
+              <div style="font-weight:400;font-size:12px;line-height:1.5;color:rgba(42,36,80,.5)">Calm · Headspace:
+                جزئيًا &nbsp;·&nbsp; تَوازن: جزئيًا</div>
+            </div>
+            <div
+              style="padding:18px 20px;border-radius:24px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <div style="font-weight:500;font-size:14px;line-height:1.5;color:rgba(42,36,80,.86);flex:1">ألعاب
+                  ذهنية للتركيز والاسترخاء</div>
+                <div
+                  style="flex:none;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:rgba(95,146,39,.14);font-weight:700;font-size:13px;color:#5F9227">
+                  ✓ سُكون</div>
+              </div>
+              <div style="font-weight:400;font-size:12px;line-height:1.5;color:rgba(42,36,80,.5)">Calm · Headspace: —
+                &nbsp;·&nbsp; تَوازن: —</div>
+            </div>
+            <div
+              style="padding:18px 20px;border-radius:24px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <div style="font-weight:500;font-size:14px;line-height:1.5;color:rgba(42,36,80,.86);flex:1">خريطة
+                  واحدة تجمع تقدّمك كله</div>
+                <div
+                  style="flex:none;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:rgba(95,146,39,.14);font-weight:700;font-size:13px;color:#5F9227">
+                  ✓ سُكون</div>
+              </div>
+              <div style="font-weight:400;font-size:12px;line-height:1.5;color:rgba(42,36,80,.5)">Calm · Headspace: —
+                &nbsp;·&nbsp; تَوازن: —</div>
+            </div>
+          </div>
+
           <p style="margin:16px 0 0;font-weight:400;font-size:12px;line-height:1.6;color:rgba(42,36,80,.58)">مقارنة
             بناءً على الميزات المعلنة لهذه التطبيقات في يوليو ٢٠٢٦. الأسماء التجارية ملك أصحابها.</p>
         </div>
@@ -855,105 +1015,6 @@
         </div>
       </footer>
 
-      <sc-if value="{{ immersiveBreath }}">
-        <div id="sk-immersive-breath"
-          style="position:fixed;inset:0;z-index:200;background:radial-gradient(135% 130% at 18% 0%,#FF9A6C 0%,#D97BE0 32%,#8B6FE8 60%,#4EBCFF 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;color:#fff;overflow:auto">
-          <button onClick="{{ closeImmersive }}"
-            style="position:absolute;top:28px;left:28px;width:44px;height:44px;border:none;border-radius:999px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;font-size:18px;line-height:1;cursor:pointer">✕</button>
-          <div style="font-weight:600;font-size:15px;margin-bottom:36px">تمرين التنفّس</div>
-
-          <div style="position:relative;width:236px;height:236px;display:flex;align-items:center;justify-content:center">
-            <div ref="{{ breathRef2 }}" style="position:absolute;width:230px;height:230px;transform:scale(.6);transition:none">
-              <div
-                style="position:absolute;left:50%;top:50%;width:58%;height:58%;border-radius:999px;background:rgba(255,255,255,.24);transform:translate(-50%,-50%)">
-              </div>
-              <div
-                style="position:absolute;left:50%;top:50%;width:58%;height:58%;border-radius:999px;background:rgba(255,255,255,.18);transform:translate(calc(-50% + 68px),calc(-50%))">
-              </div>
-              <div
-                style="position:absolute;left:50%;top:50%;width:58%;height:58%;border-radius:999px;background:rgba(255,255,255,.18);transform:translate(calc(-50% + 34px),calc(-50% - 59px))">
-              </div>
-              <div
-                style="position:absolute;left:50%;top:50%;width:58%;height:58%;border-radius:999px;background:rgba(255,255,255,.18);transform:translate(calc(-50% - 34px),calc(-50% - 59px))">
-              </div>
-              <div
-                style="position:absolute;left:50%;top:50%;width:58%;height:58%;border-radius:999px;background:rgba(255,255,255,.18);transform:translate(calc(-50% - 68px),calc(-50%))">
-              </div>
-              <div
-                style="position:absolute;left:50%;top:50%;width:58%;height:58%;border-radius:999px;background:rgba(255,255,255,.18);transform:translate(calc(-50% - 34px),calc(-50% + 59px))">
-              </div>
-              <div
-                style="position:absolute;left:50%;top:50%;width:58%;height:58%;border-radius:999px;background:rgba(255,255,255,.18);transform:translate(calc(-50% + 34px),calc(-50% + 59px))">
-              </div>
-            </div>
-            <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:2px">
-              <div
-                style="font-weight:700;font-size:68px;line-height:1;letter-spacing:-.04em;font-variant-numeric:tabular-nums;text-shadow:0 4px 24px rgba(0,0,0,.25)">
-                {{ breathCount }}</div>
-              <div style="font-weight:600;font-size:18px;line-height:1.3;text-shadow:0 2px 14px rgba(0,0,0,.2)">{{ breathPhase }}</div>
-            </div>
-          </div>
-
-          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:32px">
-            <div style="font-weight:500;font-size:13px;color:rgba(255,255,255,.8)">{{ cycleLabel }}</div>
-            <div style="font-weight:700;font-size:26px;letter-spacing:-.02em">جِد إيقاعك</div>
-            <div style="font-weight:400;font-size:13px;color:rgba(255,255,255,.72)">{{ breathCount }} ثوانٍ</div>
-          </div>
-
-          <button onClick="{{ toggleBreath }}"
-            style="width:72px;height:72px;flex:none;border:none;border-radius:999px;background:#fff;color:#2A2450;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;box-shadow:0 16px 34px rgba(20,14,42,.35);margin-top:32px">{{
-            breathGlyph }}</button>
-          <p style="margin:20px 0 0;font-weight:400;font-size:12px;line-height:1.7;color:rgba(255,255,255,.65);text-align:center;max-width:44ch">
-            تنفّس براحتك — إن كنتِ حاملًا أو لديك حالة قلبية أو تنفّسية، تجاوز الحبس وتنفّس ببطء فقط.</p>
-        </div>
-      </sc-if>
-
-      <sc-if value="{{ immersiveVo }}">
-        <div id="sk-immersive-vo"
-          style="position:fixed;inset:0;z-index:200;background:radial-gradient(130% 130% at 20% 0%,#FF8A5C 0%,#E0678F 32%,#8B6FE8 62%,#5B7FE0 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;color:#fff;overflow:auto">
-          <button onClick="{{ closeImmersive }}"
-            style="position:absolute;top:28px;left:28px;width:44px;height:44px;border:none;border-radius:999px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;font-size:18px;line-height:1;cursor:pointer">✕</button>
-          <div style="font-weight:600;font-size:15px;margin-bottom:36px">تسجيل صوتي</div>
-
-          <div style="position:relative;width:220px;height:220px;display:flex;align-items:center;justify-content:center">
-            <svg viewBox="0 0 200 200" style="position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)">
-              <circle cx="100" cy="100" r="92" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="6" />
-              <circle cx="100" cy="100" r="92" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"
-                stroke-dasharray="{{ voCircumference }}" stroke-dashoffset="{{ voRingOffset }}" />
-            </svg>
-            <img src="assets/mascot-orb.png" alt="مرشد سُكون"
-              style="position:relative;z-index:2;width:64%;height:64%;object-fit:contain;animation:orbfloat 8s ease-in-out infinite;filter:drop-shadow(0 14px 26px rgba(20,14,42,.3))" />
-          </div>
-          <div style="font-weight:600;font-size:14px;line-height:1;font-variant-numeric:tabular-nums;color:rgba(255,255,255,.9);margin-top:14px">
-            {{ voTime }}</div>
-
-          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:24px;text-align:center">
-            <div style="font-weight:500;font-size:13px;color:rgba(255,255,255,.75)">بصوت خليجي دافئ</div>
-            <div style="font-weight:700;font-size:30px;letter-spacing:-.02em">{{ trackTitle }}</div>
-            <div style="font-weight:400;font-size:14px;color:rgba(255,255,255,.72)">{{ trackSub }}</div>
-          </div>
-
-          <div style="display:flex;align-items:center;gap:20px;margin-top:32px">
-            <button onClick="{{ prevTrack }}"
-              style="width:48px;height:48px;border:none;border-radius:999px;background:rgba(255,255,255,.2);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer">◂</button>
-            <button onClick="{{ togglePlay }}"
-              style="width:72px;height:72px;border:none;border-radius:999px;background:#fff;color:#2A2450;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;box-shadow:0 16px 34px rgba(20,14,42,.35)">{{
-              playGlyph }}</button>
-            <button onClick="{{ nextTrack }}"
-              style="width:48px;height:48px;border:none;border-radius:999px;background:rgba(255,255,255,.2);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer">▸</button>
-          </div>
-
-          <div style="display:flex;align-items:center;gap:40px;margin-top:32px">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;font-weight:500;font-size:12px;color:rgba(255,255,255,.85)">
-              <span style="font-size:17px;line-height:1">⭳</span>تنزيل</div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;font-weight:500;font-size:12px;color:rgba(255,255,255,.85)">
-              <span style="font-size:17px;line-height:1">♫</span>أضِف لقائمتي</div>
-          </div>
-          <p style="margin:24px 0 0;font-weight:400;font-size:12px;line-height:1.7;color:rgba(255,255,255,.65);text-align:center;max-width:44ch">
-            بصوت مدرّبة معتمدة في البرمجة اللغوية العصبية — أكثر من ٨ سنوات خبرة، لا ترجمة.</p>
-        </div>
-      </sc-if>
-
     </div>
   </x-dc>
   <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
@@ -982,11 +1043,12 @@ const VO_R = 92;
 const VO_C = 2 * Math.PI * VO_R;
 
 class Component extends DCLogic {
-  state = { running: false, phase: 0, left: 4, cycle: 1, track: 'calm', playing: false, pos: 0, joined: false, tool: 0, immersive: null };
+  state = { running: false, phase: 0, left: 4, cycle: 1, track: 'calm', playing: false, pos: 0, voDuration: 0, joined: false, tool: 0, immersive: null };
 
   componentDidMount() {
     this.breathRef = React.createRef();
-    this.breathRef2 = React.createRef();
+    this.audioRef = React.createRef();
+    this.bgAudioRef = React.createRef();
     this._tick = setInterval(() => this._onTick(), 1000);
     this._applyScale(0.6, 0);
     this._waitForGsap(0);
@@ -1013,27 +1075,79 @@ class Component extends DCLogic {
     }
   }
 
+  // The card itself (not a duplicate) switches from an in-flow grid item to
+  // a fixed near-fullscreen panel via the {{ breathPos/voPos... }} bindings.
+  // That's an instant layout jump, so this runs a FLIP: right after the jump
+  // we snap a transform onto the card that makes it LOOK like it's still at
+  // its pre-jump size/position (using the rect captured before the state
+  // change), then animate that transform back to identity — the card visibly
+  // grows from where it was into the fullscreen spot, because it's the same
+  // element the whole time.
+  _cardEl(mode) { return document.getElementById(mode === 'breath' ? 'sk-breath-card' : 'sk-vo-card'); }
+
   _animateImmersiveOpen(mode) {
     const gsap = window.gsap;
-    const overlay = document.getElementById(mode === 'breath' ? 'sk-immersive-breath' : 'sk-immersive-vo');
-    if (!overlay) return;
+    const card = this._cardEl(mode);
+    if (!card) return;
     if (!gsap || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const o = this._originRect;
-    if (!o) { gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.4 }); return; }
-    const ow = window.innerWidth, oh = window.innerHeight;
-    const scaleX = Math.max(0.04, o.width / ow), scaleY = Math.max(0.04, o.height / oh);
-    const x = (o.left + o.width / 2) - ow / 2;
-    const y = (o.top + o.height / 2) - oh / 2;
-    gsap.fromTo(overlay,
-      { x, y, scaleX, scaleY, opacity: 0.5 },
-      { x: 0, y: 0, scaleX: 1, scaleY: 1, opacity: 1, duration: 0.6, ease: 'power3.out' }
+    if (!o) { gsap.fromTo(card, { opacity: 0.4 }, { opacity: 1, duration: 0.4 }); return; }
+    const now = card.getBoundingClientRect();
+    const scaleX = Math.max(0.04, o.width / now.width), scaleY = Math.max(0.04, o.height / now.height);
+    const x = (o.left + o.width / 2) - (now.left + now.width / 2);
+    const y = (o.top + o.height / 2) - (now.top + now.height / 2);
+    gsap.fromTo(card,
+      { x, y, scaleX, scaleY },
+      { x: 0, y: 0, scaleX: 1, scaleY: 1, duration: 0.65, ease: 'power2.inOut' }
     );
   }
 
   componentWillUnmount() {
     clearInterval(this._tick);
     if (window.ScrollTrigger) window.ScrollTrigger.getAll().forEach(t => t.kill());
-    if (this._mobileToolScroll) window.removeEventListener('scroll', this._mobileToolScroll);
+    const audio = this.audioRef && this.audioRef.current;
+    if (audio && this._audioBound) {
+      audio.removeEventListener('timeupdate', this._onAudioTime);
+      audio.removeEventListener('loadedmetadata', this._onAudioMeta);
+      audio.removeEventListener('ended', this._onAudioEnd);
+    }
+  }
+
+  // Refs created in componentDidMount don't attach to their DOM nodes until
+  // after the first render commits in this runtime, so binding must happen
+  // lazily (retried every tick) rather than assumed ready at mount time.
+  _bindAudio() {
+    if (this._audioBound) return;
+    const audio = this.audioRef && this.audioRef.current;
+    if (!audio) return;
+    this._audioBound = true;
+    this._onAudioTime = () => this.setState({ pos: audio.currentTime });
+    this._onAudioMeta = () => this.setState({ voDuration: audio.duration || 0 });
+    this._onAudioEnd = () => this.setState({ playing: false, pos: 0 });
+    audio.addEventListener('timeupdate', this._onAudioTime);
+    audio.addEventListener('loadedmetadata', this._onAudioMeta);
+    audio.addEventListener('ended', this._onAudioEnd);
+    if (audio.duration) this.setState({ voDuration: audio.duration });
+  }
+
+  _bindBg() {
+    if (this._bgBound) return;
+    const bg = this.bgAudioRef && this.bgAudioRef.current;
+    if (!bg) return;
+    this._bgBound = true;
+    bg.volume = 0.18;
+    bg.loop = true;
+  }
+
+  _playBg() {
+    this._bindBg();
+    const bg = this.bgAudioRef && this.bgAudioRef.current;
+    if (bg) bg.play().catch(() => {});
+  }
+
+  _pauseBg() {
+    const bg = this.bgAudioRef && this.bgAudioRef.current;
+    if (bg) bg.pause();
   }
 
   _waitForGsap(n) {
@@ -1054,54 +1168,50 @@ class Component extends DCLogic {
     if (fig) gsap.to(fig, { yPercent: 12, scale: 1.06, ease: 'none', scrollTrigger: { trigger: '#sk-hero', start: 'top top', end: 'bottom top', scrub: true } });
 
     q('[data-anim="rise"]').forEach(el => {
-      gsap.from(el, { y: 46, opacity: 0, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
+      gsap.from(el, { y: 46, opacity: 0, duration: 0.9, ease: 'power3.out', clearProps: 'transform', scrollTrigger: { trigger: el, start: 'top 88%' } });
     });
 
     q('[data-parallax="1"]').forEach(el => {
       gsap.fromTo(el, { yPercent: -5 }, { yPercent: 5, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true } });
     });
 
-    const splitEl = document.querySelector('#sk-offer-split');
-    const toolButtons = q('#sk-list button');
-    const toolCount = toolButtons.length;
-    if (splitEl && toolCount && window.innerWidth >= 980) {
+    const toolCount = TOOLS.length;
+    if (window.innerWidth >= 980) {
       // Desktop/wide: the image + list fit in one viewport, so pin the whole
       // block and drive the active feature off scroll progress within it.
-      ST.create({
-        trigger: splitEl,
-        start: 'top top',
-        end: '+=' + Math.round(toolCount * window.innerHeight * 0.85),
-        pin: true,
-        anticipatePin: 1,
-        onUpdate: self => {
-          const idx = Math.min(toolCount - 1, Math.floor(self.progress * toolCount));
-          if (idx !== this.state.tool) this.setState({ tool: idx });
-        }
-      });
-    } else if (toolCount) {
-      // Mobile/narrow: image + all 6 items stacked are taller than one
-      // screen, so pinning would clip content off-screen. Instead just swap
-      // the image as each item naturally scrolls past the viewport center.
-      // (A second ScrollTrigger on the same button elements as the
-      // data-anim="rise" reveal tween corrupts that tween's opacity, so this
-      // deliberately avoids ScrollTrigger entirely and just reads live
-      // bounding rects off a plain scroll listener instead.)
-      let ticking = false;
-      const updateMobileTool = () => {
-        ticking = false;
-        const mid = window.innerHeight / 2;
-        let closest = 0, closestDist = Infinity;
-        toolButtons.forEach((btn, i) => {
-          const r = btn.getBoundingClientRect();
-          const dist = Math.abs((r.top + r.bottom) / 2 - mid);
-          if (dist < closestDist) { closestDist = dist; closest = i; }
+      const splitEl = document.querySelector('#sk-offer-split');
+      if (splitEl) {
+        ST.create({
+          trigger: splitEl,
+          start: 'top top',
+          end: '+=' + Math.round(toolCount * window.innerHeight * 0.85),
+          pin: true,
+          anticipatePin: 1,
+          onUpdate: self => {
+            const idx = Math.min(toolCount - 1, Math.floor(self.progress * toolCount));
+            if (idx !== this.state.tool) this.setState({ tool: idx });
+          }
         });
-        if (closest !== this.state.tool) this.setState({ tool: closest });
-      };
-      this._mobileToolScroll = () => {
-        if (!ticking) { ticking = true; requestAnimationFrame(updateMobileTool); }
-      };
-      window.addEventListener('scroll', this._mobileToolScroll, { passive: true });
+      }
+    } else {
+      // Mobile/narrow: no room for a separate list beside the image, so pin
+      // just the image panel itself (with the caption already overlaid on
+      // it, same as desktop's bottom overlay) and step through features off
+      // scroll progress, exactly like the desktop mechanism.
+      const panelM = document.querySelector('#sk-panel-mobile');
+      if (panelM) {
+        ST.create({
+          trigger: panelM,
+          start: 'top top+=64',
+          end: '+=' + Math.round(toolCount * window.innerHeight * 0.6),
+          pin: true,
+          anticipatePin: 1,
+          onUpdate: self => {
+            const idx = Math.min(toolCount - 1, Math.floor(self.progress * toolCount));
+            if (idx !== this.state.tool) this.setState({ tool: idx });
+          }
+        });
+      }
     }
 
     const num = document.querySelector('#sk-bignum');
@@ -1112,21 +1222,16 @@ class Component extends DCLogic {
   }
 
   _applyScale(scale, dur) {
-    [this.breathRef, this.breathRef2].forEach(ref => {
-      const el = ref && ref.current;
-      if (!el) return;
-      el.style.transition = dur ? `transform ${dur}s linear` : 'none';
-      el.style.transform = `scale(${scale})`;
-    });
+    const el = this.breathRef && this.breathRef.current;
+    if (!el) return;
+    el.style.transition = dur ? `transform ${dur}s linear` : 'none';
+    el.style.transform = `scale(${scale})`;
   }
 
   _onTick() {
+    this._bindAudio();
+    this._bindBg();
     const s = this.state;
-    if (s.playing) {
-      const len = TRACKS[s.track].len;
-      const pos = s.pos + 1;
-      if (pos >= len) this.setState({ pos: 0, playing: false }); else this.setState({ pos });
-    }
     if (!s.running) return;
     if (s.left > 1) { this.setState({ left: s.left - 1 }); return; }
     const next = (s.phase + 1) % PHASES.length;
@@ -1136,67 +1241,95 @@ class Component extends DCLogic {
     this._applyScale(PHASES[next].scale, PHASES[next].dur);
   }
 
-  toggleBreath = e => {
+  toggleBreath = () => {
     if (this.state.running) {
       this.setState({ running: false, phase: 0, left: 4, cycle: 1 });
       this._applyScale(0.6, 1);
+      if (this.state.immersive === 'breath') this._pauseBg();
     } else {
-      if (e && e.currentTarget) this._originRect = e.currentTarget.getBoundingClientRect();
-      this.setState({ running: true, phase: 0, left: 4, cycle: 1, immersive: 'breath' });
+      const goImmersive = window.innerWidth < 980;
+      if (goImmersive) {
+        const card = this._cardEl('breath');
+        if (card) this._originRect = card.getBoundingClientRect();
+        this._playBg();
+      }
+      this.setState({ running: true, phase: 0, left: 4, cycle: 1, immersive: goImmersive ? 'breath' : null });
       this._applyScale(1, 4);
     }
   };
-  pick = t => () => this.setState({ track: t, pos: 0, playing: false });
+  pick = t => () => this.setState({ track: t });
   pickTool = i => () => this.setState({ tool: i });
-  togglePlay = e => this.setState(s => {
-    const opening = !s.playing;
-    if (opening && e && e.currentTarget) this._originRect = e.currentTarget.getBoundingClientRect();
-    return { playing: !s.playing, immersive: opening ? 'vo' : s.immersive };
-  });
+  togglePlay = () => {
+    this._bindAudio();
+    const audio = this.audioRef && this.audioRef.current;
+    const opening = !this.state.playing;
+    const goImmersive = opening && window.innerWidth < 980;
+    if (goImmersive) {
+      const card = this._cardEl('vo');
+      if (card) this._originRect = card.getBoundingClientRect();
+      this._playBg();
+    } else if (!opening) {
+      this._pauseBg();
+    }
+    if (audio) { if (opening) audio.play().catch(() => {}); else audio.pause(); }
+    this.setState(s => ({ playing: !s.playing, immersive: goImmersive ? 'vo' : s.immersive }));
+  };
   closeImmersive = () => {
     const mode = this.state.immersive;
     if (!mode) return;
+    this._pauseBg();
     const gsap = window.gsap;
-    const overlay = document.getElementById(mode === 'breath' ? 'sk-immersive-breath' : 'sk-immersive-vo');
+    const card = this._cardEl(mode);
     const o = this._originRect;
-    if (!gsap || !overlay || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (!gsap || !card || !o || matchMedia('(prefers-reduced-motion: reduce)').matches) {
       this.setState({ immersive: null });
       return;
     }
-    if (!o) {
-      gsap.to(overlay, { opacity: 0, duration: 0.3, onComplete: () => this.setState({ immersive: null }) });
-      return;
-    }
-    const ow = window.innerWidth, oh = window.innerHeight;
-    const scaleX = Math.max(0.04, o.width / ow), scaleY = Math.max(0.04, o.height / oh);
-    const x = (o.left + o.width / 2) - ow / 2;
-    const y = (o.top + o.height / 2) - oh / 2;
-    gsap.to(overlay, {
-      x, y, scaleX, scaleY, opacity: 0.4, duration: 0.45, ease: 'power3.in',
-      onComplete: () => this.setState({ immersive: null })
+    const now = card.getBoundingClientRect();
+    const scaleX = Math.max(0.04, o.width / now.width), scaleY = Math.max(0.04, o.height / now.height);
+    const x = (o.left + o.width / 2) - (now.left + now.width / 2);
+    const y = (o.top + o.height / 2) - (now.top + now.height / 2);
+    gsap.to(card, {
+      x, y, scaleX, scaleY, duration: 0.5, ease: 'power2.inOut',
+      onComplete: () => {
+        this.setState({ immersive: null });
+        gsap.set(card, { clearProps: 'transform' });
+      }
     });
   };
   stepTrack = dir => () => this.setState(s => {
     const i = TRACK_ORDER.indexOf(s.track);
     const next = TRACK_ORDER[(i + dir + TRACK_ORDER.length) % TRACK_ORDER.length];
-    return { track: next, pos: 0 };
+    return { track: next };
   });
   onSubmit = e => { e.preventDefault(); this.setState({ joined: true }); };
 
   renderVals() {
     const s = this.state, tr = TRACKS[s.track], tool = TOOLS[s.tool];
-    const mm = Math.floor(s.pos / 60), ss = String(s.pos % 60).padStart(2, '0');
+    const posInt = Math.floor(s.pos || 0);
+    const mm = Math.floor(posInt / 60), ss = String(posInt % 60).padStart(2, '0');
     const on = t => s.track === t;
-    const voFrac = Math.min(1, s.pos / tr.len);
+    const voFrac = s.voDuration ? Math.min(1, s.pos / s.voDuration) : 0;
+    const isBreathImmersive = s.immersive === 'breath';
+    const isVoImmersive = s.immersive === 'vo';
     const vals = {
       breathRef: this.breathRef,
-      breathRef2: this.breathRef2,
+      audioRef: this.audioRef,
+      bgAudioRef: this.bgAudioRef,
       breathCount: s.running ? AR(s.left) : AR(4),
       breathPhase: s.running ? PHASES[s.phase].name : 'استعد',
       breathBtn: s.running ? 'إيقاف' : 'ابدأ التمرين',
       breathGlyph: s.running ? '❚❚' : '▶',
       cycleLabel: s.running ? 'الدورة ' + AR(s.cycle) + ' من ٤' : '٤٠ ثانية',
       toggleBreath: this.toggleBreath,
+      breathPos: isBreathImmersive ? 'fixed' : 'relative',
+      breathInset: isBreathImmersive ? '0' : 'auto',
+      breathRadius: isBreathImmersive ? '0' : '52px',
+      breathZ: isBreathImmersive ? 200 : 'auto',
+      breathJustify: isBreathImmersive ? 'center' : 'flex-start',
+      breathOverflow: isBreathImmersive ? 'auto' : 'hidden',
+      breathParticlesOp: isBreathImmersive ? 1 : 0,
+      breathMenuGlyph: isBreathImmersive ? '✕' : '•••',
       trackTitle: tr.title, trackSub: tr.sub,
       voProgress: Math.round(voFrac * 100) + '%',
       voRingOffset: Math.round(VO_C * (1 - voFrac)),
@@ -1204,12 +1337,19 @@ class Component extends DCLogic {
       voTime: AR(mm) + ':' + AR(ss),
       playGlyph: s.playing ? '❚❚' : '▶',
       togglePlay: this.togglePlay,
+      voPos: isVoImmersive ? 'fixed' : 'relative',
+      voInset: isVoImmersive ? '0' : 'auto',
+      voRadius: isVoImmersive ? '0' : '52px',
+      voZ: isVoImmersive ? 200 : 'auto',
+      voJustify: isVoImmersive ? 'center' : 'flex-start',
+      voOverflow: isVoImmersive ? 'auto' : 'hidden',
+      voParticlesOp: isVoImmersive ? 1 : 0,
+      voMenuGlyph: isVoImmersive ? '✕' : '♡',
       prevTrack: this.stepTrack(-1), nextTrack: this.stepTrack(1),
       pickCalm: this.pick('calm'), pickSleep: this.pick('sleep'), pickLesson: this.pick('lesson'),
       calmBg: on('calm') ? INK : 'rgba(255,255,255,.5)', calmFg: on('calm') ? '#fff' : INK,
       sleepBg: on('sleep') ? INK : 'rgba(255,255,255,.5)', sleepFg: on('sleep') ? '#fff' : INK,
       lessonBg: on('lesson') ? INK : 'rgba(255,255,255,.5)', lessonFg: on('lesson') ? '#fff' : INK,
-      immersiveBreath: s.immersive === 'breath', immersiveVo: s.immersive === 'vo',
       closeImmersive: this.closeImmersive,
       activeDot: tool.dot, activeTitle: tool.title, activeHint: tool.hint,
       onSubmit: this.onSubmit, joined: s.joined, notJoined: !s.joined
@@ -1220,6 +1360,7 @@ class Component extends DCLogic {
       vals['t' + i] = active ? INK : 'rgba(42,36,80,.42)';
       vals['n' + i] = active ? '#8B33C7' : 'rgba(42,36,80,.38)';
       vals['s' + i] = active ? 1 : 0;
+      vals['md' + i] = active ? '#fff' : 'rgba(255,255,255,.32)';
     });
     return vals;
   }
