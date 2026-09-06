@@ -1,0 +1,284 @@
+{
+  "info": {
+    "name": "Sukun CMS API",
+    "description": "CMS admin API + public waitlist for the Sukun app. Set the collection variables `base_url` and `admin_key` before sending (right-click the collection -> Edit -> Variables). Full contract: docs/api/cms-api.md.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "https://xrxztpcijkhehrrpneve.supabase.co/functions/v1" },
+    { "key": "admin_key", "value": "PASTE_ADMIN_API_KEY_HERE" }
+  ],
+  "item": [
+    {
+      "name": "Public — Waitlist",
+      "item": [
+        {
+          "name": "Join waitlist",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/waitlist",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test Person\",\n  \"email\": \"test@example.com\",\n  \"country\": \"Kuwait\",\n  \"source\": \"postman\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin — Discover",
+      "item": [
+        {
+          "name": "List all resources + fields",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Admin-Key", "value": "{{admin_key}}" }],
+            "url": "{{base_url}}/admin/resources"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin — Waitlist",
+      "item": [
+        {
+          "name": "List signups",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Admin-Key", "value": "{{admin_key}}" }],
+            "url": {
+              "raw": "{{base_url}}/admin/waitlist?page=1&per_page=25",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "waitlist"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "per_page", "value": "25" },
+                { "key": "search", "value": "", "disabled": true },
+                { "key": "country", "value": "", "disabled": true }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Export CSV",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Admin-Key", "value": "{{admin_key}}" }],
+            "url": "{{base_url}}/admin/waitlist/export"
+          }
+        },
+        {
+          "name": "Delete signup",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "X-Admin-Key", "value": "{{admin_key}}" }],
+            "url": "{{base_url}}/admin/waitlist/:id"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin — Content",
+      "item": [
+        {
+          "name": "List content",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Admin-Key", "value": "{{admin_key}}" }],
+            "url": {
+              "raw": "{{base_url}}/admin/content?page=1",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "content"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "type", "value": "meditation", "disabled": true },
+                { "key": "status", "value": "draft", "disabled": true },
+                { "key": "category_id", "value": "", "disabled": true },
+                { "key": "search", "value": "", "disabled": true }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create content (draft)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-Admin-Key", "value": "{{admin_key}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{base_url}}/admin/content",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"meditation\",\n  \"slug\": \"my-test-meditation\",\n  \"title_ar\": \"تأمل تجريبي\",\n  \"title_en\": \"Test meditation\",\n  \"description_en\": \"Created from Postman\",\n  \"is_premium\": false\n}"
+            }
+          }
+        },
+        {
+          "name": "Update content",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "X-Admin-Key", "value": "{{admin_key}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{base_url}}/admin/content/:id",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title_en\": \"Renamed from Postman\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Publish content",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "X-Admin-Key", "value": "{{admin_key}}" }],
+            "url": "{{base_url}}/admin/content/:id/publish"
+          }
+        },
+        {
+          "name": "Unpublish content",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "X-Admin-Key", "value": "{{admin_key}}" }],
+            "url": "{{base_url}}/admin/content/:id/unpublish"
+          }
+        },
+        {
+          "name": "Delete content",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "X-Admin-Key", "value": "{{admin_key}}" }],
+            "url": "{{base_url}}/admin/content/:id"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin — Quotes",
+      "item": [
+        {
+          "name": "List quotes",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Admin-Key", "value": "{{admin_key}}" }],
+            "url": {
+              "raw": "{{base_url}}/admin/quotes?page=1",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "quotes"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "search", "value": "", "disabled": true },
+                { "key": "theme", "value": "", "disabled": true }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create quote",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-Admin-Key", "value": "{{admin_key}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{base_url}}/admin/quotes",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text_ar\": \"اقتباس تجريبي\",\n  \"text_en\": \"A test quote\",\n  \"theme\": \"gratitude\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Schedule quote for a day",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-Admin-Key", "value": "{{admin_key}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{base_url}}/admin/quote-schedule",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shown_on\": \"2026-09-01\",\n  \"quote_id\": \"PASTE_QUOTE_UUID\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin — Media upload",
+      "item": [
+        {
+          "name": "1. Get signed upload URL",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-Admin-Key", "value": "{{admin_key}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{base_url}}/admin/storage/upload-url",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bucket\": \"audio\",\n  \"path\": \"meditation/my-test/msa.m4a\"\n}"
+            }
+          }
+        },
+        {
+          "name": "2. PUT file to signed_url (paste it here)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "audio/mp4" }],
+            "url": "PASTE_SIGNED_URL_HERE",
+            "body": { "mode": "file", "file": {} }
+          }
+        },
+        {
+          "name": "3. Register media asset",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-Admin-Key", "value": "{{admin_key}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{base_url}}/admin/media-assets",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content_id\": \"PASTE_CONTENT_UUID\",\n  \"dialect\": \"msa\",\n  \"audio_url\": \"meditation/my-test/msa.m4a\",\n  \"duration_sec\": 180\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin — Plan limits",
+      "item": [
+        {
+          "name": "List plan limits",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Admin-Key", "value": "{{admin_key}}" }],
+            "url": "{{base_url}}/admin/plan-limits"
+          }
+        },
+        {
+          "name": "Upsert plan limit",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "X-Admin-Key", "value": "{{admin_key}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{base_url}}/admin/plan-limits",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tier\": \"free\",\n  \"feature\": \"meditation\",\n  \"max_count\": 1,\n  \"period\": \"month\"\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

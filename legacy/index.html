@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="./support.js"></script>
+</head>
+
+<body>
+  <x-dc>
+    <helmet data-dc-atomics>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>سُكون — تطبيق عربي شامل للعافية النفسية | بديل Calm و Headspace و تَوازن</title>
+      <meta name="description"
+        content="سُكون تطبيق عربي شامل للعافية النفسية: تسجيلات صوتية أصلية، تمارين تنفّس، متابعة عادات، منبّهات وتذكيرات، وألعاب ذهنية. محتوى عربي أصلي غير مترجم بصوت مدرّبة معتمدة في البرمجة اللغوية العصبية. انضم لقائمة الانتظار.">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+      <style>
+        @font-face {
+          font-family: 'Lalezar';
+          src: url('assets/brand/Fonts/Lalezar/LALEZAR-REGULAR.TTF') format('truetype');
+          font-weight: 400;
+          font-display: swap
+        }
+
+        @font-face {
+          font-family: 'OmnesArabic';
+          src: url('assets/brand/Fonts/OmnesArabic/OMNES-ARABIC-EXTRA-LIGHT.ttf') format('truetype');
+          font-weight: 200;
+          font-display: swap
+        }
+
+        @font-face {
+          font-family: 'OmnesArabic';
+          src: url('assets/brand/Fonts/OmnesArabic/OMNES-ARABIC-LIGHT.TTF') format('truetype');
+          font-weight: 300;
+          font-display: swap
+        }
+
+        @font-face {
+          font-family: 'OmnesArabic';
+          src: url('assets/brand/Fonts/OmnesArabic/OMNES-ARABIC-REGULAR.ttf') format('truetype');
+          font-weight: 400;
+          font-display: swap
+        }
+
+        @font-face {
+          font-family: 'OmnesArabic';
+          src: url('assets/brand/Fonts/OmnesArabic/OMNES-ARABIC-MEDIUM.ttf') format('truetype');
+          font-weight: 500;
+          font-display: swap
+        }
+
+        @font-face {
+          font-family: 'OmnesArabic';
+          src: url('assets/brand/Fonts/OmnesArabic/OMNES-ARABIC-SEMI-BOLD.ttf') format('truetype');
+          font-weight: 600;
+          font-display: swap
+        }
+
+        @font-face {
+          font-family: 'OmnesArabic';
+          src: url('assets/brand/Fonts/OmnesArabic/OMNES-ARABIC-BOLD.ttf') format('truetype');
+          font-weight: 700;
+          font-display: swap
+        }
+
+        * {
+          box-sizing: border-box
+        }
+
+        body {
+          margin: 0;
+          background: #D9CCF1;
+          font-family: "OmnesArabic", "IBM Plex Sans Arabic", -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+          color: #2A2450;
+          -webkit-font-smoothing: antialiased
+        }
+
+        a {
+          color: #8B33C7;
+          text-decoration: none
+        }
+
+        a:hover {
+          color: #2A2450
+        }
+
+        input,
+        select,
+        button {
+          font-family: inherit
+        }
+
+        input:focus,
+        select:focus {
+          outline: 2px solid rgba(139, 51, 199, .6);
+          outline-offset: 2px
+        }
+
+        ::placeholder {
+          color: rgba(42, 36, 80, .45)
+        }
+
+        h1,
+        h2,
+        h3 {
+          text-wrap: pretty;
+          font-family: "Lalezar", "OmnesArabic", "IBM Plex Sans Arabic", -apple-system, "Segoe UI", system-ui, sans-serif;
+          font-weight: 400 !important
+        }
+
+        summary::-webkit-details-marker {
+          display: none
+        }
+
+        @keyframes particlerise {
+          0% {
+            transform: translateY(0) scale(1);
+            opacity: 0
+          }
+
+          12% {
+            opacity: var(--pmax, .5)
+          }
+
+          85% {
+            opacity: var(--pmax, .5)
+          }
+
+          100% {
+            transform: translateY(-160px) scale(1.4);
+            opacity: 0
+          }
+        }
+
+        @keyframes orbfloat {
+
+          0%,
+          100% {
+            transform: translateY(0)
+          }
+
+          50% {
+            transform: translateY(-14px)
+          }
+        }
+
+        @keyframes auraglow {
+
+          0%,
+          100% {
+            opacity: .5;
+            transform: scale(1)
+          }
+
+          50% {
+            opacity: .8;
+            transform: scale(1.05)
+          }
+        }
+
+        @keyframes ringpulse {
+
+          0%,
+          100% {
+            transform: scale(1);
+            opacity: .45
+          }
+
+          50% {
+            transform: scale(1.06);
+            opacity: .2
+          }
+        }
+
+        @keyframes cuedrop {
+
+          0%,
+          100% {
+            transform: translateY(0);
+            opacity: .5
+          }
+
+          50% {
+            transform: translateY(7px);
+            opacity: 1
+          }
+        }
+
+        [data-m="1"] {
+          display: none
+        }
+
+        @media (max-width:980px) {
+          section[data-screen-label] {
+            padding: 72px 20px !important
+          }
+
+          #sk-head {
+            padding: 16px 20px !important
+          }
+
+          #sk-head img {
+            width: 68px !important;
+            height: 68px !important
+          }
+
+          #sk-nav a[data-nav="link"] {
+            display: none
+          }
+
+          #sk-hero h1 {
+            font-size: clamp(40px, 13vw, 72px) !important
+          }
+
+          #sk-heroinner {
+            padding: 0 20px 96px !important
+          }
+
+          h2 {
+            font-size: clamp(32px, 10vw, 56px) !important;
+            letter-spacing: -1.6px !important
+          }
+
+          [data-m="1"] {
+            display: block !important
+          }
+
+          [data-d="1"] {
+            display: none !important
+          }
+
+          #sk-compare-mobile {
+            display: flex !important
+          }
+
+          [data-split] {
+            grid-template-columns: 1fr !important
+          }
+
+          #sk-bignum {
+            font-size: 96px !important;
+            margin-bottom: 8px !important
+          }
+
+          #sk-compare {
+            overflow-x: auto
+          }
+
+          #sk-compare>div {
+            min-width: 620px
+          }
+
+          #sk-wait {
+            grid-template-columns: 1fr !important
+          }
+
+          #sk-waitimg {
+            min-height: 440px !important
+          }
+
+          #sk-waitimg>div:nth-child(2) {
+            background: linear-gradient(0deg, rgba(20, 14, 42, .84) 0%, rgba(20, 14, 42, .5) 40%, rgba(20, 14, 42, .12) 72%, rgba(20, 14, 42, 0) 100%) !important
+          }
+
+          footer {
+            padding: 32px 20px !important
+          }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+          * {
+            animation-duration: .001ms !important;
+            animation-iteration-count: 1 !important
+          }
+        }
+      </style>
+    </helmet>
+
+    <div
+      style="direction:rtl;width:100%;overflow-x:hidden;background:radial-gradient(120% 95% at 0% 0%,#A087C8 0%,#BA9BD1 44.97%,#92B8FF 70.98%,#D9CCF1 100%);background-attachment:fixed">
+
+      <audio ref="{{ bgAudioRef }}" src="assets/audio/bgmusic.mp3" loop preload="none"></audio>
+
+      <!-- ══════ HERO ══════ -->
+      <section id="sk-hero" data-screen-label="Hero"
+        style="position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;overflow:hidden">
+        <div id="sk-herofig" style="position:absolute;inset:0;overflow:hidden">
+          <img data-d="1" src="assets/images/hero2.png" alt="مرشد سُكون في مشهد هادئ"
+            style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%" />
+          <img data-m="1" src="assets/images/mascot-orb.png" alt="مرشد سُكون"
+            style="position:absolute;bottom:0;left:4%;width:52%;max-width:260px;height:auto;object-fit:contain" />
+        </div>
+        <header id="sk-head"
+          style="position:relative;z-index:4;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:26px 44px">
+          <div style="display:flex;align-items:center;gap:11px">
+            <img src="assets/brand/logo.png" alt="سُكون" style="width:180px;height:180px;object-fit:contain" />
+            <!--       <div style="font-weight:700;font-size:22px;line-height:1;color:#fff;letter-spacing:-.4px">سُكون</div>
+ -->
+          </div>
+          <nav id="sk-nav"
+            style="display:flex;align-items:center;gap:4px;padding:6px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%)">
+            <a href="#offer" data-nav="link"
+              style="padding:9px 15px;border-radius:999px;font-weight:500;font-size:14px;line-height:1;color:#fff">ما
+              نقدّمه</a>
+            <a href="#experience" data-nav="link"
+              style="padding:9px 15px;border-radius:999px;font-weight:500;font-size:14px;line-height:1;color:#fff">التجربة</a>
+            <a href="#difference" data-nav="link"
+              style="padding:9px 15px;border-radius:999px;font-weight:500;font-size:14px;line-height:1;color:#fff">الفرق</a>
+          </nav>
+          <div style="display:flex;align-items:center;gap:10px">
+            <a href="#waitlist"
+              style="padding:12px 22px;border-radius:999px;font-weight:600;font-size:14px;line-height:1;color:#2A2450;background:#fff">انضم
+              للقائمة</a>
+            <a href="#waitlist"
+              style="width:42px;height:42px;flex:none;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px">↖</a>
+          </div>
+        </header>
+
+        <div id="sk-heroinner"
+          style="position:relative;z-index:3;flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:0 44px 88px">
+          <h1
+            style="margin:0;font-weight:700;font-size:clamp(44px,6vw,100px);line-height:1.08;letter-spacing:-.03em;color:#fff;max-width:16ch">
+            <span data-line="1" style="display:block">راحتك النفسية،</span><span data-line="1" style="display:block">في
+              تطبيق واحد.</span>
+          </h1>
+          <div data-line="1"
+            style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-top:32px">
+            <p
+              style="margin:0;font-weight:400;font-size:clamp(16px,1.5vw,20px);line-height:1.7;color:rgba(255,255,255,.88);max-width:46ch">
+              "سكون" هو رفيقك النفسي اليومي الذي يساعدك على أن تعيش الحياة بوعي أكبر وهدوء أعمق، من لحظة استيقاظك وحتى
+              نهاية اليوم، كل يوم.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:10px">
+              <a href="#waitlist"
+                style="height:56px;padding:0 8px 0 26px;border-radius:999px;background:#fff;color:#2A2450;display:inline-flex;align-items:center;gap:14px;font-weight:600;font-size:15px;line-height:1">انضم
+                لقائمة الانتظار<span
+                  style="width:40px;height:40px;flex:none;border-radius:999px;background:#2A2450;color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px">↖</span></a>
+              <a href="#experience"
+                style="height:56px;padding:0 26px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.44);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);color:#fff;display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;line-height:1">جرّب
+                ٤٠ ثانية الآن<span style="font-size:13px;animation:cuedrop 2.4s ease-in-out infinite">↓</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════ WHAT WE OFFER ══════ -->
+      <section id="offer" data-screen-label="What we offer" style="position:relative;padding:120px 44px">
+        <div style="max-width:1320px;margin:0 auto">
+          <div data-anim="rise"
+            style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:56px">
+            <div style="max-width:42ch">
+              <div style="font-weight:600;font-size:13px;line-height:1;color:#8B33C7;margin-bottom:18px">ما نقدّمه</div>
+              <h2
+                style="margin:0;font-weight:700;font-size:clamp(34px,4.2vw,62px);line-height:1.15;letter-spacing:-.02em;color:#2A2450">
+                كل ما تحتاجه لعافيتك النفسيّة في مكان واحد وباللغة العربية</h2>
+            </div>
+            <p
+              style="margin:0;font-weight:400;font-size:clamp(16px,1.6vw,21px);line-height:1.75;color:rgba(42,36,80,.76);max-width:34ch">
+              أدوات صُممت لتساعدك على أن تجعل العناية بصحتك النفسية جزءًا طبيعيًا من يومك.</p>
+          </div>
+
+          <div data-anim="rise" style="position:relative;overflow-x:auto;overflow-y:hidden">
+            <div style="position:relative;min-width:820px;padding-top:36px">
+              <img src="assets/images/mascot-orb.png" alt="مرشد سُكون"
+                style="display:block;margin:0 auto;width:clamp(120px,12vw,190px);height:auto;object-fit:contain;filter:drop-shadow(0 20px 30px rgba(53,30,90,.28));animation:orbfloat 8s ease-in-out infinite" />
+
+              <svg viewBox="0 0 1000 150" preserveAspectRatio="none"
+                style="display:block;width:100%;height:clamp(90px,11vw,140px)">
+                <path d="M500,2 C500,60 937.5,40 937.5,128" fill="none" stroke="rgba(139,51,199,.32)"
+                  stroke-width="2.5" stroke-linecap="round" />
+                <path d="M937.5,120 L937.5,136 L927,124" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M937.5,136 L948,124" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+
+                <path d="M500,2 C500,60 812.5,40 812.5,128" fill="none" stroke="rgba(139,51,199,.32)"
+                  stroke-width="2.5" stroke-linecap="round" />
+                <path d="M812.5,120 L812.5,136 L802,124" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M812.5,136 L823,124" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+
+                <path d="M500,2 C500,60 687.5,40 687.5,128" fill="none" stroke="rgba(139,51,199,.32)"
+                  stroke-width="2.5" stroke-linecap="round" />
+                <path d="M687.5,120 L687.5,136 L677,124" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M687.5,136 L698,124" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+
+                <path d="M500,2 C500,60 562.5,40 562.5,128" fill="none" stroke="rgba(139,51,199,.32)"
+                  stroke-width="2.5" stroke-linecap="round" />
+                <path d="M562.5,120 L562.5,136 L552,124" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M562.5,136 L573,124" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+
+                <path d="M500,2 C500,60 437.5,40 437.5,128" fill="none" stroke="rgba(139,51,199,.32)"
+                  stroke-width="2.5" stroke-linecap="round" />
+                <path d="M437.5,120 L437.5,136 L427,124" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M437.5,136 L448,124" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+
+                <path d="M500,2 C500,60 312.5,40 312.5,128" fill="none" stroke="rgba(139,51,199,.32)"
+                  stroke-width="2.5" stroke-linecap="round" />
+                <path d="M312.5,120 L312.5,136 L302,124" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M312.5,136 L323,124" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+
+                <path d="M500,2 C500,60 187.5,40 187.5,128" fill="none" stroke="rgba(139,51,199,.32)"
+                  stroke-width="2.5" stroke-linecap="round" />
+                <path d="M187.5,120 L187.5,136 L177,124" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M187.5,136 L198,124" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+
+                <path d="M500,2 C500,60 62.5,40 62.5,128" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" />
+                <path d="M62.5,120 L62.5,136 L52,124" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M62.5,136 L73,124" fill="none" stroke="rgba(139,51,199,.32)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+
+              <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:22px">
+                <div style="text-align:center">
+                  <div style="font-weight:500;font-size:12px;line-height:1;color:rgba(42,36,80,.4);margin-bottom:10px">
+                    ٠١</div>
+                  <div style="font-weight:600;font-size:19px;line-height:1.4;color:#2A2450">رحلات نفسية</div>
+                </div>
+                <div style="text-align:center">
+                  <div style="font-weight:500;font-size:12px;line-height:1;color:rgba(42,36,80,.4);margin-bottom:10px">
+                    ٠٢</div>
+                  <div style="font-weight:600;font-size:19px;line-height:1.4;color:#2A2450">تمارين تنفّس</div>
+                </div>
+                <div style="text-align:center">
+                  <div style="font-weight:500;font-size:12px;line-height:1;color:rgba(42,36,80,.4);margin-bottom:10px">
+                    ٠٣</div>
+                  <div style="font-weight:600;font-size:19px;line-height:1.4;color:#2A2450">عادات يومية</div>
+                </div>
+                <div style="text-align:center">
+                  <div style="font-weight:500;font-size:12px;line-height:1;color:rgba(42,36,80,.4);margin-bottom:10px">
+                    ٠٤</div>
+                  <div style="font-weight:600;font-size:19px;line-height:1.4;color:#2A2450">تتبّع المزاج</div>
+                </div>
+                <div style="text-align:center">
+                  <div style="font-weight:500;font-size:12px;line-height:1;color:rgba(42,36,80,.4);margin-bottom:10px">
+                    ٠٥</div>
+                  <div style="font-weight:600;font-size:19px;line-height:1.4;color:#2A2450">تقييمات ذاتية</div>
+                </div>
+                <div style="text-align:center">
+                  <div style="font-weight:500;font-size:12px;line-height:1;color:rgba(42,36,80,.4);margin-bottom:10px">
+                    ٠٦</div>
+                  <div style="font-weight:600;font-size:19px;line-height:1.4;color:#2A2450">منبّهات وتذكيرات لطيفة</div>
+                </div>
+                <div style="text-align:center">
+                  <div style="font-weight:500;font-size:12px;line-height:1;color:rgba(42,36,80,.4);margin-bottom:10px">
+                    ٠٧</div>
+                  <div style="font-weight:600;font-size:19px;line-height:1.4;color:#2A2450">تدوين ومراجعة</div>
+                </div>
+                <div style="text-align:center">
+                  <div style="font-weight:500;font-size:12px;line-height:1;color:rgba(42,36,80,.4);margin-bottom:10px">
+                    ٠٨</div>
+                  <div style="font-weight:600;font-size:19px;line-height:1.4;color:#2A2450">ألعاب ذهنية</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════ EXPERIENCE ══════ -->
+      <section id="experience" data-screen-label="Experience"
+        style="position:relative;padding:140px 44px;overflow:hidden;background:radial-gradient(80% 65% at 50% 55%,#0F3A63 0%,#0A2440 32%,#071730 58%,#040B18 82%,#02050D 100%)">
+        <div
+          style="position:absolute;inset:0;background:url('assets/images/night-bg.png') center/cover no-repeat;pointer-events:none">
+        </div>
+
+        <div style="position:relative;max-width:1320px;margin:0 auto">
+          <div data-anim="rise" style="position:relative;max-width:640px;margin:0 auto;text-align:center">
+            <div id="sk-bignum"
+              style="position:absolute;top:-44px;left:50%;transform:translateX(-50%);font-weight:700;font-size:clamp(120px,17vw,260px);line-height:.82;letter-spacing:-.06em;color:rgba(255,255,255,.05);white-space:nowrap;pointer-events:none">
+              ٤-٧-٨</div>
+            <div style="position:relative;font-weight:600;font-size:13px;line-height:1;color:#9FD0FF;margin-bottom:16px">
+              التجربة</div>
+            <h2
+              style="position:relative;margin:0;font-weight:700;font-size:clamp(34px,4.2vw,58px);line-height:1.15;letter-spacing:-.02em;color:#fff">
+              جرّب سُكون قبل أن ينزل</h2>
+            <p
+              style="position:relative;margin:18px auto 0;font-weight:400;font-size:clamp(16px,1.6vw,21px);line-height:1.75;color:rgba(255,255,255,.68);max-width:38ch">
+              تمرين تنفّس ٤-٧-٨ كامل، جرّبه الآن من هنا.</p>
+          </div>
+
+          <div id="sk-breath-card" data-anim="rise"
+            style="position:{{ breathPos }};inset:{{ breathInset }};z-index:{{ breathZ }};margin:{{ breathCardMargin }};width:100%;max-width:{{ breathCardMaxWidth }};border-radius:{{ breathRadius }};padding:28px 24px 34px;background:{{ breathCardBg }};display:flex;flex-direction:column;align-items:center;justify-content:{{ breathJustify }};gap:16px;overflow:{{ breathOverflow }};color:#fff">
+            <div
+              style="position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:{{ breathParticlesOp }};transition:opacity .6s ease">
+              <span
+                style="position:absolute;top:14%;left:12%;width:3px;height:3px;border-radius:999px;background:#fff;opacity:.7;animation:ringpulse 3.4s ease-in-out infinite;animation-delay:0s"></span>
+              <span
+                style="position:absolute;top:22%;left:26%;width:2px;height:2px;border-radius:999px;background:#fff;opacity:.6;animation:ringpulse 4.2s ease-in-out infinite;animation-delay:.6s"></span>
+              <span
+                style="position:absolute;top:10%;left:62%;width:2px;height:2px;border-radius:999px;background:#fff;opacity:.5;animation:ringpulse 3.8s ease-in-out infinite;animation-delay:1.2s"></span>
+              <span
+                style="position:absolute;top:18%;left:82%;width:3px;height:3px;border-radius:999px;background:#fff;opacity:.65;animation:ringpulse 3.6s ease-in-out infinite;animation-delay:1.8s"></span>
+              <span
+                style="position:absolute;top:30%;left:8%;width:2px;height:2px;border-radius:999px;background:#fff;opacity:.5;animation:ringpulse 4.6s ease-in-out infinite;animation-delay:2.4s"></span>
+              <span
+                style="position:absolute;top:34%;left:90%;width:2px;height:2px;border-radius:999px;background:#fff;opacity:.55;animation:ringpulse 4s ease-in-out infinite;animation-delay:.9s"></span>
+            </div>
+
+            <div
+              style="display:{{ breathChromeDisplay }};position:relative;width:100%;align-items:center;justify-content:space-between;gap:12px;flex:none">
+              <div
+                style="width:38px;height:38px;flex:none;border-radius:999px;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#182D52">
+                ›</div>
+              <div style="font-weight:600;font-size:15px;line-height:1;letter-spacing:-.01em">تمرين التنفّس</div>
+              <button onClick="{{ closeImmersive }}"
+                style="width:38px;height:38px;flex:none;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:rgba(255,255,255,.1);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;line-height:1;letter-spacing:1px;cursor:pointer">
+                {{ breathMenuGlyph }}</button>
+            </div>
+
+            <div
+              style="position:relative;width:200px;height:200px;display:flex;align-items:center;justify-content:center;margin-top:4px">
+              <div
+                style="position:absolute;width:160px;height:160px;border-radius:999px;background:radial-gradient(circle,rgba(140,185,255,.55) 0%,rgba(140,185,255,0) 70%);animation:auraglow 4s ease-in-out infinite">
+              </div>
+              <div ref="{{ breathRef }}"
+                style="position:relative;width:126px;height:126px;transform:scale(.6);transition:none;display:flex;align-items:center;justify-content:center">
+                <img src="assets/images/crystal.png" alt="الكرة المضيئة لسُكون"
+                  style="width:100%;height:100%;object-fit:contain;animation:orbfloat 6s ease-in-out infinite;filter:drop-shadow(0 0 22px rgba(180,205,255,.85)) drop-shadow(0 10px 22px rgba(0,0,0,.35))" />
+              </div>
+            </div>
+
+            <div
+              style="position:relative;display:flex;flex-direction:column;align-items:center;gap:8px">
+              <div
+                style="position:relative;width:90px;height:90px;display:flex;align-items:center;justify-content:center">
+                <svg viewBox="0 0 100 100"
+                  style="position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)">
+                  <circle cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="4" />
+                  <circle cx="50" cy="50" r="44" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"
+                    stroke-dasharray="{{ breathRingC }}" stroke-dashoffset="{{ breathRingOffset }}" />
+                </svg>
+                <div
+                  style="position:relative;z-index:2;font-weight:700;font-size:32px;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums">
+                  {{ breathCount }}</div>
+              </div>
+              <div style="font-weight:600;font-size:15px;line-height:1.3">{{ breathPhase }}</div>
+            </div>
+
+            <div
+              style="position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:2px">
+              <div style="font-weight:500;font-size:13px;line-height:1.3;color:rgba(255,255,255,.62)">{{ cycleLabel
+                }}</div>
+              <div style="font-weight:700;font-size:21px;line-height:1.3;letter-spacing:-.02em">جِد إيقاعك</div>
+            </div>
+
+            <button onClick="{{ toggleBreath }}"
+              style="position:relative;width:60px;height:60px;flex:none;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;line-height:1;cursor:pointer;margin-top:2px">{{
+              breathGlyph }}</button>
+
+            <details style="position:relative;width:100%">
+              <summary
+                style="list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-weight:500;font-size:12px;line-height:1;color:rgba(255,255,255,.55)">
+                <span style="font-size:13px;line-height:1">ⓘ</span>الوصف</summary>
+              <p
+                style="margin:10px 0 0;font-weight:400;font-size:12px;line-height:1.7;color:rgba(255,255,255,.55);text-align:center">
+                تنفّس براحتك — إن كنتِ حاملًا أو لديك حالة قلبية أو تنفّسية، تجاوز الحبس وتنفّس ببطء فقط.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════ DIFFERENCE ══════ -->
+      <section id="difference" data-screen-label="Difference" style="position:relative;padding:120px 44px">
+        <div style="max-width:1320px;margin:0 auto">
+          <div data-split="1" data-anim="rise"
+            style="display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:end;margin-bottom:48px">
+            <div>
+              <div style="font-weight:600;font-size:13px;line-height:1;color:#B98A0A;margin-bottom:18px">الفرق</div>
+              <h2
+                style="margin:0;font-weight:700;font-size:clamp(32px,3.8vw,56px);line-height:1.18;letter-spacing:-.02em;color:#2A2450;max-width:36ch">
+                أحببت Calm أو Headspace أو تَوازن؟ سُكون بُني لك</h2>
+              <p
+                style="margin:22px 0 0;font-weight:400;font-size:clamp(16px,1.6vw,21px);line-height:1.75;color:rgba(42,36,80,.76);max-width:44ch">
+                تطبيقات رائعة، لكنها إما مترجمة، أو تغطّي جزءًا واحدًا من يومك. سُكون يغطّي اليوم كله بالعربية.</p>
+            </div>
+            <div style="position:relative;display:flex;justify-content:center">
+              <img src="assets/images/mascot-orb.png" alt="مرشد سُكون" data-parallax="1"
+                style="width:100%;max-width:260px;height:auto;filter:drop-shadow(0 30px 50px rgba(53,30,90,.3));animation:orbfloat 8s ease-in-out infinite" />
+            </div>
+          </div>
+
+          <div id="sk-compare" data-anim="rise" data-d="1"
+            style="border:1px solid rgba(255,255,255,.7);border-radius:52px;overflow:hidden;background:rgba(255,255,255,.42);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%)">
+            <div
+              style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;background:rgba(255,255,255,.55);border-bottom:1px solid rgba(42,36,80,.12)">
+              <div style="padding:20px 26px;font-weight:600;font-size:12px;line-height:1.4;color:rgba(42,36,80,.64)">
+                المقارنة</div>
+              <div
+                style="padding:20px 14px;font-weight:700;font-size:13px;line-height:1.4;color:#2A2450;text-align:center">
+                سُكون</div>
+              <div
+                style="padding:20px 14px;font-weight:600;font-size:13px;line-height:1.4;color:rgba(42,36,80,.64);text-align:center">
+                Calm · Headspace</div>
+              <div
+                style="padding:20px 14px;font-weight:600;font-size:13px;line-height:1.4;color:rgba(42,36,80,.64);text-align:center">
+                تَوازن</div>
+            </div>
+            <div data-row="1"
+              style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;border-bottom:1px solid rgba(42,36,80,.1)">
+              <div style="padding:18px 26px;font-weight:400;font-size:15px;line-height:1.55;color:rgba(42,36,80,.86)">
+                محتوى عربي أصلي غير مترجم</div>
+              <div
+                style="padding:18px 14px;text-align:center;font-weight:600;font-size:15px;line-height:1.55;color:#5F9227">
+                ✓</div>
+              <div
+                style="padding:18px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.55;color:rgba(42,36,80,.5)">
+                مترجم</div>
+              <div
+                style="padding:18px 14px;text-align:center;font-weight:600;font-size:15px;line-height:1.55;color:#5F9227">
+                ✓</div>
+            </div>
+            <div data-row="1"
+              style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;background:rgba(255,255,255,.3);border-bottom:1px solid rgba(42,36,80,.1)">
+              <div style="padding:18px 26px;font-weight:400;font-size:15px;line-height:1.55;color:rgba(42,36,80,.86)">
+                بصوت مدرّبة معتمدة في البرمجة اللغوية العصبية</div>
+              <div
+                style="padding:18px 14px;text-align:center;font-weight:600;font-size:15px;line-height:1.55;color:#5F9227">
+                ✓</div>
+              <div
+                style="padding:18px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.55;color:rgba(42,36,80,.5)">
+                —</div>
+              <div
+                style="padding:18px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.55;color:rgba(42,36,80,.5)">
+                —</div>
+            </div>
+            <div data-row="1"
+              style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;border-bottom:1px solid rgba(42,36,80,.1)">
+              <div style="padding:18px 26px;font-weight:400;font-size:15px;line-height:1.55;color:rgba(42,36,80,.86)">
+                متابعة عادات ومنبّهات في التطبيق نفسه</div>
+              <div
+                style="padding:18px 14px;text-align:center;font-weight:600;font-size:15px;line-height:1.55;color:#5F9227">
+                ✓</div>
+              <div
+                style="padding:18px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.55;color:rgba(42,36,80,.5)">
+                جزئيًا</div>
+              <div
+                style="padding:18px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.55;color:rgba(42,36,80,.5)">
+                جزئيًا</div>
+            </div>
+            <div data-row="1"
+              style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;background:rgba(255,255,255,.3);border-bottom:1px solid rgba(42,36,80,.1)">
+              <div style="padding:18px 26px;font-weight:400;font-size:15px;line-height:1.55;color:rgba(42,36,80,.86)">
+                ألعاب ذهنية للتركيز والاسترخاء</div>
+              <div
+                style="padding:18px 14px;text-align:center;font-weight:600;font-size:15px;line-height:1.55;color:#5F9227">
+                ✓</div>
+              <div
+                style="padding:18px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.55;color:rgba(42,36,80,.5)">
+                —</div>
+              <div
+                style="padding:18px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.55;color:rgba(42,36,80,.5)">
+                —</div>
+            </div>
+            <div data-row="1" style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr">
+              <div style="padding:18px 26px;font-weight:400;font-size:15px;line-height:1.55;color:rgba(42,36,80,.86)">
+                خريطة واحدة تجمع تقدّمك كله</div>
+              <div
+                style="padding:18px 14px;text-align:center;font-weight:600;font-size:15px;line-height:1.55;color:#5F9227">
+                ✓</div>
+              <div
+                style="padding:18px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.55;color:rgba(42,36,80,.5)">
+                —</div>
+              <div
+                style="padding:18px 14px;text-align:center;font-weight:400;font-size:14px;line-height:1.55;color:rgba(42,36,80,.5)">
+                —</div>
+            </div>
+          </div>
+
+          <div id="sk-compare-mobile" data-m="1" data-anim="rise" style="flex-direction:column;gap:10px">
+            <div
+              style="padding:18px 20px;border-radius:24px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <div style="font-weight:500;font-size:14px;line-height:1.5;color:rgba(42,36,80,.86);flex:1">محتوى عربي
+                  أصلي غير مترجم</div>
+                <div
+                  style="flex:none;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:rgba(95,146,39,.14);font-weight:700;font-size:13px;color:#5F9227">
+                  ✓ سُكون</div>
+              </div>
+              <div style="font-weight:400;font-size:12px;line-height:1.5;color:rgba(42,36,80,.5)">Calm · Headspace:
+                مترجم &nbsp;·&nbsp; تَوازن: ✓</div>
+            </div>
+            <div
+              style="padding:18px 20px;border-radius:24px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <div style="font-weight:500;font-size:14px;line-height:1.5;color:rgba(42,36,80,.86);flex:1">بصوت مدرّبة
+                  معتمدة في البرمجة اللغوية العصبية</div>
+                <div
+                  style="flex:none;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:rgba(95,146,39,.14);font-weight:700;font-size:13px;color:#5F9227">
+                  ✓ سُكون</div>
+              </div>
+              <div style="font-weight:400;font-size:12px;line-height:1.5;color:rgba(42,36,80,.5)">Calm · Headspace: —
+                &nbsp;·&nbsp; تَوازن: —</div>
+            </div>
+            <div
+              style="padding:18px 20px;border-radius:24px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <div style="font-weight:500;font-size:14px;line-height:1.5;color:rgba(42,36,80,.86);flex:1">متابعة
+                  عادات ومنبّهات في التطبيق نفسه</div>
+                <div
+                  style="flex:none;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:rgba(95,146,39,.14);font-weight:700;font-size:13px;color:#5F9227">
+                  ✓ سُكون</div>
+              </div>
+              <div style="font-weight:400;font-size:12px;line-height:1.5;color:rgba(42,36,80,.5)">Calm · Headspace:
+                جزئيًا &nbsp;·&nbsp; تَوازن: جزئيًا</div>
+            </div>
+            <div
+              style="padding:18px 20px;border-radius:24px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <div style="font-weight:500;font-size:14px;line-height:1.5;color:rgba(42,36,80,.86);flex:1">ألعاب
+                  ذهنية للتركيز والاسترخاء</div>
+                <div
+                  style="flex:none;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:rgba(95,146,39,.14);font-weight:700;font-size:13px;color:#5F9227">
+                  ✓ سُكون</div>
+              </div>
+              <div style="font-weight:400;font-size:12px;line-height:1.5;color:rgba(42,36,80,.5)">Calm · Headspace: —
+                &nbsp;·&nbsp; تَوازن: —</div>
+            </div>
+            <div
+              style="padding:18px 20px;border-radius:24px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <div style="font-weight:500;font-size:14px;line-height:1.5;color:rgba(42,36,80,.86);flex:1">خريطة
+                  واحدة تجمع تقدّمك كله</div>
+                <div
+                  style="flex:none;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:rgba(95,146,39,.14);font-weight:700;font-size:13px;color:#5F9227">
+                  ✓ سُكون</div>
+              </div>
+              <div style="font-weight:400;font-size:12px;line-height:1.5;color:rgba(42,36,80,.5)">Calm · Headspace: —
+                &nbsp;·&nbsp; تَوازن: —</div>
+            </div>
+          </div>
+
+          <p style="margin:16px 0 0;font-weight:400;font-size:12px;line-height:1.6;color:rgba(42,36,80,.58)">مقارنة
+            بناءً على الميزات المعلنة لهذه التطبيقات في يوليو ٢٠٢٦. الأسماء التجارية ملك أصحابها.</p>
+        </div>
+      </section>
+
+      <!-- ══════ WAITLIST ══════ -->
+      <section id="waitlist" data-screen-label="Waitlist" style="position:relative;padding:120px 44px">
+        <div id="sk-wait"
+          style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:stretch">
+          <div id="sk-waitimg" data-anim="rise"
+            style="position:relative;border-radius:52px;overflow:hidden;min-height:520px">
+            <img src="assets/images/scene-alarms.png" alt="مرشد سُكون نائم بهدوء" data-parallax="1"
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%" />
+            <div
+              style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(42,36,80,.66) 0%,rgba(42,36,80,.1) 52%,rgba(42,36,80,0) 100%)">
+            </div>
+            <div style="position:absolute;right:36px;left:36px;bottom:36px;display:flex;flex-direction:column;gap:18px">
+              <h2
+                style="margin:0;font-weight:700;font-size:clamp(32px,3.4vw,52px);line-height:1.15;letter-spacing:-.02em;color:#fff">
+                سجّل اهتمامك بالوصول المبكر</h2>
+              <p
+                style="margin:0;font-weight:400;font-size:16px;line-height:1.75;color:rgba(255,255,255,.86);max-width:38ch">
+                كن من أوائل من يكتشفون "سكون".</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <div
+                  style="display:flex;align-items:center;gap:9px;padding:9px 15px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.36);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);font-weight:500;font-size:13px;line-height:1;color:#fff">
+                  <span style="width:7px;height:7px;border-radius:999px;background:#A9E765"></span>وصول مبكر قبل النشر
+                  العام
+                </div>
+                <div
+                  style="display:flex;align-items:center;gap:9px;padding:9px 15px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.36);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);font-weight:500;font-size:13px;line-height:1;color:#fff">
+                  <span style="width:7px;height:7px;border-radius:999px;background:#4EBCFF"></span>رسالة واحدة فقط عند
+                  الإطلاق
+                </div>
+                <div
+                  style="display:flex;align-items:center;gap:9px;padding:9px 15px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.36);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);font-weight:500;font-size:13px;line-height:1;color:#fff">
+                  <span style="width:7px;height:7px;border-radius:999px;background:#C877FF"></span>يمكنك الإلغاء بضغطة
+                  واحدة
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div data-anim="rise" style="display:flex;align-items:center">
+            <div
+              style="width:100%;padding:40px;border-radius:52px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.72);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%)">
+              <sc-if value="{{ notJoined }}" hint-placeholder-val="{{ true }}">
+                <form onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:12px">
+                  <div style="font-weight:600;font-size:13px;line-height:1;color:#5F9227;margin-bottom:6px">قائمة
+                    الانتظار</div>
+                  <label style="display:flex;flex-direction:column;gap:8px"><span
+                      style="font-weight:500;font-size:13px;line-height:1;color:rgba(42,36,80,.66)">الاسم</span><input
+                      type="text" required="required" placeholder="اسمك الأول"
+                      style="height:54px;padding:0 18px;border-radius:999px;border:1px solid rgba(255,255,255,.75);background:rgba(255,255,255,.55);color:#2A2450;font-weight:400;font-size:15px;line-height:1" /></label>
+                  <label style="display:flex;flex-direction:column;gap:8px"><span
+                      style="font-weight:500;font-size:13px;line-height:1;color:rgba(42,36,80,.66)">البريد
+                      الإلكتروني</span><input type="email" required="required" placeholder="name@email.com" dir="ltr"
+                      style="height:54px;padding:0 18px;border-radius:999px;border:1px solid rgba(255,255,255,.75);background:rgba(255,255,255,.55);color:#2A2450;font-weight:400;font-size:15px;line-height:1;text-align:right" /></label>
+                  <label style="display:flex;flex-direction:column;gap:8px"><span
+                      style="font-weight:500;font-size:13px;line-height:1;color:rgba(42,36,80,.66)">الدولة</span>
+                    <select required="required"
+                      style="height:54px;padding:0 18px;border-radius:999px;border:1px solid rgba(255,255,255,.75);background:rgba(255,255,255,.55);color:#2A2450;font-weight:400;font-size:15px;line-height:1;appearance:none">
+                      <option value="">اختر دولتك</option>
+                      <option value="sa">السعودية</option>
+                      <option value="ae">الإمارات</option>
+                      <option value="kw">الكويت</option>
+                      <option value="qa">قطر</option>
+                      <option value="bh">البحرين</option>
+                      <option value="om">عُمان</option>
+                      <option value="jo">الأردن</option>
+                      <option value="eg">مصر</option>
+                      <option value="other">دولة أخرى</option>
+                    </select>
+                  </label>
+                  <button type="submit"
+                    style="height:56px;margin-top:6px;border:none;border-radius:999px;background:#2A2450;color:#fff;font-weight:600;font-size:15px;line-height:1;cursor:pointer">انضم
+                    للقائمة</button>
+                  <p
+                    style="margin:2px 0 0;font-weight:400;font-size:12px;line-height:1.6;color:rgba(42,36,80,.62);text-align:center">
+                    بريدك لنا فقط. لا مشاركة، ولا رسائل متكررة.</p>
+                </form>
+              </sc-if>
+              <sc-if value="{{ joined }}" hint-placeholder-val="{{ false }}">
+                <div
+                  style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:24px 8px;text-align:center">
+                  <div
+                    style="width:96px;height:96px;border-radius:999px;background:radial-gradient(120% 120% at 34% 26%,#FFFFFF 0%,#F9F9FF 14%,#EBDFFF 34%,#C5B1ED 68%,#A087C8 100%);box-shadow:0 26px 60px rgba(53,30,90,.32);animation:orbfloat 7s ease-in-out infinite">
+                  </div>
+                  <div style="font-weight:700;font-size:26px;line-height:1.3;letter-spacing:-.04em;color:#2A2450">حجزنا
+                    مكانك.</div>
+                  <div style="font-weight:400;font-size:15px;line-height:1.65;color:rgba(42,36,80,.76);max-width:280px">
+                    نراسلك أول ما يفتح سُكون في بلدك. حتى ذلك الحين، خُذ نفسًا عميقًا.</div>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════ FOUNDER ══════ -->
+      <section data-screen-label="Founder" style="position:relative;padding:120px 44px">
+        <div data-split="1"
+          style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr;gap:56px;align-items:center">
+          <div data-anim="rise">
+            <div style="font-weight:600;font-size:13px;line-height:1;color:#8B33C7;margin-bottom:18px">لماذا بنينا سُكون
+            </div>
+            <h2
+              style="margin:0;font-weight:700;font-size:clamp(30px,3.6vw,52px);line-height:1.2;letter-spacing:-.02em;color:#2A2450;max-width:34ch">
+              لأن العناية بصحتك النفسية لا يجب أن تكون حدثًا نادرًا</h2>
+            <p
+              style="margin:26px 0 0;font-weight:400;font-size:clamp(16px,1.45vw,20px);line-height:1.9;color:rgba(42,36,80,.8);max-width:60ch;white-space:pre-line">
+              لا تنتظر يومًا صعبًا كي تعتني بنفسك. لا تنتظر أن تصل إلى الإنهاك كي تتوقف. لا تنتظر أن تصبح الأمور أكبر
+              من قدرتك على الاحتمال.
+
+              كما تهتم بجسدك كل يوم، امنح عقلك ومشاعرك مساحة آمنة للراحة كل يوم.
+
+              "سكون" صُمم ليكون تلك المساحة — مكانًا تتوقف فيه، تتنفّس، تكتب، تتعلّم، تستكشف، تستعيد تركيزك، وتعود إلى
+              يومك.
+
+              لأن السلام الداخلي ليس مكانًا تصل إليه، بل شيء تتعلّم أن تصنع له مساحة كل يوم.</p>
+            <div style="display:flex;align-items:center;gap:14px;margin-top:28px">
+              <img src="assets/brand/logo.png" alt="سُكون" style="width:120px;height:120px;object-fit:contain" />
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <div style="font-weight:600;font-size:15px;line-height:1.3;color:#2A2450">فريق سُكون</div>
+                <div style="font-weight:400;font-size:13px;line-height:1.3;color:rgba(42,36,80,.62)">بالتعاون مع مدرّبة
+                  معتمدة في البرمجة اللغوية العصبية</div>
+              </div>
+            </div>
+          </div>
+          <div data-anim="rise"
+            style="position:relative;border-radius:52px;overflow:hidden;aspect-ratio:3/4;box-shadow:0 40px 90px rgba(53,30,90,.28)">
+            <img src="assets/images/scene-journal.png" alt="مرشد سُكون يكتب في دفتره" data-parallax="1"
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════ FAQ ══════ -->
+      <section data-screen-label="FAQ" style="position:relative;padding:120px 44px">
+        <div data-split="1"
+          style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start">
+          <h2 data-anim="rise"
+            style="margin:0;font-weight:700;font-size:clamp(32px,3.8vw,54px);line-height:1.18;letter-spacing:-.02em;color:#2A2450">
+            أسئلة متكرّرة</h2>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <details data-anim="rise"
+              style="background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);border-radius:28px;padding:24px 26px">
+              <summary
+                style="font-weight:600;font-size:17px;line-height:1.5;color:#2A2450;cursor:pointer;list-style:none">هل
+                المحتوى مترجم من الإنجليزية؟</summary>
+              <p style="margin:12px 0 0;font-weight:400;font-size:15px;line-height:1.8;color:rgba(42,36,80,.78)">لا. كل
+                نص مكتوب بالعربية أولًا — الأسئلة، الجلسات، ورسائل الطمأنينة — بلهجة دافئة تناسب الخليج، ثم يُسجّل
+                صوتيًا. الإنجليزية تأتي لاحقًا كترجمة لا كأصل.</p>
+            </details>
+            <details data-anim="rise"
+              style="background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);border-radius:28px;padding:24px 26px">
+              <summary
+                style="font-weight:600;font-size:17px;line-height:1.5;color:#2A2450;cursor:pointer;list-style:none">هل
+                سُكون بديل عن العلاج النفسي؟</summary>
+              <p style="margin:12px 0 0;font-weight:400;font-size:15px;line-height:1.8;color:rgba(42,36,80,.78)">لا.
+                سُكون تطبيق للعافية اليومية، ولا يقدّم تشخيصًا أو علاجًا. إن كنت تمرّ بضيق شديد، نعرض لك موارد الدعم
+                المتاحة في بلدك مباشرة.</p>
+            </details>
+            <details data-anim="rise"
+              style="background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);border-radius:28px;padding:24px 26px">
+              <summary
+                style="font-weight:600;font-size:17px;line-height:1.5;color:#2A2450;cursor:pointer;list-style:none">هل
+                أحتاج أن أستخدمه كل يوم؟</summary>
+              <p style="margin:12px 0 0;font-weight:400;font-size:15px;line-height:1.8;color:rgba(42,36,80,.78)">لا. لا
+                نلومك على يوم فائت، ولا نضغطك بعدّادات. تعود متى شئت، وخريطتك تنتظرك كما هي.</p>
+            </details>
+            <details data-anim="rise"
+              style="background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);border-radius:28px;padding:24px 26px">
+              <summary
+                style="font-weight:600;font-size:17px;line-height:1.5;color:#2A2450;cursor:pointer;list-style:none">ما
+                الفرق بين خريطة سُكون والدرجات في التطبيقات الأخرى؟</summary>
+              <p style="margin:12px 0 0;font-weight:400;font-size:15px;line-height:1.8;color:rgba(42,36,80,.78)">الخريطة
+                مرآة لا حكم. لا نكافئك على شعور معيّن، ولا نعرض أرقامًا تقارن بها نفسك — نعرض شكل رحلتك وأين تنمو.</p>
+            </details>
+            <details data-anim="rise"
+              style="background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);border-radius:28px;padding:24px 26px">
+              <summary
+                style="font-weight:600;font-size:17px;line-height:1.5;color:#2A2450;cursor:pointer;list-style:none">متى
+                يصدر التطبيق؟</summary>
+              <p style="margin:12px 0 0;font-weight:400;font-size:15px;line-height:1.8;color:rgba(42,36,80,.78)">نفتح
+                على دفعات صغيرة أولًا لضمان جودة المحتوى الصوتي. اترك بريدك ونراسلك أول ما يصبح متاحًا في بلدك.</p>
+            </details>
+            <details data-anim="rise"
+              style="background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);border-radius:28px;padding:24px 26px">
+              <summary
+                style="font-weight:600;font-size:17px;line-height:1.5;color:#2A2450;cursor:pointer;list-style:none">هل
+                "سكون" تطبيق للتأمل فقط؟</summary>
+              <p style="margin:12px 0 0;font-weight:400;font-size:15px;line-height:1.8;color:rgba(42,36,80,.78)">لا.
+                التأمل جزء واحد من تجربة "سكون". صُمم التطبيق ليكون رفيقًا يوميًا يشمل جوانب متعددة من يومك، من
+                الاستيقاظ والعادات والتركيز، إلى الوعي الذاتي والاسترخاء والنوم.</p>
+            </details>
+            <details data-anim="rise"
+              style="background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);border-radius:28px;padding:24px 26px">
+              <summary
+                style="font-weight:600;font-size:17px;line-height:1.5;color:#2A2450;cursor:pointer;list-style:none">ما
+                المقصود بالرحلات النفسية؟</summary>
+              <p style="margin:12px 0 0;font-weight:400;font-size:15px;line-height:1.8;color:rgba(42,36,80,.78)">
+                الرحلات النفسية هي تجارب صوتية وقصص وتأملات موجهة حول موضوعات مختلفة في الحياة، مثل العلاقات،
+                والتعلّق، والثقة بالنفس، والمقارنة، والتغيير، والمشاعر وغيرها. هدفها هو منحك مساحة للتوقف والتأمل وفهم
+                نفسك من زوايا جديدة مع تمارين يمكنك تطبيقها.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════ FOOTER ══════ -->
+      <footer style="padding:44px;border-top:1px solid rgba(255,255,255,.55)">
+        <div
+          style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:10px"><img src="assets/brand/logo.png" alt="سُكون"
+              style="width:120px;height:120px;object-fit:contain" /><!-- <span
+              style="font-weight:600;font-size:15px;line-height:1;color:#2A2450">سُكون</span> --></div>
+          <div style="display:flex;flex-wrap:wrap;gap:18px;font-weight:500;font-size:13px;line-height:1"><a
+              href="#offer">ما نقدّمه</a><a href="#experience">التجربة</a><a href="#difference">الفرق</a><a
+              href="#waitlist">قائمة الانتظار</a></div>
+          <div style="font-weight:400;font-size:12px;line-height:1.5;color:rgba(42,36,80,.58)">سُكون ٢٠٢٦ · تطبيق عافية،
+            لا يقدّم تشخيصًا أو علاجًا</div>
+        </div>
+      </footer>
+
+    </div>
+  </x-dc>
+  <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+const PHASES = [
+  { name: 'شهيق', dur: 4, scale: 1 },
+  { name: 'احبس', dur: 7, scale: 1 },
+  { name: 'زفير', dur: 8, scale: 0.6 }
+];
+const AR = n => String(n).replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[+d]);
+const BREATH_R = 44;
+const BREATH_C = 2 * Math.PI * BREATH_R;
+
+class Component extends DCLogic {
+  state = { running: false, phase: 0, left: 4, cycle: 1, joined: false, immersive: null };
+
+  componentDidMount() {
+    this.breathRef = React.createRef();
+    this.bgAudioRef = React.createRef();
+    this._tick = setInterval(() => this._onTick(), 1000);
+    this._applyScale(0.6, 0);
+    this._waitForGsap(0);
+    this._prevImmersive = this.state.immersive;
+  }
+  componentDidUpdate() {
+    const prevImmersive = this._prevImmersive;
+    this._prevImmersive = this.state.immersive;
+    if (prevImmersive !== this.state.immersive && this.state.immersive) {
+      this._animateImmersiveOpen(this.state.immersive);
+    }
+  }
+
+  // The card itself (not a duplicate) switches from an in-flow grid item to
+  // a fixed near-fullscreen panel via the {{ breathPos/breathInset... }} bindings.
+  // That's an instant layout jump, so this runs a FLIP: right after the jump
+  // we snap a transform onto the card that makes it LOOK like it's still at
+  // its pre-jump size/position (using the rect captured before the state
+  // change), then animate that transform back to identity — the card visibly
+  // grows from where it was into the fullscreen spot, because it's the same
+  // element the whole time.
+  _cardEl() { return document.getElementById('sk-breath-card'); }
+
+  _animateImmersiveOpen(mode) {
+    const gsap = window.gsap;
+    const card = this._cardEl(mode);
+    if (!card) return;
+    if (!gsap || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const o = this._originRect;
+    if (!o) { gsap.fromTo(card, { opacity: 0.4 }, { opacity: 1, duration: 0.4 }); return; }
+    const now = card.getBoundingClientRect();
+    const scaleX = Math.max(0.04, o.width / now.width), scaleY = Math.max(0.04, o.height / now.height);
+    const x = (o.left + o.width / 2) - (now.left + now.width / 2);
+    const y = (o.top + o.height / 2) - (now.top + now.height / 2);
+    gsap.fromTo(card,
+      { x, y, scaleX, scaleY },
+      { x: 0, y: 0, scaleX: 1, scaleY: 1, duration: 0.65, ease: 'power2.inOut' }
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._tick);
+    if (window.ScrollTrigger) window.ScrollTrigger.getAll().forEach(t => t.kill());
+  }
+
+  _bindBg() {
+    if (this._bgBound) return;
+    const bg = this.bgAudioRef && this.bgAudioRef.current;
+    if (!bg) return;
+    this._bgBound = true;
+    bg.volume = 0.18;
+    bg.loop = true;
+  }
+
+  _playBg() {
+    this._bindBg();
+    const bg = this.bgAudioRef && this.bgAudioRef.current;
+    if (bg) bg.play().catch(() => {});
+  }
+
+  _pauseBg() {
+    const bg = this.bgAudioRef && this.bgAudioRef.current;
+    if (bg) bg.pause();
+  }
+
+  _waitForGsap(n) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.gsap && window.ScrollTrigger) { this._motion(); return; }
+    if (n > 40) return;
+    setTimeout(() => this._waitForGsap(n + 1), 150);
+  }
+
+  _motion() {
+    const gsap = window.gsap, ST = window.ScrollTrigger;
+    gsap.registerPlugin(ST);
+    const q = s => Array.from(document.querySelectorAll(s));
+
+    gsap.from(q('[data-line="1"]'), { y: 44, opacity: 0, duration: 1.1, stagger: 0.12, ease: 'power3.out', delay: 0.15 });
+
+    const fig = document.querySelector('#sk-herofig');
+    if (fig) gsap.to(fig, { yPercent: 12, scale: 1.06, ease: 'none', scrollTrigger: { trigger: '#sk-hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+    q('[data-anim="rise"]').forEach(el => {
+      gsap.from(el, { y: 46, opacity: 0, duration: 0.9, ease: 'power3.out', clearProps: 'transform', scrollTrigger: { trigger: el, start: 'top 88%' } });
+    });
+
+    q('[data-parallax="1"]').forEach(el => {
+      gsap.fromTo(el, { yPercent: -5 }, { yPercent: 5, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true } });
+    });
+
+    const num = document.querySelector('#sk-bignum');
+    if (num) gsap.from(num, { scale: 0.86, opacity: 0, transformOrigin: 'right bottom', duration: 1, ease: 'power3.out', scrollTrigger: { trigger: num, start: 'top 88%' } });
+
+    const rows = q('[data-row="1"]');
+    if (rows.length) gsap.from(rows, { y: 20, opacity: 0, duration: 0.6, stagger: 0.07, ease: 'power2.out', scrollTrigger: { trigger: '#sk-compare', start: 'top 82%' } });
+  }
+
+  _applyScale(scale, dur) {
+    const el = this.breathRef && this.breathRef.current;
+    if (!el) return;
+    el.style.transition = dur ? `transform ${dur}s linear` : 'none';
+    el.style.transform = `scale(${scale})`;
+  }
+
+  _onTick() {
+    this._bindBg();
+    const s = this.state;
+    if (!s.running) return;
+    if (s.left > 1) { this.setState({ left: s.left - 1 }); return; }
+    const next = (s.phase + 1) % PHASES.length;
+    const cycle = next === 0 ? s.cycle + 1 : s.cycle;
+    if (cycle > 4) { this.setState({ running: false, phase: 0, left: 4, cycle: 1 }); this._applyScale(0.6, 1); return; }
+    this.setState({ phase: next, left: PHASES[next].dur, cycle });
+    this._applyScale(PHASES[next].scale, PHASES[next].dur);
+  }
+
+  toggleBreath = () => {
+    if (this.state.running) {
+      this.setState({ running: false, phase: 0, left: 4, cycle: 1 });
+      this._applyScale(0.6, 1);
+      if (this.state.immersive === 'breath') this._pauseBg();
+    } else {
+      const goImmersive = window.innerWidth < 980;
+      if (goImmersive) {
+        const card = this._cardEl();
+        if (card) this._originRect = card.getBoundingClientRect();
+        this._playBg();
+      }
+      this.setState({ running: true, phase: 0, left: 4, cycle: 1, immersive: goImmersive ? 'breath' : null });
+      this._applyScale(1, 4);
+    }
+  };
+  closeImmersive = () => {
+    const mode = this.state.immersive;
+    if (!mode) return;
+    this._pauseBg();
+    const gsap = window.gsap;
+    const card = this._cardEl();
+    const o = this._originRect;
+    if (!gsap || !card || !o || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.setState({ immersive: null });
+      return;
+    }
+    const now = card.getBoundingClientRect();
+    const scaleX = Math.max(0.04, o.width / now.width), scaleY = Math.max(0.04, o.height / now.height);
+    const x = (o.left + o.width / 2) - (now.left + now.width / 2);
+    const y = (o.top + o.height / 2) - (now.top + now.height / 2);
+    gsap.to(card, {
+      x, y, scaleX, scaleY, duration: 0.5, ease: 'power2.inOut',
+      onComplete: () => {
+        this.setState({ immersive: null });
+        gsap.set(card, { clearProps: 'transform' });
+      }
+    });
+  };
+  onSubmit = e => { e.preventDefault(); this.setState({ joined: true }); };
+
+  renderVals() {
+    const s = this.state;
+    const isBreathImmersive = s.immersive === 'breath';
+    const phaseFrac = s.running ? (PHASES[s.phase].dur - s.left + 1) / PHASES[s.phase].dur : 0;
+    const vals = {
+      breathRef: this.breathRef,
+      bgAudioRef: this.bgAudioRef,
+      breathCount: s.running ? AR(s.left) : AR(4),
+      breathPhase: s.running ? PHASES[s.phase].name : 'استعد',
+      breathBtn: s.running ? 'إيقاف' : 'ابدأ التمرين',
+      breathGlyph: s.running ? '❚❚' : '▶',
+      cycleLabel: s.running ? 'الدورة ' + AR(s.cycle) + ' من ٤' : '٤٠ ثانية',
+      toggleBreath: this.toggleBreath,
+      breathPos: isBreathImmersive ? 'fixed' : 'relative',
+      breathInset: isBreathImmersive ? '0' : 'auto',
+      breathRadius: isBreathImmersive ? '0' : '52px',
+      breathZ: isBreathImmersive ? 200 : 'auto',
+      breathJustify: isBreathImmersive ? 'center' : 'flex-start',
+      breathOverflow: isBreathImmersive ? 'auto' : 'hidden',
+      breathParticlesOp: isBreathImmersive ? 1 : 0,
+      breathMenuGlyph: isBreathImmersive ? '✕' : '•••',
+      breathCardBg: isBreathImmersive ? "url('assets/images/night-bg.png') center/cover no-repeat,radial-gradient(120% 120% at 50% 30%,#0F3A63 0%,#081B33 45%,#02050D 100%)" : 'transparent',
+      breathChromeDisplay: isBreathImmersive ? 'flex' : 'none',
+      breathCardMargin: isBreathImmersive ? '0' : '64px auto 0',
+      breathCardMaxWidth: isBreathImmersive ? 'none' : '380px',
+      breathRingC: Math.round(BREATH_C),
+      breathRingOffset: Math.round(BREATH_C * (1 - phaseFrac)),
+      closeImmersive: this.closeImmersive,
+      onSubmit: this.onSubmit, joined: s.joined, notJoined: !s.joined
+    };
+    return vals;
+  }
+}
+</script>
+</body>
+
+</html>

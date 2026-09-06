@@ -1,0 +1,24 @@
+# Tooling
+.claude/
+node_modules/
+
+# Working files that the site does not serve.
+# They stay on disk, they are just not tracked.
+uploads/
+referencesite.png
+
+# Source media too large or heavy for git.
+# The brand book alone is 115 MB, over GitHub's 100 MB hard limit.
+assets/brand/Sukun Brand Guidlines/01_Brandbook/
+assets/audio/
+assets/design mockups/
+
+# Optimised WebP is what the site loads; the PNG originals are the source.
+assets/images/screens/*.png
+assets/images/mascot/*.png
+assets/images/*.png
+
+# OS noise
+.DS_Store
+Thumbs.db
+.thumbnail
