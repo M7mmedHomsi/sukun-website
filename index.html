@@ -1,767 +1,1089 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>سُكون — تطبيق عربي شامل للعافية النفسية</title>
-<meta name="description" content="سُكون تطبيق عربي شامل للعافية النفسية: رحلات صوتية أصلية، تمارين تنفّس، متابعة عادات، منبّهات وتذكيرات، وألعاب معرفية.">
-<meta name="theme-color" content="#FCFBFE">
-<meta property="og:type" content="website">
-<meta property="og:title" content="سُكون — تطبيق عربي شامل للعافية النفسية">
-<meta property="og:description" content="مرافقك في رحلتك النفسية. انضم لقائمة الانتظار.">
-<meta property="og:image" content="assets/brand/logo/icon-512.png">
-<link rel="icon" href="assets/brand/logo/mark.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/brand/logo/icon-180.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>سُكون — مرافقك في رحلتك النفسية</title>
+  <meta name="description"
+    content="سُكون مرافقك في رحلتك النفسية: رحلات صوتية أصلية، تمارين تنفّس، متابعة عادات، منبّهات وتذكيرات، وألعاب معرفية.">
+  <meta name="theme-color" content="#FCFBFE">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="سُكون — مرافقك في رحلتك النفسية">
+  <meta property="og:description" content="مرافقك في رحلتك النفسية. انضم لقائمة الانتظار.">
+  <meta property="og:image" content="assets/brand/logo/icon-512.png">
+  <link rel="icon" href="assets/brand/logo/mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/logo/icon-180.png">
 
-<!-- Language + direction set before first paint so RTL never flashes -->
-<script>
-(function () {
-  try {
-    var q = new URLSearchParams(location.search).get('lang');
-    var l = q || localStorage.getItem('sukun_lang') || 'ar';
-    if (l !== 'ar' && l !== 'en') l = 'ar';
-    document.documentElement.lang = l;
-    document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
-  } catch (e) {}
-})();
-</script>
+  <!-- Language + direction set before first paint so RTL never flashes -->
+  <script>
+    (function () {
+      try {
+        var q = new URLSearchParams(location.search).get('lang');
+        var l = q || localStorage.getItem('sukun_lang') || 'ar';
+        if (l !== 'ar' && l !== 'en') l = 'ar';
+        document.documentElement.lang = l;
+        document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
+      } catch (e) { }
+    })();
+  </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/brand/Fonts/OmnesArabic/omnes-regular.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/brand/Fonts/OmnesArabic/omnes-bold.woff2">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/brand/Fonts/OmnesArabic/omnes-regular.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/brand/Fonts/OmnesArabic/omnes-bold.woff2">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
-<a class="skip-link" href="#main" data-i18n="nav.skip">تخطَّ إلى المحتوى</a>
+  <a class="skip-link" href="#main" data-i18n="nav.skip">تخطَّ إلى المحتوى</a>
 
-<!-- ============================ HEADER ============================ -->
-<header class="header">
-  <nav class="nav" aria-label="Main">
-    <a class="brand" href="#top">
-      <!-- Full gradient logotype: wordmark + mark in one lockup -->
-      <img class="brand__logo" src="assets/brand/logo/logotype.svg" width="2964" height="1362"
-           alt="سُكون" data-i18n-attr="alt:brand.name">
-    </a>
-
-    <div class="nav__links">
-      <a class="nav__link" href="#features" data-i18n="nav.features">المميزات</a>
-      <a class="nav__link" href="#how"      data-i18n="nav.how">كيف يعمل</a>
-      <a class="nav__link" href="#why"      data-i18n="nav.difference">الفرق</a>
-      <a class="nav__link" href="#faq"      data-i18n="nav.faq">الأسئلة</a>
-    </div>
-
-    <div class="nav__end">
-      <div class="lang" role="group" data-i18n-attr="aria-label:nav.langAria">
-        <button class="lang__btn" type="button" data-lang="ar" aria-pressed="true">ع</button>
-        <button class="lang__btn" type="button" data-lang="en" aria-pressed="false">EN</button>
-      </div>
-      <a class="btn btn--primary nav__cta" href="#waitlist" data-i18n="nav.cta">انضم للقائمة</a>
-      <button class="burger" type="button" aria-expanded="false" aria-controls="sheet"
-              data-i18n-attr="aria-label:nav.menu">
-        <span class="burger__bars" aria-hidden="true"><span></span><span></span></span>
-      </button>
-    </div>
-  </nav>
-</header>
-
-<div class="sheet" id="sheet" aria-hidden="true">
-  <a class="sheet__link" href="#features" data-i18n="nav.features">المميزات</a>
-  <a class="sheet__link" href="#how"      data-i18n="nav.how">كيف يعمل</a>
-  <a class="sheet__link" href="#why"      data-i18n="nav.difference">الفرق</a>
-  <a class="sheet__link" href="#faq"      data-i18n="nav.faq">الأسئلة</a>
-  <a class="btn btn--primary sheet__cta" href="#waitlist" data-i18n="nav.cta">انضم للقائمة</a>
-</div>
-
-<main id="main">
-<span id="top"></span>
-
-<!-- ============================= HERO ============================= -->
-<section class="hero grain">
-  <div class="hero__aura" aria-hidden="true"><i></i></div>
-
-  <div class="wrap hero__inner">
-    <span class="chip hero__eyebrow">
-      <span data-i18n="hero.eyebrow">وصول مبكر · قريبًا على iOS و Android</span>
-    </span>
-
-    <h1 class="hero__title">
-      <span class="line" data-i18n="hero.title1">راحتك النفسية،</span>
-      <span class="line" data-i18n="hero.title2">في تطبيق واحد.</span>
-    </h1>
-
-    <p class="hero__sub" data-i18n="hero.sub">
-      سُكون رفيقك النفسي اليومي، يساعدك أن تعيش بوعي أكبر وهدوء أعمق — من لحظة استيقاظك وحتى نهاية اليوم، كل يوم.
-    </p>
-
-    <div class="hero__actions">
-      <a class="btn btn--primary" href="#waitlist">
-        <span data-i18n="hero.cta1">انضم لقائمة الانتظار</span>
-        <svg class="btn__icon icon-flip" viewBox="0 0 24 24" width="17" height="17" fill="none"
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>
-        </svg>
+  <!-- ============================ HEADER ============================ -->
+  <header class="header">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="#top">
+        <!-- Full gradient logotype: wordmark + mark in one lockup -->
+        <img class="brand__logo" src="assets/brand/logo/logotype.svg" width="2964" height="1362" alt="سُكون"
+          data-i18n-attr="alt:brand.name">
       </a>
-      <a class="btn btn--ghost" href="#how" data-i18n="hero.cta2">شاهد كيف يعمل</a>
-    </div>
 
-    <!-- Stage: phone mockup with floating label chips -->
-    <div class="stage">
-      <div class="stage__core">
-        <div class="stage__phone">
-          <div class="phone">
-            <div class="phone__screen">
-              <img class="phone__shot" src="assets/images/screens/home.webp" width="393" height="852"
-                   fetchpriority="high" alt="" data-i18n-attr="alt:a11y.phoneHome">
-              <span class="phone__glare" aria-hidden="true"></span>
-            </div>
-            <span class="phone__island" aria-hidden="true"></span>
-          </div>
+      <div class="nav__links">
+        <a class="nav__link" href="#features" data-i18n="nav.features">المميزات</a>
+        <a class="nav__link" href="#how" data-i18n="nav.how">كيف يعمل</a>
+        <a class="nav__link" href="#day" data-i18n="nav.day">يومك</a>
+        <a class="nav__link" href="#why" data-i18n="nav.difference">الفرق</a>
+        <a class="nav__link" href="#faq" data-i18n="nav.faq">الأسئلة</a>
+      </div>
+
+      <div class="nav__end">
+        <div class="lang" role="group" data-i18n-attr="aria-label:nav.langAria">
+          <button class="lang__btn" type="button" data-lang="ar" aria-pressed="true">ع</button>
+          <button class="lang__btn" type="button" data-lang="en" aria-pressed="false">EN</button>
         </div>
+        <a class="btn btn--primary nav__cta" href="#waitlist" data-i18n="nav.cta">انضم للقائمة</a>
+        <button class="burger" type="button" aria-expanded="false" aria-controls="sheet"
+          data-i18n-attr="aria-label:nav.menu">
+          <span class="burger__bars" aria-hidden="true"><span></span><span></span></span>
+        </button>
       </div>
+    </nav>
+  </header>
 
-      <div class="stage__chip stage__chip--a">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#3D6BC4" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/>
-        </svg>
-        <span><b data-i18n="hero.chip1t">رحلات نفسية</b><span data-i18n="hero.chip1s">تجارب صوتية موجّهة</span></span>
-      </div>
-
-      <div class="stage__chip stage__chip--b">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#7B4FB0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5Z"/>
-        </svg>
-        <span><b data-i18n="hero.chip2t">خريطة سكونك</b><span data-i18n="hero.chip2s">تقدّمك كله في مكان</span></span>
-      </div>
-
-      <div class="stage__chip stage__chip--c">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#4E8A2B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 21v-8"/><path d="M12 13C12 9 9 6 4 6c0 5 3 7 8 7Z"/><path d="M12 13c0-3.5 2.5-6.5 7-6.5 0 4.5-2.5 6.5-7 6.5Z"/>
-        </svg>
-        <span><b data-i18n="hero.chip3t">عادات صغيرة</b><span data-i18n="hero.chip3s">تبنيها أو تتركها</span></span>
-      </div>
-
-      <div class="stage__chip stage__chip--d">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#B04A78" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M18 8a6 6 0 1 0-12 0c0 6-3 7-3 7h18s-3-1-3-7"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/>
-        </svg>
-        <span><b data-i18n="hero.chip4t">تذكيرات لطيفة</b><span data-i18n="hero.chip4s">بلا ضغط ولا لوم</span></span>
-      </div>
-    </div>
-
+  <div class="sheet" id="sheet" aria-hidden="true">
+    <a class="sheet__link" href="#features" data-i18n="nav.features">المميزات</a>
+    <a class="sheet__link" href="#how" data-i18n="nav.how">كيف يعمل</a>
+    <a class="sheet__link" href="#day" data-i18n="nav.day">يومك</a>
+    <a class="sheet__link" href="#why" data-i18n="nav.difference">الفرق</a>
+    <a class="sheet__link" href="#faq" data-i18n="nav.faq">الأسئلة</a>
+    <a class="btn btn--primary sheet__cta" href="#waitlist" data-i18n="nav.cta">انضم للقائمة</a>
   </div>
-</section>
 
-<!-- =========================== FEATURES =========================== -->
-<section class="section" id="features">
-  <div class="wrap">
-    <div class="head" data-reveal="features-head">
-      <span class="eyebrow" data-i18n="features.eyebrow">ما نقدّمه</span>
-      <h2 class="h2" data-i18n="features.title">كل ما تحتاجه لتهدّئ يومك</h2>
-      <p class="lede" data-i18n="features.sub">
-        التنفّس والرحلات والعادات والتدوين في مكان واحد، بالعربية، بلا لوحات معقّدة ولا أرقام تقارن بها نفسك.
-      </p>
-    </div>
+  <main id="main">
+    <span id="top"></span>
 
-    <div class="features__grid">
+    <!-- ============================= HERO ============================= -->
+    <section class="hero grain">
+      <div class="hero__aura" aria-hidden="true"><i></i></div>
 
-      <!-- Breathing: the phone runs the real 4-7-8 exercise -->
-      <article class="fcard fcard--ice grain" data-reveal="features-a">
-        <div class="fcard__head">
-          <svg class="fcard__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 8h9a3 3 0 1 0-3-3"/><path d="M3 16h13a3 3 0 1 1-3 3"/><path d="M3 12h16.5a2.5 2.5 0 1 0-2.5-2.5"/>
-          </svg>
-          <h3 class="fcard__title" data-i18n="f1.title">تمارين تنفّس</h3>
+      <div class="wrap hero__inner">
+        <span class="chip hero__eyebrow">
+          <span data-i18n="hero.eyebrow">وصول مبكر · قريبًا على iOS و Android</span>
+        </span>
+
+        <h1 class="hero__title">
+          <span class="line" data-i18n="hero.title1">راحتك النفسية،</span>
+          <span class="line" data-i18n="hero.title2">في تطبيق واحد.</span>
+        </h1>
+
+        <p class="hero__sub" data-i18n="hero.sub">
+          سُكون رفيقك النفسي اليومي، يساعدك أن تعيش بوعي أكبر وهدوء أعمق — من لحظة استيقاظك وحتى نهاية اليوم، كل يوم.
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#waitlist">
+            <span data-i18n="hero.cta1">انضم لقائمة الانتظار</span>
+            <svg class="btn__icon icon-flip" viewBox="0 0 24 24" width="17" height="17" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14" />
+              <path d="M13 6l6 6-6 6" />
+            </svg>
+          </a>
+          <a class="btn btn--ghost" href="#how" data-i18n="hero.cta2">شاهد كيف يعمل</a>
         </div>
-        <p class="fcard__text" data-i18n="f1.text">تمرين ٤-٧-٨ كامل وتمارين أخرى، بإيقاع مرئي يهدّئك في دقائق.</p>
 
-        <div class="fcard__mock">
-          <div class="phone">
-            <div class="phone__screen">
-              <img class="phone__shot" src="assets/images/screens/first-session.webp" width="393" height="852"
-                   loading="lazy" alt="" data-i18n-attr="alt:a11y.phoneSession">
-              <span class="phone__glare" aria-hidden="true"></span>
+        <!-- Stage: phone mockup with floating label chips -->
+        <div class="stage">
+          <div class="stage__core">
+            <div class="stage__phone">
+              <div class="phone">
+                <div class="phone__screen">
+                  <img class="phone__shot" src="assets/images/screens/home.webp" width="393" height="852"
+                    fetchpriority="high" alt="" data-i18n-attr="alt:a11y.phoneHome">
+                  <span class="phone__glare" aria-hidden="true"></span>
+                </div>
+                <span class="phone__island" aria-hidden="true"></span>
+              </div>
             </div>
-            <span class="phone__island" aria-hidden="true"></span>
+          </div>
+
+          <div class="stage__chip stage__chip--a">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3D6BC4" stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 15v-3a8 8 0 0 1 16 0v3" />
+              <rect x="2" y="14" width="5" height="7" rx="2" />
+              <rect x="17" y="14" width="5" height="7" rx="2" />
+            </svg>
+            <span><b data-i18n="hero.chip1t">رحلات نفسية</b><span data-i18n="hero.chip1s">تجارب صوتية
+                موجّهة</span></span>
+          </div>
+
+          <div class="stage__chip stage__chip--b">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#7B4FB0" stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M15.5 8.5l-2 5-5 2 2-5Z" />
+            </svg>
+            <span><b data-i18n="hero.chip2t">خريطة سكونك</b><span data-i18n="hero.chip2s">تقدّمك كله في
+                مكان</span></span>
+          </div>
+
+          <div class="stage__chip stage__chip--c">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#4E8A2B" stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 21v-8" />
+              <path d="M12 13C12 9 9 6 4 6c0 5 3 7 8 7Z" />
+              <path d="M12 13c0-3.5 2.5-6.5 7-6.5 0 4.5-2.5 6.5-7 6.5Z" />
+            </svg>
+            <span><b data-i18n="hero.chip3t">عادات صغيرة</b><span data-i18n="hero.chip3s">تبنيها أو تتركها</span></span>
+          </div>
+
+          <div class="stage__chip stage__chip--d">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#B04A78" stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 8a6 6 0 1 0-12 0c0 6-3 7-3 7h18s-3-1-3-7" />
+              <path d="M10.3 21a2 2 0 0 0 3.4 0" />
+            </svg>
+            <span><b data-i18n="hero.chip4t">تذكيرات لطيفة</b><span data-i18n="hero.chip4s">بلا ضغط ولا
+                لوم</span></span>
           </div>
         </div>
-      </article>
 
-      <!-- Audio journeys -->
-      <article class="fcard fcard--lilac grain" data-reveal="features-a">
-        <div class="fcard__head">
-          <svg class="fcard__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/>
-          </svg>
-          <h3 class="fcard__title" data-i18n="f2.title">رحلات نفسية</h3>
+      </div>
+    </section>
+
+    <!-- =========================== FEATURES =========================== -->
+    <section class="section" id="features">
+      <div class="wrap">
+        <div class="head" data-reveal="features-head">
+          <span class="eyebrow" data-i18n="features.eyebrow">ما نقدّمه</span>
+          <h2 class="h2" data-i18n="features.title">كل ما تحتاجه لتهدّئ يومك</h2>
+          <p class="lede" data-i18n="features.sub">
+            التنفّس والرحلات والعادات والتدوين في مكان واحد، بالعربية، بلا لوحات معقّدة ولا أرقام تقارن بها نفسك.
+          </p>
         </div>
-        <p class="fcard__text" data-i18n="f2.text">تجارب صوتية وتأملات موجّهة عن العلاقات والثقة والتغيير، بصوت مدرّبة معتمدة.</p>
-        <div class="fcard__mock">
-          <div class="phone">
-            <div class="phone__screen">
-              <img class="phone__shot" src="assets/images/screens/player.webp" width="393" height="852"
-                   loading="lazy" alt="" data-i18n-attr="alt:a11y.phonePlayer">
-              <span class="phone__glare" aria-hidden="true"></span>
+
+        <div class="features__grid">
+
+          <!-- Breathing: the phone runs the real 4-7-8 exercise -->
+          <!-- Night sky and crystal, carried over from the legacy breathing
+               screen, instead of a phone mockup. -->
+          <article class="fcard fcard--night grain" data-reveal="features-a">
+            <img class="fcard__sky" src="assets/images/scenes/night.webp" width="393" height="434" loading="lazy"
+              alt="" aria-hidden="true">
+            <div class="fcard__head">
+              <svg class="fcard__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 8h9a3 3 0 1 0-3-3" />
+                <path d="M3 16h13a3 3 0 1 1-3 3" />
+                <path d="M3 12h16.5a2.5 2.5 0 1 0-2.5-2.5" />
+              </svg>
+              <h3 class="fcard__title" data-i18n="f1.title">تمارين تنفّس</h3>
             </div>
-            <span class="phone__island" aria-hidden="true"></span>
-          </div>
-        </div>
-      </article>
+            <p class="fcard__text" data-i18n="f1.text">تمرين ٤-٧-٨ كامل وتمارين أخرى، بإيقاع مرئي يهدّئك في دقائق.</p>
 
-      <!-- Habits (screen not exported yet: styled placeholder) -->
-      <article class="fcard fcard--blush grain" data-reveal="features-b">
-        <div class="fcard__head">
-          <svg class="fcard__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 21v-8"/><path d="M12 13C12 9 9 6 4 6c0 5 3 7 8 7Z"/><path d="M12 13c0-3.5 2.5-6.5 7-6.5 0 4.5-2.5 6.5-7 6.5Z"/>
-          </svg>
-          <h3 class="fcard__title" data-i18n="f3.title">عادات تبنيها وتتركها</h3>
-        </div>
-        <p class="fcard__text" data-i18n="f3.text">عادات صغيرة تبنيها، وأخرى تتركها، بسلاسل لا تلومك على يوم فائت.</p>
-        <div class="fcard__mock">
-          <div class="phone">
-            <div class="phone__screen">
-              <img class="phone__shot" src="assets/images/screens/habits.webp" width="393" height="852"
-                   loading="lazy" alt="" data-i18n-attr="alt:a11y.phoneHabits">
-              <span class="phone__glare" aria-hidden="true"></span>
+            <div class="orb" aria-hidden="true">
+              <span class="orb__halo"></span>
+              <img class="orb__ball" src="assets/images/scenes/crystal.webp" width="520" height="520" loading="lazy"
+                alt="">
             </div>
-            <span class="phone__island" aria-hidden="true"></span>
-          </div>
-        </div>
-      </article>
+          </article>
 
-      <!-- Journal (screen not exported yet: styled placeholder) -->
-      <article class="fcard fcard--peach grain" data-reveal="features-b">
-        <div class="fcard__head">
-          <svg class="fcard__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01"/><path d="M8.5 14.5a4.5 4.5 0 0 0 7 0"/>
-          </svg>
-          <h3 class="fcard__title" data-i18n="f4.title">تسجيل مزاجك اليومي</h3>
-        </div>
-        <p class="fcard__text" data-i18n="f4.text">سؤال واحد كل يوم، ومزاجك يرسم خريطتك بلا أرقام تقارن بها نفسك.</p>
-        <div class="fcard__mock">
-          <div class="phone">
-            <div class="phone__screen">
-              <img class="phone__shot" src="assets/images/screens/checkin.webp" width="393" height="852"
-                   loading="lazy" alt="" data-i18n-attr="alt:a11y.phoneCheckin">
-              <span class="phone__glare" aria-hidden="true"></span>
+          <!-- Audio journeys -->
+          <article class="fcard fcard--lilac grain" data-reveal="features-a">
+            <div class="fcard__head">
+              <svg class="fcard__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 15v-3a8 8 0 0 1 16 0v3" />
+                <rect x="2" y="14" width="5" height="7" rx="2" />
+                <rect x="17" y="14" width="5" height="7" rx="2" />
+              </svg>
+              <h3 class="fcard__title" data-i18n="f2.title">رحلات نفسية</h3>
             </div>
-            <span class="phone__island" aria-hidden="true"></span>
-          </div>
-        </div>
-      </article>
-    </div>
+            <p class="fcard__text" data-i18n="f2.text">تجارب صوتية وتأملات موجّهة عن العلاقات والثقة والتغيير، بصوت
+              مدرّبة معتمدة.</p>
+            <!-- Sky over water behind, the pond as the subject, and the
+                 player's own progress arc around it, instead of a phone. -->
+            <img class="fcard__sky fcard__sky--water" src="assets/images/scenes/water.webp" width="820" height="1216"
+              loading="lazy" alt="" aria-hidden="true">
+            <div class="player" aria-hidden="true">
+              <img class="player__arc" src="assets/images/scenes/player-arc.webp" width="600" height="577"
+                loading="lazy" alt="">
+              <img class="player__pond" src="assets/images/scenes/pond.webp" width="820" height="434" loading="lazy"
+                alt="">
+              <img class="player__char" src="assets/images/scenes/mascot-orb-sit.webp" width="520" height="721"
+                loading="lazy" alt="">
+            </div>
+          </article>
 
-    <!-- Two wide cards -->
-    <div class="wides">
-      <article data-reveal="features-c">
-        <div class="wide__art wide__art--light grain">
-          <div class="cluster" aria-hidden="true">
-            <i><svg viewBox="0 0 24 24" fill="none" stroke="#3D6BC4" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 6-3 7-3 7h18s-3-1-3-7"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/></svg></i>
-            <i><svg viewBox="0 0 24 24" fill="none" stroke="#B04A78" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg></i>
-            <i><svg viewBox="0 0 24 24" fill="none" stroke="#A0552A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg></i>
-            <i><svg viewBox="0 0 24 24" fill="none" stroke="#7B4FB0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4.5 4.5L19 7"/></svg></i>
-          </div>
-        </div>
-        <div class="wide__caption">
-          <h3 data-i18n="f5.title">منبّهات وتذكيرات لطيفة</h3>
-          <p data-i18n="f5.text">تذكيرات في وقتها، بنبرة صديق لا بنبرة عدّاد.</p>
-        </div>
-      </article>
+          <!-- Habits (screen not exported yet: styled placeholder) -->
+          <article class="fcard fcard--blush grain" data-reveal="features-b">
+            <div class="fcard__head">
+              <svg class="fcard__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 21v-8" />
+                <path d="M12 13C12 9 9 6 4 6c0 5 3 7 8 7Z" />
+                <path d="M12 13c0-3.5 2.5-6.5 7-6.5 0 4.5-2.5 6.5-7 6.5Z" />
+              </svg>
+              <h3 class="fcard__title" data-i18n="f3.title">عادات تبنيها وتتركها</h3>
+            </div>
+            <p class="fcard__text" data-i18n="f3.text">عادات صغيرة تبنيها، وأخرى تتركها، بسلاسل لا تلومك على يوم فائت.
+            </p>
+            <!-- Zen garden and the mascot mid-climb, instead of a phone -->
+            <div class="scene" aria-hidden="true">
+              <img class="scene__ground" src="assets/images/scenes/garden.webp" width="900" height="802"
+                loading="lazy" alt="">
+              <img class="scene__char" src="assets/images/scenes/habits-char.webp" width="520" height="525"
+                loading="lazy" alt="">
+            </div>
+          </article>
 
-      <article data-reveal="features-c">
-        <!-- No Figma screen exists for this feature yet, so the card carries a
+          <!-- Journal (screen not exported yet: styled placeholder) -->
+          <article class="fcard fcard--peach grain" data-reveal="features-b">
+            <div class="fcard__head">
+              <svg class="fcard__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M9 10h.01M15 10h.01" />
+                <path d="M8.5 14.5a4.5 4.5 0 0 0 7 0" />
+              </svg>
+              <h3 class="fcard__title" data-i18n="f4.title">تسجيل مزاجك اليومي</h3>
+            </div>
+            <p class="fcard__text" data-i18n="f4.text">سؤال واحد كل يوم، ومزاجك يرسم خريطتك بلا أرقام تقارن بها نفسك.
+            </p>
+            <!-- The app's own check-in card, rebuilt live. Colours and faces
+                 are taken from the design files. -->
+            <div class="mood" data-mood style="--i:2">
+              <div class="mood__top">
+                <span data-i18n="mood.label">تسجيل يومي</span>
+              </div>
+
+              <p class="mood__q" data-i18n="mood.q">كيف تشعر اليوم؟</p>
+
+              <span class="mood__face" aria-hidden="true">
+                <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                  <circle cx="22" cy="22" r="18" />
+                  <circle class="eye" cx="15.5" cy="18" r="1.4" fill="currentColor" stroke="none" />
+                  <circle class="eye" cx="28.5" cy="18" r="1.4" fill="currentColor" stroke="none" />
+                  <path class="eye-closed" d="M12.5 18.5c1.8-2.4 4.2-2.4 6 0M25.5 18.5c1.8-2.4 4.2-2.4 6 0" />
+                  <path class="mouth" d="M15 28c2 2.6 12 2.6 14 0" />
+                  <path class="mouth-open" d="M15 26.5a7 7 0 0 0 14 0Z" fill="currentColor" stroke="none" />
+                </svg>
+              </span>
+
+              <div class="mood__slider">
+                <span class="mood__track" aria-hidden="true"></span>
+                <span class="mood__fill" aria-hidden="true"></span>
+                <span class="mood__thumb" aria-hidden="true">
+                  <svg viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M9 3 5.5 7 9 11M15 3l3.5 4L15 11" />
+                  </svg>
+                </span>
+                <input class="mood__input" type="range" min="0" max="4" step="1" value="2"
+                  data-i18n-attr="aria-label:mood.aria">
+              </div>
+
+              <ul class="mood__labels" aria-hidden="true">
+                <li data-i18n="mood.m1">منخفض</li>
+                <li data-i18n="mood.m2">فاتر</li>
+                <li data-i18n="mood.m3">عادي</li>
+                <li data-i18n="mood.m4">جيد</li>
+                <li data-i18n="mood.m5">ممتاز</li>
+              </ul>
+
+              <span class="mood__cta" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9" />
+                  <path class="icon-flip" d="M10 8l4 4-4 4" />
+                </svg>
+                <span data-i18n="mood.cta">إرسال</span>
+              </span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Two wide cards -->
+        <div class="wides">
+          <article data-reveal="features-c">
+            <div class="wide__art wide__art--light grain">
+              <div class="cluster" aria-hidden="true">
+                <i><svg viewBox="0 0 24 24" fill="none" stroke="#3D6BC4" stroke-width="1.7" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M18 8a6 6 0 1 0-12 0c0 6-3 7-3 7h18s-3-1-3-7" />
+                    <path d="M10.3 21a2 2 0 0 0 3.4 0" />
+                  </svg></i>
+                <i><svg viewBox="0 0 24 24" fill="none" stroke="#B04A78" stroke-width="1.7" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7.5V12l3 2" />
+                  </svg></i>
+                <i><svg viewBox="0 0 24 24" fill="none" stroke="#A0552A" stroke-width="1.7" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" />
+                  </svg></i>
+                <i><svg viewBox="0 0 24 24" fill="none" stroke="#7B4FB0" stroke-width="1.7" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M5 12l4.5 4.5L19 7" />
+                  </svg></i>
+              </div>
+            </div>
+            <div class="wide__caption">
+              <h3 data-i18n="f5.title">منبّهات وتذكيرات لطيفة</h3>
+              <p data-i18n="f5.text">تذكيرات في وقتها، بنبرة صديق لا بنبرة عدّاد.</p>
+            </div>
+          </article>
+
+          <article data-reveal="features-c">
+            <!-- No Figma screen exists for this feature yet, so the card carries a
              pattern-recall board built in CSS rather than a stand-in image. -->
-        <div class="wide__art wide__art--dark">
-          <div class="tiles" aria-hidden="true">
-            <span></span><span class="is-on"></span><span></span><span></span>
-            <span class="is-on"></span><span></span><span class="is-on"></span><span></span>
-            <span></span><span></span><span></span><span class="is-on"></span>
-            <span></span><span class="is-on"></span><span></span><span></span>
-          </div>
-        </div>
-        <div class="wide__caption">
-          <h3 data-i18n="f6.title">ألعاب معرفية</h3>
-          <p data-i18n="f6.text">ألعاب قصيرة للتركيز والاسترخاء، دقيقتان تكفيان.</p>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= HOW IT WORKS =========================== -->
-<section class="section" id="how">
-  <div class="wrap">
-    <div class="head" data-reveal="steps-head">
-      <span class="eyebrow" data-i18n="steps.eyebrow">كيف يعمل</span>
-      <h2 class="h2" data-i18n="steps.title">خريطة سكونك في ثلاث خطوات</h2>
-      <p class="lede" data-i18n="steps.sub">
-        الخريطة مرآة لا حكم. لا نكافئك على شعور معيّن، ولا نعرض أرقامًا تقارن بها نفسك.
-      </p>
-    </div>
-
-    <div class="steps">
-      <article data-reveal="steps-list">
-        <div class="step__art step__art--1 grain">
-          <span class="step__num" data-i18n="s1.num">١</span>
-          <span class="step__float" data-i18n="s1.float">٠١ من ٠٨</span>
-          <div class="step__phone">
-            <div class="phone">
-              <div class="phone__screen">
-                <img class="phone__shot" src="assets/images/screens/onboarding.webp" width="393" height="852"
-                     loading="lazy" alt="" data-i18n-attr="alt:a11y.phoneOnboarding">
-                <span class="phone__glare" aria-hidden="true"></span>
+            <div class="wide__art wide__art--dark">
+              <div class="tiles" aria-hidden="true">
+                <span></span><span class="is-on"></span><span></span><span></span>
+                <span class="is-on"></span><span></span><span class="is-on"></span><span></span>
+                <span></span><span></span><span></span><span class="is-on"></span>
+                <span></span><span class="is-on"></span><span></span><span></span>
               </div>
-              <span class="phone__island" aria-hidden="true"></span>
             </div>
-          </div>
-        </div>
-        <div class="step__caption">
-          <h3 data-i18n="s1.title">أجب على ثمانية أسئلة</h3>
-          <p data-i18n="s1.text">أسئلة قصيرة عن نومك وتركيزك وطاقتك. دقيقتان، ولا إجابة خاطئة.</p>
-        </div>
-      </article>
-
-      <article data-reveal="steps-list">
-        <div class="step__art step__art--2 grain">
-          <span class="step__num" data-i18n="s2.num">٢</span>
-          <span class="step__float" data-i18n="s2.float">٤٤ ← ٥٧</span>
-          <div class="step__phone">
-            <div class="phone">
-              <div class="phone__screen">
-                <!-- Tall export (393x1160): cropped to the radar at the top -->
-                <img class="phone__shot" src="assets/images/screens/map.webp" width="393" height="1160"
-                     loading="lazy" alt="" data-i18n-attr="alt:a11y.phoneMap">
-                <span class="phone__glare" aria-hidden="true"></span>
-              </div>
-              <span class="phone__island" aria-hidden="true"></span>
+            <div class="wide__caption">
+              <h3 data-i18n="f6.title">ألعاب معرفية</h3>
+              <p data-i18n="f6.text">ألعاب قصيرة للتركيز والاسترخاء، دقيقتان تكفيان.</p>
             </div>
-          </div>
+          </article>
         </div>
-        <div class="step__caption">
-          <h3 data-i18n="s2.title">شاهد خريطتك</h3>
-          <p data-i18n="s2.text">سبعة محاور تُظهر أين أنت اليوم، وتنمو مع كل تسجيل حقيقي.</p>
-        </div>
-      </article>
-
-      <article data-reveal="steps-list">
-        <div class="step__art step__art--3 grain">
-          <span class="step__num" data-i18n="s3.num">٣</span>
-          <span class="step__float" data-i18n="s3.float">شهيق · ٣</span>
-          <div class="step__phone">
-            <div class="phone">
-              <div class="phone__screen">
-                <img class="phone__shot" src="assets/images/screens/first-session.webp" width="393" height="852"
-                     loading="lazy" alt="" data-i18n-attr="alt:a11y.phoneSession">
-                <span class="phone__glare" aria-hidden="true"></span>
-              </div>
-              <span class="phone__island" aria-hidden="true"></span>
-            </div>
-          </div>
-        </div>
-        <div class="step__caption">
-          <h3 data-i18n="s3.title">ابدأ أول جلسة</h3>
-          <p data-i18n="s3.text">جلسة قصيرة تناسب حالتك الآن، ثم خطة يوم تقدر عليها فعلًا.</p>
-        </div>
-      </article>
-    </div>
-
-    <div class="chiprow" data-reveal="steps-chips">
-      <p class="chiprow__title" data-i18n="chiprow.title">إشارات صغيرة، أيام أوضح.</p>
-      <div class="chiprow__list">
-        <span class="chip">
-          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#B04A78" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01"/><path d="M8.5 14.5a4.5 4.5 0 0 0 7 0"/></svg>
-          <span data-i18n="chip1">لاحظ التغيّرات الصغيرة</span>
-        </span>
-        <span class="chip">
-          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#7B4FB0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/></svg>
-          <span data-i18n="chip2">احفظ السياق</span>
-        </span>
-        <span class="chip">
-          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#4E8A2B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/></svg>
-          <span data-i18n="chip3">اعرف ما ينفعك</span>
-        </span>
-        <span class="chip">
-          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#3D6BC4" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4c-6 0-11 3-13 9l-3 7 7-3c6-2 9-7 9-13Z"/><path d="M4 20L14 10"/></svg>
-          <span data-i18n="chip4">قلّل التخمين</span>
-        </span>
-        <span class="chip">
-          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#A0552A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4c2 2 3 4 3 6.5S13 15 12 16c-1-1-3-3-3-5.5S10 6 12 4Z"/><path d="M12 16c-2.5 1-6 .5-8-2 3-1.5 5.5-1 8 2Z"/><path d="M12 16c2.5 1 6 .5 8-2-3-1.5-5.5-1-8 2Z"/></svg>
-          <span data-i18n="chip5">احترم إيقاعك</span>
-        </span>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ========================= TESTIMONIALS =========================
+    <!-- ======================= HOW IT WORKS =========================== -->
+    <section class="section" id="how">
+      <div class="wrap">
+        <div class="head" data-reveal="steps-head">
+          <span class="eyebrow" data-i18n="steps.eyebrow">كيف يعمل</span>
+          <h2 class="h2" data-i18n="steps.title">خريطة سكونك في ثلاث خطوات</h2>
+          <p class="lede" data-i18n="steps.sub">
+            الخريطة مرآة لا حكم. لا نكافئك على شعور معيّن، ولا نعرض أرقامًا تقارن بها نفسك.
+          </p>
+        </div>
+
+        <!-- Step two is the map itself, so it sits in the middle with the
+             other two steps either side of it. Geometry matches the app:
+             six axes, two shapes, baseline against today. -->
+        <div class="how">
+          <article class="hstep hstep--a" data-reveal="steps-side">
+            <div class="hstep__head">
+              <span class="hstep__num" data-i18n="s1.num">١</span>
+              <h3 class="hstep__title" data-i18n="s1.title">حمّل سُكون وابدأ رحلتك</h3>
+            </div>
+            <p class="hstep__text" data-i18n="s1.text">أسئلة قصيرة عن نومك وتركيزك وطاقتك. دقيقتان، ولا إجابة خاطئة.</p>
+            <span class="hstep__chip" data-i18n="s1.float">دقيقتان</span>
+          </article>
+
+          <div class="hmap" data-reveal="steps-map">
+            <div class="hmap__disc">
+              <svg class="hmap__svg" viewBox="0 0 320 320" role="img" data-i18n-attr="aria-label:map.aria">
+                <defs>
+                  <linearGradient id="sukunBase" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#EDB7BE" />
+                    <stop offset=".38" stop-color="#C78CBF" />
+                    <stop offset=".72" stop-color="#9887D2" />
+                    <stop offset="1" stop-color="#89ACEE" />
+                  </linearGradient>
+                </defs>
+                <g class="hmap__grid" fill="none" stroke="currentColor">
+                  <circle cx="160" cy="160" r="120" />
+                  <circle cx="160" cy="160" r="80" />
+                  <circle cx="160" cy="160" r="40" />
+                  <path d="M160 160 160 40M160 160 263.9 100M160 160 263.9 220M160 160 160 280M160 160 56.1 220M160 160 56.1 100" />
+                </g>
+
+                <!-- day 0, the onboarding baseline -->
+                <polygon class="hmap__base"
+                  points="160,107.2 212,130 209.9,188.8 160,208 116.4,185.2 106,128.8" />
+                <!-- today -->
+                <polygon class="hmap__now"
+                  points="160,85.6 232.7,118 228.6,199.6 160,222.4 99.7,194.8 83.1,115.6" />
+
+                <g class="hmap__dots" fill="currentColor">
+                  <circle cx="160" cy="40" r="4.5" />
+                  <circle cx="263.9" cy="100" r="4.5" />
+                  <circle cx="263.9" cy="220" r="4.5" />
+                  <circle cx="160" cy="280" r="4.5" />
+                  <circle cx="56.1" cy="220" r="4.5" />
+                  <circle cx="56.1" cy="100" r="4.5" />
+                </g>
+
+                <g class="hmap__labels" fill="currentColor">
+                  <text x="160" y="20" text-anchor="middle" data-i18n="map.a1">سكون</text>
+                  <text x="281" y="92" text-anchor="start" data-i18n="map.a2">الحيوية</text>
+                  <text x="281" y="232" text-anchor="start" data-i18n="map.a3">التركيز</text>
+                  <text x="160" y="306" text-anchor="middle" data-i18n="map.a4">التأمل</text>
+                  <text x="39" y="232" text-anchor="end" data-i18n="map.a5">الأهداف</text>
+                  <text x="39" y="92" text-anchor="end" data-i18n="map.a6">النوم</text>
+                </g>
+              </svg>
+            </div>
+
+            <p class="hmap__legend">
+              <span class="hmap__key hmap__key--base"><i></i><span data-i18n="map.start">البداية</span></span>
+              <span class="hmap__key hmap__key--now"><i></i><span data-i18n="map.now">اليوم</span></span>
+            </p>
+
+            <div class="hstep__head hmap__head">
+              <span class="hstep__num" data-i18n="s2.num">٢</span>
+              <h3 class="hstep__title" data-i18n="s2.title">شاهد خريطتك</h3>
+            </div>
+            <p class="hstep__text" data-i18n="s2.text">ستة محاور تُظهر أين أنت اليوم، وتنمو مع كل تسجيل حقيقي.</p>
+          </div>
+
+          <article class="hstep hstep--b" data-reveal="steps-side">
+            <div class="hstep__head">
+              <span class="hstep__num" data-i18n="s3.num">٣</span>
+              <h3 class="hstep__title" data-i18n="s3.title">ابدأ أول جلسة</h3>
+            </div>
+            <p class="hstep__text" data-i18n="s3.text">جلسة قصيرة تناسب حالتك الآن، ثم خطة يوم تقدر عليها فعلًا.</p>
+            <span class="hstep__chip" data-i18n="s3.float">شهيق · ٣</span>
+          </article>
+        </div>
+
+        <div class="chiprow" data-reveal="steps-chips">
+          <p class="chiprow__title" data-i18n="chiprow.title">إشارات صغيرة، أيام أوضح.</p>
+          <div class="chiprow__list">
+            <span class="chip">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#B04A78" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M9 10h.01M15 10h.01" />
+                <path d="M8.5 14.5a4.5 4.5 0 0 0 7 0" />
+              </svg>
+              <span data-i18n="chip1">لاحظ التغيّرات الصغيرة</span>
+            </span>
+            <span class="chip">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#7B4FB0" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 12a9 9 0 1 1-2.6-6.4" />
+                <path d="M21 4v5h-5" />
+              </svg>
+              <span data-i18n="chip2">احفظ السياق</span>
+            </span>
+            <span class="chip">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#4E8A2B" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <circle cx="12" cy="12" r="4.5" />
+              </svg>
+              <span data-i18n="chip3">اعرف ما ينفعك</span>
+            </span>
+            <span class="chip">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#3D6BC4" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 4c-6 0-11 3-13 9l-3 7 7-3c6-2 9-7 9-13Z" />
+                <path d="M4 20L14 10" />
+              </svg>
+              <span data-i18n="chip4">قلّل التخمين</span>
+            </span>
+            <span class="chip">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#A0552A" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 4c2 2 3 4 3 6.5S13 15 12 16c-1-1-3-3-3-5.5S10 6 12 4Z" />
+                <path d="M12 16c-2.5 1-6 .5-8-2 3-1.5 5.5-1 8 2Z" />
+                <path d="M12 16c2.5 1 6 .5 8-2-3-1.5-5.5-1-8 2Z" />
+              </svg>
+              <span data-i18n="chip5">احترم إيقاعك</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= YOUR DAY ============================= -->
+    <!-- Scrolling the section walks the day forward: the sky, the sun and the
+         features all move from early morning through midday to night. Falls
+         back to three stacked panels without JS or under reduced motion. -->
+    <section class="section day" id="day">
+      <div class="daysx" data-daysx>
+        <!-- The heading opens the section on the dawn sky, rather than
+             floating above it on the page ground. -->
+        <div class="daysx__intro">
+          <div class="wrap">
+            <div class="head" data-reveal="day-head">
+              <span class="eyebrow" data-i18n="day.eyebrow">يومك مع سُكون</span>
+              <h2 class="h2" data-i18n="day.title">يومك، ولكن بسكون أكثر.</h2>
+              <p class="lede" data-i18n="day.sub">سُكون معك من أول الصباح وحتى آخر الليل، بما يناسب كل لحظة.</p>
+            </div>
+          </div>
+        </div>
+        <div class="daysx__scroll">
+          <div class="daysx__stage">
+            <span class="daysx__sky daysx__sky--dawn" aria-hidden="true"></span>
+            <span class="daysx__sky daysx__sky--noon" aria-hidden="true"></span>
+            <span class="daysx__sky daysx__sky--night" aria-hidden="true"></span>
+            <span class="daysx__stars" aria-hidden="true"></span>
+            <span class="daysx__arc" aria-hidden="true"><span class="daysx__sun"></span></span>
+            <span class="daysx__hills" aria-hidden="true"></span>
+
+            <div class="wrap daysx__inner">
+              <ol class="daysx__rail" aria-hidden="true">
+                <li></li>
+                <li></li>
+                <li></li>
+              </ol>
+
+              <div class="daysx__panels">
+                <article class="dpanel dpanel--morning">
+                  <span class="dpanel__time" data-i18n="day1.title">صباحك</span>
+                  <p class="dpanel__lede" data-i18n="day1.lede">ابدأ يومك بنيّة واضحة بدل أن تبدأه بردّ فعل على العالم.
+                  </p>
+                  <ul class="dpanel__list">
+                    <li data-i18n="day1.i1">منبّه ذكي</li>
+                    <li data-i18n="day1.i2">نيّة اليوم</li>
+                    <li data-i18n="day1.i3">تمرين تنفّس صباحي</li>
+                    <li data-i18n="day1.i4">تسجيل صوتي</li>
+                    <li data-i18n="day1.i5">المدوّنة والمهام</li>
+                    <li data-i18n="day1.i6">عاداتك الصباحية</li>
+                  </ul>
+                  <p class="dpanel__close" data-i18n="day1.close">ابدأ يومك بنفسك قبل أن يبدأ العالم بمطالبتك بكل شيء.
+                  </p>
+                </article>
+
+                <article class="dpanel dpanel--midday">
+                  <span class="dpanel__time" data-i18n="day2.title">خلال يومك</span>
+                  <p class="dpanel__lede" data-i18n="day2.lede">عندما تتراكم المهام والأفكار، لا تحتاج دائمًا إلى المزيد
+                    من الضغط. قد تحتاج إلى دقيقة واحدة فقط.</p>
+                  <ul class="dpanel__list">
+                    <li data-i18n="day2.i1">تمرين تنفّس</li>
+                    <li data-i18n="day2.i2">إعادة ضبط سريعة</li>
+                    <li data-i18n="day2.i3">تأمل للتركيز</li>
+                    <li data-i18n="day2.i4">ألعاب ذهنية</li>
+                    <li data-i18n="day2.i5">تذكير بعادتك</li>
+                    <li data-i18n="day2.i6">تسجيل مزاجك</li>
+                  </ul>
+                  <p class="dpanel__close" data-i18n="day2.close">توقّف. تنفّس. ثم أكمل.</p>
+                </article>
+
+                <article class="dpanel dpanel--night">
+                  <span class="dpanel__time" data-i18n="day3.title">في نهاية يومك</span>
+                  <p class="dpanel__lede" data-i18n="day3.lede">بدل أن تأخذ يومك معك إلى السرير، اتركه مع سُكون.</p>
+                  <ul class="dpanel__list">
+                    <li data-i18n="day3.i1">المدوّنة</li>
+                    <li data-i18n="day3.i2">مراجعة اليوم</li>
+                    <li data-i18n="day3.i3">امتنان</li>
+                    <li data-i18n="day3.i4">تسجيل صوتي</li>
+                    <li data-i18n="day3.i5">أصوات مهدّئة</li>
+                  </ul>
+                  <p class="dpanel__close" data-i18n="day3.close">اترك يومك هنا، ونم أخفّ.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="daysx__tail" aria-hidden="true"></span>
+      </div>
+
+      <div class="wrap" hidden>
+        <div class="adapt" data-reveal="adapt">
+          <div class="adapt__head">
+            <h3 class="adapt__title" data-i18n="adapt.title">ليس كل يوم يشبه اليوم الآخر.</h3>
+            <p class="adapt__sub" data-i18n="adapt.sub">ولهذا لا يجب أن تكون تجربتك كذلك.</p>
+          </div>
+          <ul class="adapt__pairs">
+            <li>
+              <span data-i18n="adapt.a1">يوم تكون فيه مفعمًا بالطاقة</span>
+              <span class="adapt__vs" aria-hidden="true"></span>
+              <span data-i18n="adapt.b1">ويوم آخر مرهقًا</span>
+            </li>
+            <li>
+              <span data-i18n="adapt.a2">يوم تحتاج فيه إلى التركيز</span>
+              <span class="adapt__vs" aria-hidden="true"></span>
+              <span data-i18n="adapt.b2">ويوم تحتاج فيه إلى أن تترك كل شيء جانبًا</span>
+            </li>
+            <li>
+              <span data-i18n="adapt.a3">يوم تحتاج فيه إلى فهم علاقة</span>
+              <span class="adapt__vs" aria-hidden="true"></span>
+              <span data-i18n="adapt.b3">ويوم تحتاج فيه فقط إلى أن تتنفّس</span>
+            </li>
+          </ul>
+          <p class="adapt__close" data-i18n="adapt.close">سُكون يتكيّف مع يومك، لأن العناية بنفسك ليست وصفة واحدة
+            للجميع.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= TESTIMONIALS =========================
      PLACEHOLDER CONTENT — all eight quotes below are written samples with
      invented names. Replace them with real, permissioned quotes (or delete
      this whole section) before the site goes live. No star ratings are
      shown, because the app has not launched and has nothing to rate.
      ============================================================== -->
-<section class="section section--voices" id="voices" data-placeholder="quotes">
-  <div class="wrap">
-    <div class="head" data-reveal="quotes-head">
-      <span class="eyebrow" data-i18n="quotes.eyebrow">آراء</span>
-      <h2 class="h2" data-i18n="quotes.title">أشخاص بدأوا يهدؤون</h2>
-    </div>
-  </div>
-
-  <!-- Row one drifts to the left -->
-  <div class="marquee marquee--a" data-reveal="quotes-a">
-    <div class="marquee__track">
-      <article class="quote">
-        <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <p class="quote__text" data-i18n="q1.text">أول تطبيق عربي أحسّه مكتوبًا لي، مو مترجم. الصوت وحده يهدّي.</p>
-        <p class="quote__who"><span class="quote__name" data-i18n="q1.name">نورة</span><span class="quote__role" data-i18n="q1.role">الرياض</span></p>
-      </article>
-      <article class="quote">
-        <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <p class="quote__text" data-i18n="q2.text">أحب إنه ما يلومني إذا فوّت يوم. أرجع وألقى خريطتي تنتظرني.</p>
-        <p class="quote__who"><span class="quote__name" data-i18n="q2.name">عبدالله</span><span class="quote__role" data-i18n="q2.role">الكويت</span></p>
-      </article>
-      <article class="quote">
-        <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <p class="quote__text" data-i18n="q3.text">تمرين التنفّس صار جزءًا من روتيني قبل النوم، وفرق معي فعلًا.</p>
-        <p class="quote__who"><span class="quote__name" data-i18n="q3.name">ليان</span><span class="quote__role" data-i18n="q3.role">دبي</span></p>
-      </article>
-      <article class="quote">
-        <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <p class="quote__text" data-i18n="q4.text">التسجيل اليومي ما ياخذ دقيقة، ومع ذلك يوريني شيئًا ما انتبهت له.</p>
-        <p class="quote__who"><span class="quote__name" data-i18n="q4.name">سارة</span><span class="quote__role" data-i18n="q4.role">جدة</span></p>
-      </article>
-
-      <!-- second pass of the same cards, so the loop never shows a gap -->
-      <article class="quote" aria-hidden="true">
-        <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <p class="quote__text" data-i18n="q1.text">أول تطبيق عربي أحسّه مكتوبًا لي، مو مترجم. الصوت وحده يهدّي.</p>
-        <p class="quote__who"><span class="quote__name" data-i18n="q1.name">نورة</span><span class="quote__role" data-i18n="q1.role">الرياض</span></p>
-      </article>
-      <article class="quote" aria-hidden="true">
-        <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <p class="quote__text" data-i18n="q2.text">أحب إنه ما يلومني إذا فوّت يوم. أرجع وألقى خريطتي تنتظرني.</p>
-        <p class="quote__who"><span class="quote__name" data-i18n="q2.name">عبدالله</span><span class="quote__role" data-i18n="q2.role">الكويت</span></p>
-      </article>
-      <article class="quote" aria-hidden="true">
-        <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <p class="quote__text" data-i18n="q3.text">تمرين التنفّس صار جزءًا من روتيني قبل النوم، وفرق معي فعلًا.</p>
-        <p class="quote__who"><span class="quote__name" data-i18n="q3.name">ليان</span><span class="quote__role" data-i18n="q3.role">دبي</span></p>
-      </article>
-      <article class="quote" aria-hidden="true">
-        <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <p class="quote__text" data-i18n="q4.text">التسجيل اليومي ما ياخذ دقيقة، ومع ذلك يوريني شيئًا ما انتبهت له.</p>
-        <p class="quote__who"><span class="quote__name" data-i18n="q4.name">سارة</span><span class="quote__role" data-i18n="q4.role">جدة</span></p>
-      </article>
-    </div>
-  </div>
-
-  <!-- Row two drifts to the right -->
-  <div class="marquee marquee--b" data-reveal="quotes-b">
-    <div class="marquee__track">
-      <article class="quote">
-        <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <p class="quote__text" data-i18n="q5.text">التذكيرات هادئة، مو ملحّة. أرجع للتطبيق لأني أبي، مو لأنه يزنّ عليّ.</p>
-        <p class="quote__who"><span class="quote__name" data-i18n="q5.name">فهد</span><span class="quote__role" data-i18n="q5.role">الدمام</span></p>
-      </article>
-      <article class="quote">
-        <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <p class="quote__text" data-i18n="q6.text">الخريطة ورّتني إن نومي يأثر على تركيزي أكثر مما توقعت.</p>
-        <p class="quote__who"><span class="quote__name" data-i18n="q6.name">مريم</span><span class="quote__role" data-i18n="q6.role">المنامة</span></p>
-      </article>
-      <article class="quote">
-        <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <p class="quote__text" data-i18n="q7.text">قصير وواضح. اقتراح واحد بدل عشر لوحات مليانة أرقام.</p>
-        <p class="quote__who"><span class="quote__name" data-i18n="q7.name">يوسف</span><span class="quote__role" data-i18n="q7.role">مسقط</span></p>
-      </article>
-      <article class="quote">
-        <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <p class="quote__text" data-i18n="q8.text">أخيرًا تطبيق ما يحاول يحوّل مشاعري إلى درجات.</p>
-        <p class="quote__who"><span class="quote__name" data-i18n="q8.name">دانة</span><span class="quote__role" data-i18n="q8.role">الدوحة</span></p>
-      </article>
-
-      <article class="quote" aria-hidden="true">
-        <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <p class="quote__text" data-i18n="q5.text">التذكيرات هادئة، مو ملحّة. أرجع للتطبيق لأني أبي، مو لأنه يزنّ عليّ.</p>
-        <p class="quote__who"><span class="quote__name" data-i18n="q5.name">فهد</span><span class="quote__role" data-i18n="q5.role">الدمام</span></p>
-      </article>
-      <article class="quote" aria-hidden="true">
-        <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <p class="quote__text" data-i18n="q6.text">الخريطة ورّتني إن نومي يأثر على تركيزي أكثر مما توقعت.</p>
-        <p class="quote__who"><span class="quote__name" data-i18n="q6.name">مريم</span><span class="quote__role" data-i18n="q6.role">المنامة</span></p>
-      </article>
-      <article class="quote" aria-hidden="true">
-        <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <p class="quote__text" data-i18n="q7.text">قصير وواضح. اقتراح واحد بدل عشر لوحات مليانة أرقام.</p>
-        <p class="quote__who"><span class="quote__name" data-i18n="q7.name">يوسف</span><span class="quote__role" data-i18n="q7.role">مسقط</span></p>
-      </article>
-      <article class="quote" aria-hidden="true">
-        <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <p class="quote__text" data-i18n="q8.text">أخيرًا تطبيق ما يحاول يحوّل مشاعري إلى درجات.</p>
-        <p class="quote__who"><span class="quote__name" data-i18n="q8.name">دانة</span><span class="quote__role" data-i18n="q8.role">الدوحة</span></p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ WHY SUKUN ========================= -->
-<section class="section" id="why">
-  <div class="wrap">
-    <div class="founder">
-      <div class="founder__art" data-reveal="founder">
-        <img src="assets/images/scenes/why.webp" width="1200" height="1500" loading="lazy"
-             alt="" data-i18n-attr="alt:a11y.founder">
-      </div>
-      <div class="founder__body" data-reveal="founder">
-        <span class="eyebrow" data-i18n="founder.eyebrow">لماذا بنينا سُكون</span>
-        <h2 class="h2" data-i18n="founder.title">لأن العناية بصحتك النفسية لا يجب أن تكون حدثًا نادرًا.</h2>
-        <div style="margin-block-start: var(--s-5)">
-          <p data-i18n="founder.p1">لا تنتظر يومًا صعبًا كي تعتني بنفسك. لا تنتظر أن تصل إلى الإنهاك كي تتوقف. لا تنتظر أن تصبح الأمور أكبر من قدرتك على الاحتمال.</p>
-          <p data-i18n="founder.p2">كما تهتم بجسدك كل يوم، امنح عقلك ومشاعرك مساحة آمنة للراحة كل يوم.</p>
-          <p data-i18n="founder.p3">سُكون صُمم ليكون تلك المساحة — مكانًا تتوقف فيه، تتنفّس، تكتب، تتعلّم، تستكشف، تستعيد تركيزك، وتعود إلى يومك.</p>
-          <p data-i18n="founder.p4">لأن السلام الداخلي ليس مكانًا تصل إليه، بل شيء تتعلّم أن تصنع له مساحة كل يوم.</p>
-        </div>
-        <div class="founder__by">
-          <img src="assets/brand/logo/mark.svg" alt="" width="38" height="38">
-          <span>
-            <b data-i18n="founder.byName">فريق سُكون</b>
-            <span data-i18n="founder.byRole">بالتعاون مع مدرّبة معتمدة في البرمجة اللغوية العصبية</span>
-          </span>
+    <section class="section section--voices" id="voices" data-placeholder="quotes" hidden>
+      <div class="wrap">
+        <div class="head" data-reveal="quotes-head">
+          <span class="eyebrow" data-i18n="quotes.eyebrow">آراء</span>
+          <h2 class="h2" data-i18n="quotes.title">أشخاص بدأوا يهدؤون</h2>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ============================ PRIVACY =========================== -->
-<section class="section">
-  <div class="wrap">
-    <div class="privacy grain" data-reveal="privacy">
-      <div class="privacy__orb">
-        <img src="assets/images/mascot/orb.webp" alt="" width="240" height="240" loading="lazy">
-      </div>
-      <h2 data-i18n="privacy.title">تأمّلاتك تبقى لك.</h2>
-      <p data-i18n="privacy.sub">سُكون مبني على تسجيلات خاصة وأذونات واضحة. ما تكتبه لك وحدك، ولا نبيع بياناتك لأحد.</p>
-      <ul class="privacy__list">
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v5.5c0 4.5-3 8.3-7.5 9.5-4.5-1.2-7.5-5-7.5-9.5V6Z"/></svg>
-          <span data-i18n="privacy.i1">تسجيلات خاصة</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h6"/><path d="M14 7h6"/><path d="M4 17h10"/><path d="M18 17h2"/><circle cx="12" cy="7" r="2"/><circle cx="16" cy="17" r="2"/></svg>
-          <span data-i18n="privacy.i2">أذونات واضحة</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"/><path d="M10.6 5.2A9.6 9.6 0 0 1 12 5c5 0 9 4.5 9 7a11 11 0 0 1-2.4 3.6"/><path d="M6.5 6.9C4 8.4 3 10.6 3 12c0 2.5 4 7 9 7 1.6 0 3-.4 4.3-1.1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
-          <span data-i18n="privacy.i3">بياناتك لا تُباع</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
+      <!-- Row one drifts to the left -->
+      <div class="marquee marquee--a" data-reveal="quotes-a">
+        <div class="marquee__track">
+          <article class="quote">
+            <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="quote__text" data-i18n="q1.text">أول تطبيق عربي أحسّه مكتوبًا لي، مو مترجم. الصوت وحده يهدّي.</p>
+            <p class="quote__who"><span class="quote__name" data-i18n="q1.name">نورة</span><span class="quote__role"
+                data-i18n="q1.role">الرياض</span></p>
+          </article>
+          <article class="quote">
+            <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="quote__text" data-i18n="q2.text">أحب إنه ما يلومني إذا فوّت يوم. أرجع وألقى خريطتي تنتظرني.</p>
+            <p class="quote__who"><span class="quote__name" data-i18n="q2.name">عبدالله</span><span class="quote__role"
+                data-i18n="q2.role">الكويت</span></p>
+          </article>
+          <article class="quote">
+            <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="quote__text" data-i18n="q3.text">تمرين التنفّس صار جزءًا من روتيني قبل النوم، وفرق معي فعلًا.</p>
+            <p class="quote__who"><span class="quote__name" data-i18n="q3.name">ليان</span><span class="quote__role"
+                data-i18n="q3.role">دبي</span></p>
+          </article>
+          <article class="quote">
+            <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="quote__text" data-i18n="q4.text">التسجيل اليومي ما ياخذ دقيقة، ومع ذلك يوريني شيئًا ما انتبهت له.
+            </p>
+            <p class="quote__who"><span class="quote__name" data-i18n="q4.name">سارة</span><span class="quote__role"
+                data-i18n="q4.role">جدة</span></p>
+          </article>
 
-<!-- ============================== FAQ ============================= -->
-<section class="section" id="faq">
-  <div class="wrap">
-    <div class="faq">
-      <div class="head head--start" data-reveal="faq-head">
-        <h2 class="h2" data-i18n="faq.title">أسئلة متكرّرة</h2>
-        <p class="lede" data-i18n="faq.sub">كل ما يهم معرفته قبل أن تبدأ: المحتوى، الخصوصية، الخريطة، وموعد الإطلاق.</p>
-      </div>
-
-      <div class="faq__list" data-reveal="faq-list">
-        <div class="qa">
-          <button class="qa__q" type="button" aria-expanded="false" aria-controls="a1">
-            <span data-i18n="faq.q1">هل المحتوى مترجم من الإنجليزية؟</span>
-            <span class="qa__sign" aria-hidden="true"></span>
-          </button>
-          <div class="qa__a" id="a1" aria-hidden="true"><div><p data-i18n="faq.a1">لا. كل نص مكتوب بالعربية أولًا — الأسئلة، الجلسات، ورسائل الطمأنينة — بلهجة دافئة تناسب الخليج، ثم يُسجّل صوتيًا. الإنجليزية تأتي لاحقًا كترجمة لا كأصل.</p></div></div>
-        </div>
-
-        <div class="qa">
-          <button class="qa__q" type="button" aria-expanded="false" aria-controls="a2">
-            <span data-i18n="faq.q2">هل سُكون بديل عن العلاج النفسي؟</span>
-            <span class="qa__sign" aria-hidden="true"></span>
-          </button>
-          <div class="qa__a" id="a2" aria-hidden="true"><div><p data-i18n="faq.a2">لا. سُكون تطبيق للعافية اليومية، ولا يقدّم تشخيصًا أو علاجًا. إن كنت تمرّ بضيق شديد، نعرض لك موارد الدعم المتاحة في بلدك مباشرة.</p></div></div>
-        </div>
-
-        <div class="qa">
-          <button class="qa__q" type="button" aria-expanded="false" aria-controls="a3">
-            <span data-i18n="faq.q3">هل أحتاج أن أستخدمه كل يوم؟</span>
-            <span class="qa__sign" aria-hidden="true"></span>
-          </button>
-          <div class="qa__a" id="a3" aria-hidden="true"><div><p data-i18n="faq.a3">لا. لا نلومك على يوم فائت، ولا نضغطك بعدّادات. تعود متى شئت، وخريطتك تنتظرك كما هي.</p></div></div>
-        </div>
-
-        <div class="qa">
-          <button class="qa__q" type="button" aria-expanded="false" aria-controls="a4">
-            <span data-i18n="faq.q4">ما الفرق بين خريطة سُكون والدرجات في التطبيقات الأخرى؟</span>
-            <span class="qa__sign" aria-hidden="true"></span>
-          </button>
-          <div class="qa__a" id="a4" aria-hidden="true"><div><p data-i18n="faq.a4">الخريطة مرآة لا حكم. لا نكافئك على شعور معيّن، ولا نعرض أرقامًا تقارن بها نفسك — نعرض شكل رحلتك وأين تنمو.</p></div></div>
-        </div>
-
-        <div class="qa">
-          <button class="qa__q" type="button" aria-expanded="false" aria-controls="a5">
-            <span data-i18n="faq.q5">متى يصدر التطبيق؟</span>
-            <span class="qa__sign" aria-hidden="true"></span>
-          </button>
-          <div class="qa__a" id="a5" aria-hidden="true"><div><p data-i18n="faq.a5">نفتح على دفعات صغيرة أولًا لضمان جودة المحتوى الصوتي. اترك بريدك ونراسلك أول ما يصبح متاحًا في بلدك.</p></div></div>
-        </div>
-
-        <div class="qa">
-          <button class="qa__q" type="button" aria-expanded="false" aria-controls="a6">
-            <span data-i18n="faq.q6">هل سُكون تطبيق للتأمل فقط؟</span>
-            <span class="qa__sign" aria-hidden="true"></span>
-          </button>
-          <div class="qa__a" id="a6" aria-hidden="true"><div><p data-i18n="faq.a6">لا. التأمل جزء واحد من تجربة سُكون. صُمم التطبيق ليكون رفيقًا يوميًا يشمل جوانب متعددة من يومك، من الاستيقاظ والعادات والتركيز، إلى الوعي الذاتي والاسترخاء والنوم.</p></div></div>
-        </div>
-
-        <div class="qa">
-          <button class="qa__q" type="button" aria-expanded="false" aria-controls="a7">
-            <span data-i18n="faq.q7">ما المقصود بالرحلات النفسية؟</span>
-            <span class="qa__sign" aria-hidden="true"></span>
-          </button>
-          <div class="qa__a" id="a7" aria-hidden="true"><div><p data-i18n="faq.a7">الرحلات النفسية تجارب صوتية وقصص وتأملات موجّهة حول موضوعات مختلفة في الحياة، مثل العلاقات، والتعلّق، والثقة بالنفس، والمقارنة، والتغيير، والمشاعر وغيرها. هدفها منحك مساحة للتوقف والتأمل وفهم نفسك من زوايا جديدة، مع تمارين يمكنك تطبيقها.</p></div></div>
+          <!-- second pass of the same cards, so the loop never shows a gap -->
+          <article class="quote" aria-hidden="true">
+            <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="quote__text" data-i18n="q1.text">أول تطبيق عربي أحسّه مكتوبًا لي، مو مترجم. الصوت وحده يهدّي.</p>
+            <p class="quote__who"><span class="quote__name" data-i18n="q1.name">نورة</span><span class="quote__role"
+                data-i18n="q1.role">الرياض</span></p>
+          </article>
+          <article class="quote" aria-hidden="true">
+            <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="quote__text" data-i18n="q2.text">أحب إنه ما يلومني إذا فوّت يوم. أرجع وألقى خريطتي تنتظرني.</p>
+            <p class="quote__who"><span class="quote__name" data-i18n="q2.name">عبدالله</span><span class="quote__role"
+                data-i18n="q2.role">الكويت</span></p>
+          </article>
+          <article class="quote" aria-hidden="true">
+            <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="quote__text" data-i18n="q3.text">تمرين التنفّس صار جزءًا من روتيني قبل النوم، وفرق معي فعلًا.</p>
+            <p class="quote__who"><span class="quote__name" data-i18n="q3.name">ليان</span><span class="quote__role"
+                data-i18n="q3.role">دبي</span></p>
+          </article>
+          <article class="quote" aria-hidden="true">
+            <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="quote__text" data-i18n="q4.text">التسجيل اليومي ما ياخذ دقيقة، ومع ذلك يوريني شيئًا ما انتبهت له.
+            </p>
+            <p class="quote__who"><span class="quote__name" data-i18n="q4.name">سارة</span><span class="quote__role"
+                data-i18n="q4.role">جدة</span></p>
+          </article>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ========================== WAITLIST CTA ======================== -->
-<section class="section" id="waitlist">
-  <div class="wrap">
-    <div class="cta" data-reveal="cta">
-      <span class="cta__glow" aria-hidden="true"></span>
+      <!-- Row two drifts to the right -->
+      <div class="marquee marquee--b" data-reveal="quotes-b">
+        <div class="marquee__track">
+          <article class="quote">
+            <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="quote__text" data-i18n="q5.text">التذكيرات هادئة، مو ملحّة. أرجع للتطبيق لأني أبي، مو لأنه يزنّ
+              عليّ.</p>
+            <p class="quote__who"><span class="quote__name" data-i18n="q5.name">فهد</span><span class="quote__role"
+                data-i18n="q5.role">الدمام</span></p>
+          </article>
+          <article class="quote">
+            <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="quote__text" data-i18n="q6.text">الخريطة ورّتني إن نومي يأثر على تركيزي أكثر مما توقعت.</p>
+            <p class="quote__who"><span class="quote__name" data-i18n="q6.name">مريم</span><span class="quote__role"
+                data-i18n="q6.role">المنامة</span></p>
+          </article>
+          <article class="quote">
+            <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="quote__text" data-i18n="q7.text">قصير وواضح. اقتراح واحد بدل عشر لوحات مليانة أرقام.</p>
+            <p class="quote__who"><span class="quote__name" data-i18n="q7.name">يوسف</span><span class="quote__role"
+                data-i18n="q7.role">مسقط</span></p>
+          </article>
+          <article class="quote">
+            <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="quote__text" data-i18n="q8.text">أخيرًا تطبيق ما يحاول يحوّل مشاعري إلى درجات.</p>
+            <p class="quote__who"><span class="quote__name" data-i18n="q8.name">دانة</span><span class="quote__role"
+                data-i18n="q8.role">الدوحة</span></p>
+          </article>
 
-      <div class="cta__body">
-        <h2 data-i18n="cta.title">سجّل اهتمامك بالوصول المبكر.</h2>
-        <p data-i18n="cta.sub">كن من أوائل من يكتشفون سُكون. رسالة واحدة فقط عند الإطلاق، ويمكنك الإلغاء بضغطة واحدة.</p>
+          <article class="quote" aria-hidden="true">
+            <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="quote__text" data-i18n="q5.text">التذكيرات هادئة، مو ملحّة. أرجع للتطبيق لأني أبي، مو لأنه يزنّ
+              عليّ.</p>
+            <p class="quote__who"><span class="quote__name" data-i18n="q5.name">فهد</span><span class="quote__role"
+                data-i18n="q5.role">الدمام</span></p>
+          </article>
+          <article class="quote" aria-hidden="true">
+            <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="quote__text" data-i18n="q6.text">الخريطة ورّتني إن نومي يأثر على تركيزي أكثر مما توقعت.</p>
+            <p class="quote__who"><span class="quote__name" data-i18n="q6.name">مريم</span><span class="quote__role"
+                data-i18n="q6.role">المنامة</span></p>
+          </article>
+          <article class="quote" aria-hidden="true">
+            <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="quote__text" data-i18n="q7.text">قصير وواضح. اقتراح واحد بدل عشر لوحات مليانة أرقام.</p>
+            <p class="quote__who"><span class="quote__name" data-i18n="q7.name">يوسف</span><span class="quote__role"
+                data-i18n="q7.role">مسقط</span></p>
+          </article>
+          <article class="quote" aria-hidden="true">
+            <span class="quote__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="quote__text" data-i18n="q8.text">أخيرًا تطبيق ما يحاول يحوّل مشاعري إلى درجات.</p>
+            <p class="quote__who"><span class="quote__name" data-i18n="q8.name">دانة</span><span class="quote__role"
+                data-i18n="q8.role">الدوحة</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-        <form class="form" id="waitlist-form" data-source="website" novalidate>
-          <div class="form__fields">
-            <div class="form__row form__row--2">
-              <label class="field">
-                <span class="field__label"><span data-i18n="form.name">الاسم</span> <span class="field__req" aria-hidden="true">*</span></span>
-                <input class="field__input" id="wl-name" name="name" type="text" required maxlength="200"
-                       autocomplete="given-name" data-i18n-attr="placeholder:form.namePh">
-                <span class="field__error" role="alert"></span>
-              </label>
-
-              <label class="field">
-                <span class="field__label"><span data-i18n="form.email">البريد الإلكتروني</span> <span class="field__req" aria-hidden="true">*</span></span>
-                <input class="field__input" id="wl-email" name="email" type="email" required maxlength="200"
-                       dir="ltr" inputmode="email" autocomplete="email" data-i18n-attr="placeholder:form.emailPh">
-                <span class="field__error" role="alert"></span>
-              </label>
-            </div>
-
-            <div class="form__row">
-              <label class="field">
-                <span class="field__label"><span data-i18n="form.country">الدولة</span> <span class="field__req" aria-hidden="true">*</span></span>
-                <select class="field__input" id="wl-country" name="country" required autocomplete="country-name">
-                  <option value="">اختر دولتك</option>
-                  <option value="Saudi Arabia"         data-country="sa">السعودية</option>
-                  <option value="United Arab Emirates" data-country="ae">الإمارات</option>
-                  <option value="Kuwait"               data-country="kw">الكويت</option>
-                  <option value="Qatar"                data-country="qa">قطر</option>
-                  <option value="Bahrain"              data-country="bh">البحرين</option>
-                  <option value="Oman"                 data-country="om">عُمان</option>
-                  <option value="Jordan"               data-country="jo">الأردن</option>
-                  <option value="Egypt"                data-country="eg">مصر</option>
-                  <option value="Other"                data-country="other">دولة أخرى</option>
-                </select>
-                <span class="field__error" role="alert"></span>
-              </label>
-            </div>
-
-            <div class="hp" aria-hidden="true">
-              <label for="wl-company">Company</label>
-              <input id="wl-company" name="company" type="text" tabindex="-1" autocomplete="off">
-            </div>
+    <!-- ============================ WHY SUKUN ========================= -->
+    <section class="section" id="why">
+      <div class="wrap">
+        <div class="founder">
+          <div class="founder__art" data-reveal="founder">
+            <img src="assets/images/scenes/why.webp" width="1200" height="1500" loading="lazy" alt=""
+              data-i18n-attr="alt:a11y.founder">
           </div>
-
-          <button class="btn btn--solid form__submit" type="submit" data-i18n="form.submit">انضم للقائمة</button>
-          <p class="form__note" data-i18n="form.note">بريدك لنا فقط. لا مشاركة، ولا رسائل متكررة.</p>
-          <p class="form__status" id="wl-status" role="status" aria-live="polite"></p>
-        </form>
-
-        <div class="done" id="wl-done">
-          <span class="done__mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-          </span>
-          <h3 data-i18n="form.doneTitle">حجزنا مكانك.</h3>
-          <p data-i18n="form.doneText">نراسلك أول ما يفتح سُكون في بلدك. حتى ذلك الحين، خُذ نفسًا عميقًا.</p>
-        </div>
-      </div>
-
-      <div class="cta__art">
-        <img class="cta__mascot" src="assets/images/mascot/full.webp" width="420" height="536" loading="lazy"
-             alt="" data-i18n-attr="alt:a11y.mascot">
-        <div class="cta__phone">
-          <div class="phone">
-            <div class="phone__screen">
-              <img class="phone__shot" src="assets/images/screens/home.webp" width="393" height="852"
-                   loading="lazy" alt="" data-i18n-attr="alt:a11y.phoneHome">
-              <span class="phone__glare" aria-hidden="true"></span>
+          <div class="founder__body" data-reveal="founder">
+            <span class="eyebrow" data-i18n="founder.eyebrow">لماذا بنينا سُكون</span>
+            <h2 class="h2" data-i18n="founder.title">لأن العناية بصحتك النفسية لا يجب أن تكون حدثًا نادرًا.</h2>
+            <div style="margin-block-start: var(--s-5)">
+              <p data-i18n="founder.p1">لا تنتظر يومًا صعبًا كي تعتني بنفسك. لا تنتظر أن تصل إلى الإنهاك كي تتوقف. لا
+                تنتظر أن تصبح الأمور أكبر من قدرتك على الاحتمال.</p>
+              <p data-i18n="founder.p2">كما تهتم بجسدك كل يوم، امنح عقلك ومشاعرك مساحة آمنة للراحة كل يوم.</p>
+              <p data-i18n="founder.p3">سُكون صُمم ليكون تلك المساحة — مكانًا تتوقف فيه، تتنفّس، تكتب، تتعلّم، تستكشف،
+                تستعيد تركيزك، وتعود إلى يومك.</p>
+              <p data-i18n="founder.p4">لأن السلام الداخلي ليس مكانًا تصل إليه، بل شيء تتعلّم أن تصنع له مساحة كل يوم.
+              </p>
             </div>
-            <span class="phone__island" aria-hidden="true"></span>
+            <div class="founder__by">
+              <img src="assets/brand/logo/mark.svg" alt="" width="38" height="38">
+              <span>
+                <b data-i18n="founder.byName">فريق سُكون</b>
+                <span data-i18n="founder.byRole">بالتعاون مع مدرّبة معتمدة في البرمجة اللغوية العصبية</span>
+              </span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-</main>
-
-<!-- ============================= FOOTER =========================== -->
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer__grid">
-      <div>
-        <div class="footer__brand">
-          <img class="footer__logo" src="assets/brand/logo/logotype.svg" width="2964" height="1362"
-               alt="سُكون" data-i18n-attr="alt:brand.name">
+    <!-- ============================ PRIVACY =========================== -->
+    <section class="section">
+      <div class="wrap">
+        <div class="privacy grain" data-reveal="privacy">
+          <div class="privacy__orb">
+            <img src="assets/images/mascot/orb.webp" alt="" width="240" height="240" loading="lazy">
+          </div>
+          <h2 data-i18n="privacy.title">تأمّلاتك تبقى لك.</h2>
+          <p data-i18n="privacy.sub">سُكون مبني على تسجيلات خاصة وأذونات واضحة. ما تكتبه لك وحدك، ولا نبيع بياناتك لأحد.
+          </p>
+          <ul class="privacy__list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3l7.5 3v5.5c0 4.5-3 8.3-7.5 9.5-4.5-1.2-7.5-5-7.5-9.5V6Z" />
+              </svg>
+              <span data-i18n="privacy.i1">تسجيلات خاصة</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 7h6" />
+                <path d="M14 7h6" />
+                <path d="M4 17h10" />
+                <path d="M18 17h2" />
+                <circle cx="12" cy="7" r="2" />
+                <circle cx="16" cy="17" r="2" />
+              </svg>
+              <span data-i18n="privacy.i2">أذونات واضحة</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 3l18 18" />
+                <path d="M10.6 5.2A9.6 9.6 0 0 1 12 5c5 0 9 4.5 9 7a11 11 0 0 1-2.4 3.6" />
+                <path d="M6.5 6.9C4 8.4 3 10.6 3 12c0 2.5 4 7 9 7 1.6 0 3-.4 4.3-1.1" />
+                <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+              </svg>
+              <span data-i18n="privacy.i3">بياناتك لا تُباع</span>
+            </li>
+          </ul>
         </div>
-        <p class="footer__tag" data-i18n="footer.tag">مرافقك في رحلتك النفسية</p>
       </div>
+    </section>
 
-      <div>
-        <p class="footer__title" data-i18n="footer.navTitle">التنقّل</p>
-        <nav class="footer__links" aria-label="Footer">
-          <a href="#features" data-i18n="nav.features">المميزات</a>
-          <a href="#how"      data-i18n="nav.how">كيف يعمل</a>
-          <a href="#why"      data-i18n="nav.difference">الفرق</a>
-          <a href="#faq"      data-i18n="nav.faq">الأسئلة</a>
-        </nav>
-      </div>
+    <!-- ============================== FAQ ============================= -->
+    <section class="section" id="faq">
+      <div class="wrap">
+        <div class="faq">
+          <div class="head head--start" data-reveal="faq-head">
+            <h2 class="h2" data-i18n="faq.title">أسئلة متكرّرة</h2>
+            <p class="lede" data-i18n="faq.sub">كل ما يهم معرفته قبل أن تبدأ: المحتوى، الخصوصية، الخريطة، وموعد الإطلاق.
+            </p>
+          </div>
 
-      <div>
-        <p class="footer__title" data-i18n="footer.moreTitle">روابط</p>
-        <div class="footer__links">
-          <a href="#waitlist" data-i18n="footer.waitlist">قائمة الانتظار</a>
-          <!-- TODO(sukun): point these at the real policy pages -->
-          <a href="#" data-i18n="footer.privacy">الخصوصية</a>
-          <a href="#" data-i18n="footer.terms">الشروط</a>
+          <div class="faq__list" data-reveal="faq-list">
+            <div class="qa">
+              <button class="qa__q" type="button" aria-expanded="false" aria-controls="a1">
+                <span data-i18n="faq.q1">هل المحتوى مترجم من الإنجليزية؟</span>
+                <span class="qa__sign" aria-hidden="true"></span>
+              </button>
+              <div class="qa__a" id="a1" aria-hidden="true">
+                <div>
+                  <p data-i18n="faq.a1">لا. كل نص مكتوب بالعربية أولًا — الأسئلة، الجلسات، ورسائل الطمأنينة — بلهجة
+                    دافئة تناسب الخليج، ثم يُسجّل صوتيًا. الإنجليزية تأتي لاحقًا كترجمة لا كأصل.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="qa">
+              <button class="qa__q" type="button" aria-expanded="false" aria-controls="a2">
+                <span data-i18n="faq.q2">هل سُكون بديل عن العلاج النفسي؟</span>
+                <span class="qa__sign" aria-hidden="true"></span>
+              </button>
+              <div class="qa__a" id="a2" aria-hidden="true">
+                <div>
+                  <p data-i18n="faq.a2">لا. سُكون تطبيق للعافية اليومية، ولا يقدّم تشخيصًا أو علاجًا. إن كنت تمرّ بضيق
+                    شديد، نعرض لك موارد الدعم المتاحة في بلدك مباشرة.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="qa">
+              <button class="qa__q" type="button" aria-expanded="false" aria-controls="a3">
+                <span data-i18n="faq.q3">هل أحتاج أن أستخدمه كل يوم؟</span>
+                <span class="qa__sign" aria-hidden="true"></span>
+              </button>
+              <div class="qa__a" id="a3" aria-hidden="true">
+                <div>
+                  <p data-i18n="faq.a3">لا. لا نلومك على يوم فائت، ولا نضغطك بعدّادات. تعود متى شئت، وخريطتك تنتظرك كما
+                    هي.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="qa">
+              <button class="qa__q" type="button" aria-expanded="false" aria-controls="a4">
+                <span data-i18n="faq.q4">ما الفرق بين خريطة سُكون والدرجات في التطبيقات الأخرى؟</span>
+                <span class="qa__sign" aria-hidden="true"></span>
+              </button>
+              <div class="qa__a" id="a4" aria-hidden="true">
+                <div>
+                  <p data-i18n="faq.a4">الخريطة مرآة لا حكم. لا نكافئك على شعور معيّن، ولا نعرض أرقامًا تقارن بها نفسك —
+                    نعرض شكل رحلتك وأين تنمو.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="qa">
+              <button class="qa__q" type="button" aria-expanded="false" aria-controls="a5">
+                <span data-i18n="faq.q5">متى يصدر التطبيق؟</span>
+                <span class="qa__sign" aria-hidden="true"></span>
+              </button>
+              <div class="qa__a" id="a5" aria-hidden="true">
+                <div>
+                  <p data-i18n="faq.a5">نفتح على دفعات صغيرة أولًا لضمان جودة المحتوى الصوتي. اترك بريدك ونراسلك أول ما
+                    يصبح متاحًا في بلدك.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="qa">
+              <button class="qa__q" type="button" aria-expanded="false" aria-controls="a6">
+                <span data-i18n="faq.q6">هل سُكون تطبيق للتأمل فقط؟</span>
+                <span class="qa__sign" aria-hidden="true"></span>
+              </button>
+              <div class="qa__a" id="a6" aria-hidden="true">
+                <div>
+                  <p data-i18n="faq.a6">لا. التأمل جزء واحد من تجربة سُكون. صُمم التطبيق ليكون رفيقًا يوميًا يشمل جوانب
+                    متعددة من يومك، من الاستيقاظ والعادات والتركيز، إلى الوعي الذاتي والاسترخاء والنوم.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="qa">
+              <button class="qa__q" type="button" aria-expanded="false" aria-controls="a7">
+                <span data-i18n="faq.q7">ما المقصود بالرحلات النفسية؟</span>
+                <span class="qa__sign" aria-hidden="true"></span>
+              </button>
+              <div class="qa__a" id="a7" aria-hidden="true">
+                <div>
+                  <p data-i18n="faq.a7">الرحلات النفسية تجارب صوتية وقصص وتأملات موجّهة حول موضوعات مختلفة في الحياة،
+                    مثل العلاقات، والتعلّق، والثقة بالنفس، والمقارنة، والتغيير، والمشاعر وغيرها. هدفها منحك مساحة للتوقف
+                    والتأمل وفهم نفسك من زوايا جديدة، مع تمارين يمكنك تطبيقها.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="footer__bottom">
-      <span>© <span data-i18n="footer.copy">سُكون ٢٠٢٦</span></span>
-      <span data-i18n="footer.disclaimer">تطبيق عافية، لا يقدّم تشخيصًا أو علاجًا.</span>
-    </div>
-  </div>
-</footer>
+    <!-- ========================== WAITLIST CTA ======================== -->
+    <section class="section" id="waitlist">
+      <div class="wrap">
+        <div class="cta" data-reveal="cta">
+          <span class="cta__glow" aria-hidden="true"></span>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" defer></script>
-<script src="js/i18n.js" defer></script>
-<script src="js/main.js" defer></script>
+          <div class="cta__body">
+            <h2 data-i18n="cta.title">سجّل اهتمامك بالوصول المبكر.</h2>
+            <p data-i18n="cta.sub">كن من أوائل من يكتشفون سُكون. رسالة واحدة فقط عند الإطلاق، ويمكنك الإلغاء بضغطة
+              واحدة.</p>
+
+            <form class="form" id="waitlist-form" data-source="website" novalidate>
+              <div class="form__fields">
+                <div class="form__row form__row--2">
+                  <label class="field">
+                    <span class="field__label"><span data-i18n="form.name">الاسم</span> <span class="field__req"
+                        aria-hidden="true">*</span></span>
+                    <input class="field__input" id="wl-name" name="name" type="text" required maxlength="200"
+                      autocomplete="given-name" data-i18n-attr="placeholder:form.namePh">
+                    <span class="field__error" role="alert"></span>
+                  </label>
+
+                  <label class="field">
+                    <span class="field__label"><span data-i18n="form.email">البريد الإلكتروني</span> <span
+                        class="field__req" aria-hidden="true">*</span></span>
+                    <input class="field__input" id="wl-email" name="email" type="email" required maxlength="200"
+                      dir="ltr" inputmode="email" autocomplete="email" data-i18n-attr="placeholder:form.emailPh">
+                    <span class="field__error" role="alert"></span>
+                  </label>
+                </div>
+
+                <div class="form__row">
+                  <label class="field">
+                    <span class="field__label"><span data-i18n="form.country">الدولة</span> <span class="field__req"
+                        aria-hidden="true">*</span></span>
+                    <select class="field__input" id="wl-country" name="country" required autocomplete="country-name">
+                      <option value="">اختر دولتك</option>
+                      <option value="Saudi Arabia" data-country="sa">السعودية</option>
+                      <option value="United Arab Emirates" data-country="ae">الإمارات</option>
+                      <option value="Kuwait" data-country="kw">الكويت</option>
+                      <option value="Qatar" data-country="qa">قطر</option>
+                      <option value="Bahrain" data-country="bh">البحرين</option>
+                      <option value="Oman" data-country="om">عُمان</option>
+                      <option value="Jordan" data-country="jo">الأردن</option>
+                      <option value="Egypt" data-country="eg">مصر</option>
+                      <option value="Other" data-country="other">دولة أخرى</option>
+                    </select>
+                    <span class="field__error" role="alert"></span>
+                  </label>
+                </div>
+
+                <div class="hp" aria-hidden="true">
+                  <label for="wl-company">Company</label>
+                  <input id="wl-company" name="company" type="text" tabindex="-1" autocomplete="off">
+                </div>
+              </div>
+
+              <button class="btn btn--solid form__submit" type="submit" data-i18n="form.submit">انضم للقائمة</button>
+              <p class="form__note" data-i18n="form.note">بريدك لنا فقط. لا مشاركة، ولا رسائل متكررة.</p>
+              <p class="cta__sign" data-i18n="cta.sign">سُكون.. خذ مساحة لنفسك.</p>
+              <p class="form__status" id="wl-status" role="status" aria-live="polite"></p>
+            </form>
+
+            <div class="done" id="wl-done">
+              <span class="done__mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2.6"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </span>
+              <h3 data-i18n="form.doneTitle">حجزنا مكانك.</h3>
+              <p data-i18n="form.doneText">نراسلك أول ما يفتح سُكون في بلدك. حتى ذلك الحين، خُذ نفسًا عميقًا.</p>
+            </div>
+          </div>
+
+          <div class="cta__art">
+            <img class="cta__mascot" src="assets/images/mascot/full.webp" width="420" height="536" loading="lazy" alt=""
+              data-i18n-attr="alt:a11y.mascot">
+            <div class="cta__phone">
+              <div class="phone">
+                <div class="phone__screen">
+                  <img class="phone__shot" src="assets/images/screens/home.webp" width="393" height="852" loading="lazy"
+                    alt="" data-i18n-attr="alt:a11y.phoneHome">
+                  <span class="phone__glare" aria-hidden="true"></span>
+                </div>
+                <span class="phone__island" aria-hidden="true"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================= FOOTER =========================== -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">
+            <img class="footer__logo" src="assets/brand/logo/logotype.svg" width="2964" height="1362" alt="سُكون"
+              data-i18n-attr="alt:brand.name">
+          </div>
+          <p class="footer__tag" data-i18n="footer.tag">مرافقك في رحلتك النفسية</p>
+        </div>
+
+        <div>
+          <p class="footer__title" data-i18n="footer.navTitle">التنقّل</p>
+          <nav class="footer__links" aria-label="Footer">
+            <a href="#features" data-i18n="nav.features">المميزات</a>
+            <a href="#how" data-i18n="nav.how">كيف يعمل</a>
+            <a href="#why" data-i18n="nav.difference">الفرق</a>
+            <a href="#faq" data-i18n="nav.faq">الأسئلة</a>
+          </nav>
+        </div>
+
+        <div>
+          <p class="footer__title" data-i18n="footer.moreTitle">روابط</p>
+          <div class="footer__links">
+            <a href="#waitlist" data-i18n="footer.waitlist">قائمة الانتظار</a>
+            <!-- TODO(sukun): point these at the real policy pages -->
+            <a href="#" data-i18n="footer.privacy">الخصوصية</a>
+            <a href="#" data-i18n="footer.terms">الشروط</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>© <span data-i18n="footer.copy">سُكون ٢٠٢٦</span></span>
+        <span data-i18n="footer.disclaimer">تطبيق عافية، لا يقدّم تشخيصًا أو علاجًا.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" defer></script>
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
+
 </html>

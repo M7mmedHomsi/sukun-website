@@ -143,6 +143,120 @@
   }
 
   /* ---------------------------------------------------------------
+     3b. Mood check-in card
+     The range input owns the value, so keyboard and assistive tech work
+     without extra wiring; this just mirrors it onto the visuals.
+  --------------------------------------------------------------- */
+
+  function initMood() {
+    var card = $("[data-mood]");
+    if (!card) return;
+    var input = $(".mood__input", card);
+    if (!input) return;
+
+    var paint = function () {
+      var i = input.value;
+      card.style.setProperty("--i", i);
+      card.setAttribute("data-mood", i);
+    };
+
+    input.addEventListener("input", paint);
+    // clicking a label is quicker than dragging on a small card
+    $$(".mood__labels li", card).forEach(function (li, i) {
+      li.addEventListener("click", function () { input.value = i; paint(); });
+    });
+
+    paint();
+  }
+
+  /* ---------------------------------------------------------------
+     3c. Your day — the sky walks from dawn to night as you scroll
+     Only turned on with GSAP, full motion and a wide enough viewport;
+     otherwise the CSS leaves three stacked panels, which read fine.
+  --------------------------------------------------------------- */
+
+  function initDayScroll() {
+    var root = $("[data-daysx]");
+    if (!root) return;
+
+    var panels = $$(".dpanel", root);
+    var dots = $$(".daysx__rail li", root);
+    var stage = $(".daysx__stage", root);
+    if (!panels.length || !stage) return;
+
+    var live = hasGSAP && window.ScrollTrigger && !reduceMotion;
+    if (!live) return;
+
+    // A phone's address bar growing and shrinking changes the viewport
+    // height mid-scroll. Without this the pin re-measures and jumps.
+    ScrollTrigger.config({ ignoreMobileResize: true });
+
+    root.classList.add("is-live");
+
+    var scroller = $(".daysx__scroll", root);
+    var sun = $(".daysx__sun", root);
+    var stars = $(".daysx__stars", root);
+    var skyNoon = $(".daysx__sky--noon", root);
+    var skyNight = $(".daysx__sky--night", root);
+
+    // One scrubbed timeline drives everything. ScrollTrigger does the
+    // pinning rather than CSS sticky, so it survives resizes and refreshes.
+    var tl = gsap.timeline({
+      defaults: { ease: "none" },
+      scrollTrigger: {
+        trigger: scroller,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0.6,
+        pin: stage,
+        pinSpacing: false,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: function (self) {
+          var active = Math.round(self.progress * (panels.length - 1));
+          dots.forEach(function (d, i) { d.classList.toggle("is-on", i === active); });
+          // the phone's shading floor has to flip once the sky goes dark
+          stage.classList.toggle("is-night", self.progress > 0.62);
+        }
+      }
+    });
+
+    // sky: dawn holds, midday fades over it, then night over that
+    tl.to(skyNoon, { opacity: 1, duration: 0.5 }, 0)
+      .to(skyNight, { opacity: 1, duration: 0.5 }, 0.5)
+      .to(stars, { opacity: 1, duration: 0.4 }, 0.6);
+
+    // Sun: on a phone it starts and ends well past the stage edges, so it
+    // rises into view and sets out of it — there is little room there, and
+    // the clipping sells the horizon. On desktop the arc stays inside the
+    // stage, where the sun is part of the composition rather than an entrance.
+    // It also rides higher on a phone so it never sits behind the copy.
+    var small = window.matchMedia("(max-width: 767px)").matches;
+    var fromX = small ? "-18%" : "12%";
+    var toX = small ? "118%" : "88%";
+    var lowY = small ? "48%" : "74%";
+    var highY = small ? "10%" : "22%";
+
+    tl.fromTo(sun, { left: fromX }, { left: toX, duration: 1 }, 0)
+      .fromTo(sun, { top: lowY }, { top: highY, ease: "sine.out", duration: 0.5 }, 0)
+      .to(sun, { top: lowY, ease: "sine.in", duration: 0.5 }, 0.5)
+      .to(sun, { backgroundColor: "#FFF6E0", boxShadow: "0 0 70px 24px rgba(255,240,200,.5)", duration: 0.5 }, 0)
+      .to(sun, { backgroundColor: "#E2E8FA", boxShadow: "0 0 60px 20px rgba(180,195,245,.45)", duration: 0.5 }, 0.5);
+
+    // panels hand over one at a time, each drifting up slightly as it goes
+    tl.to(panels[0], { opacity: 0, y: -26, duration: 0.12 }, 0.28)
+      .fromTo(panels[1], { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.12 }, 0.3)
+      .to(panels[1], { opacity: 0, y: -26, duration: 0.12 }, 0.62)
+      .fromTo(panels[2], { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.12 }, 0.64);
+
+    dots[0].classList.add("is-on");
+
+    // Layout settles after fonts and images land; without this the pin can
+    // be measured against the wrong page height.
+    window.addEventListener("load", function () { ScrollTrigger.refresh(); });
+  }
+
+  /* ---------------------------------------------------------------
      4. Scroll reveals
   --------------------------------------------------------------- */
 
@@ -391,6 +505,8 @@
     initNav();
     initFaq();
     initForm();
+    initMood();
+    initDayScroll();
     initReveals();
     initHero();
 

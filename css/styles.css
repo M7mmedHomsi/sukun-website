@@ -350,11 +350,12 @@ section[id], [id="top"] { scroll-margin-block-start: 96px; }
   background: rgba(255, 255, 255, .52);
   backdrop-filter: blur(26px) saturate(185%);
   -webkit-backdrop-filter: blur(26px) saturate(185%);
-  border: 1px solid rgba(255, 255, 255, .7);
+  /* One faint hairline. A 1px border plus two inset highlights stacked into
+     a heavy ring, which showed badly against the darker sections. */
+  border: 1px solid rgba(255, 255, 255, .34);
   border-radius: var(--r-pill);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .8),
-    inset 0 -1px 0 rgba(255, 255, 255, .35),
+    inset 0 1px 0 rgba(255, 255, 255, .32),
     0 8px 30px rgba(50, 38, 90, .10);
   transition: box-shadow var(--t-base) var(--e-out),
               background-color var(--t-base) var(--e-out);
@@ -362,7 +363,7 @@ section[id], [id="top"] { scroll-margin-block-start: 96px; }
 .header.is-stuck .nav {
   background: rgba(255, 255, 255, .66);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .85),
+    inset 0 1px 0 rgba(255, 255, 255, .4),
     0 10px 34px rgba(50, 38, 90, .16);
 }
 
@@ -660,6 +661,10 @@ section[id], [id="top"] { scroll-margin-block-start: 96px; }
 
 /* Arrows point along the reading direction */
 [dir="rtl"] .icon-flip { transform: scaleX(-1); }
+/* On an SVG child the transform origin is the canvas corner, not the shape,
+   so the flip would throw it off-canvas — anchor it to its own box. */
+[dir="rtl"] path.icon-flip,
+[dir="rtl"] g.icon-flip { transform-box: fill-box; transform-origin: center; }
 [dir="rtl"] .btn:hover .btn__icon { transform: scaleX(-1) translateX(3px); }
 
 /* Glass reflection sweep across the glass */
@@ -1350,3 +1355,829 @@ select.field__input option { color: var(--ink); background: #fff; }
     -webkit-mask-image: none; mask-image: none;
   }
 }
+
+/* ---------- 21. Your day with Sukun ---------- */
+
+.day { background: linear-gradient(180deg, #FCFBFE 0%, #F6F2FB 45%, #FCFBFE 100%); }
+.section.day { padding-block-start: 0; }
+
+
+
+/* personalisation band */
+.adapt {
+  margin-block-start: var(--s-8);
+  padding: var(--s-8) var(--s-6);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  text-align: center;
+}
+@media (min-width: 768px) { .adapt { padding: var(--s-9) var(--s-8); } }
+
+.adapt__title { font-size: clamp(1.35rem, 1rem + 1.4vw, 1.85rem); font-weight: 700; }
+html[lang="ar"] .adapt__title { font-weight: 600; }
+.adapt__sub { margin-block-start: var(--s-2); color: var(--muted); }
+
+.adapt__pairs {
+  margin-block: var(--s-7);
+  display: grid; gap: var(--s-3);
+  max-width: 720px; margin-inline: auto;
+}
+.adapt__pairs li {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-2);
+  align-items: center;
+  padding: var(--s-4);
+  border-radius: var(--r-md);
+  background: var(--line-soft);
+  font-size: .9375rem; color: var(--ink-soft);
+}
+@media (min-width: 620px) {
+  .adapt__pairs li { grid-template-columns: 1fr auto 1fr; gap: var(--s-4); }
+  .adapt__pairs li > span:first-child { text-align: end; }
+  .adapt__pairs li > span:last-child  { text-align: start; }
+}
+/* the divider is a dot, so it never needs mirroring */
+.adapt__vs {
+  inline-size: 6px; block-size: 6px; border-radius: 50%;
+  background: var(--c-mauve-light);
+  justify-self: center;
+}
+
+.adapt__close {
+  max-width: 46ch; margin-inline: auto;
+  font-size: 1.0312rem; font-weight: 500; color: var(--ink);
+  text-wrap: pretty;
+}
+
+/* closing signature under the waitlist form */
+.cta__sign {
+  margin-block-start: var(--s-5);
+  font-size: 1.0312rem; font-weight: 600;
+  color: var(--ink);
+}
+
+/* ---------- 22. Breathing card: night sky + crystal ---------- */
+
+/* Background lifted from the legacy breathing screen: the night photo over
+   the same radial that sat behind it. The photo is an element rather than a
+   background so it can be mirrored — the moon sits top-right, which is
+   exactly where the Arabic title lands. */
+/* The surround is the photo's own colour ramp, sampled band by band, so the
+   image's vignetted edges dissolve into it instead of ending on a seam. */
+.fcard--night {
+  background:
+    radial-gradient(70% 55% at 50% 88%, rgba(13, 102, 134, .45), transparent 72%),
+    linear-gradient(180deg, #01182B 0%, #05263B 28%, #013150 54%, #02486B 82%, #0C6280 100%);
+  border-color: rgba(255, 255, 255, .1);
+}
+
+/* Height-driven, so the 393x434 source renders at roughly native scale.
+   Stretching it to cover the card meant a 1.7x upscale and soft clouds. */
+.fcard__sky {
+  position: absolute;
+  inset-block: 0;
+  z-index: 0;
+  block-size: 100%;
+  inline-size: auto;
+  max-inline-size: none;
+  left: 50%;
+  transform: translateX(-50%);
+  /* The fade is baked into night.webp's alpha, so there is no rectangle to
+     hide and no mask or blend mode needed here. */
+}
+/* mirrored so the moon moves clear of the Arabic title */
+[dir="rtl"] .fcard__sky { transform: translateX(-50%) scaleX(-1); }
+.fcard--night .fcard__title { color: #EAF2FF; }
+.fcard--night .fcard__icon  { color: #9FD0FF; }
+.fcard--night .fcard__text  { color: rgba(226, 238, 255, .8); }
+
+/* The crystal replaces the phone, so it uses the mock slot's corner */
+.orb {
+  position: absolute;
+  z-index: 1;
+  inset-block-start: 54%;
+  inset-inline-end: 12%;
+  translate: 0 -50%;
+  inline-size: 78px; aspect-ratio: 1;
+  display: grid; place-items: center;
+  pointer-events: none;
+}
+@media (min-width: 560px)  { .orb { inline-size: 88px; } }
+@media (min-width: 1060px) { .orb { inline-size: 100px; } }
+
+.orb__ball {
+  position: relative; z-index: 2;
+  inline-size: 100%; block-size: auto;
+  filter: drop-shadow(0 18px 40px rgba(120, 190, 255, .38));
+}
+
+/* soft bloom behind the glass */
+.orb__halo {
+  position: absolute; inset: -22%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(159, 208, 255, .5), rgba(93, 150, 220, .16) 45%, transparent 70%);
+  filter: blur(24px);
+}
+
+/* The breath rhythm now reads through the bloom rather than a drawn ring */
+@media (prefers-reduced-motion: no-preference) {
+  .orb__halo { animation: orb-breathe 11s ease-in-out infinite; }
+  .orb__ball { animation: orb-drift 7s ease-in-out infinite alternate; }
+}
+@keyframes orb-breathe {
+  0%, 100% { transform: scale(1);    opacity: .75; }
+  36%      { transform: scale(1.18); opacity: 1; }
+  64%      { transform: scale(1.18); opacity: 1; }
+}
+@keyframes orb-drift {
+  from { translate: 0 -6px; }
+  to   { translate: 0 6px; }
+}
+
+/* ---------- 23. Mood check-in card ---------- */
+
+/* Colours and faces come from the app design files:
+   Low #FF5E3E · Flat #FF965D · Okay #FFD06B · Good #6EB5F0 · Great #8BC588 */
+.mood {
+  --i: 2;
+  --c: #FFD06B;
+  position: absolute;
+  z-index: 2;
+  inset-block-start: 50%;
+  inset-inline-end: var(--s-5);
+  translate: 0 -50%;
+  inline-size: 208px;
+  /* Padding has to clear half the widest outer label, since those now
+     centre on the track ends and reach into it. */
+  padding: var(--s-5) var(--s-5) var(--s-4);
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 18px 44px rgba(60, 45, 95, .16), 0 2px 6px rgba(60, 45, 95, .06);
+  color: #17171C;
+  direction: inherit;
+}
+@media (min-width: 560px)  { .mood { inline-size: 224px; } }
+@media (min-width: 1060px) { .mood { inline-size: 254px; padding: var(--s-5); } }
+
+.mood[data-mood="0"] { --c: #FF5E3E; }
+.mood[data-mood="1"] { --c: #FF965D; }
+.mood[data-mood="2"] { --c: #FFD06B; }
+.mood[data-mood="3"] { --c: #6EB5F0; }
+.mood[data-mood="4"] { --c: #8BC588; }
+
+.mood__top {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: .75rem; font-weight: 600;
+  color: #17171C;
+}
+.mood__step { color: #A8A8B3; font-weight: 500; }
+.mood__step b { color: #17171C; font-weight: 700; }
+
+.mood__q {
+  margin-block-start: var(--s-3);
+  font-size: 1.0625rem; font-weight: 700; line-height: 1.3;
+  letter-spacing: -.01em;
+  text-wrap: balance;
+}
+html[lang="ar"] .mood__q { font-weight: 600; }
+
+/* The active face, tinted to the mood, centred on the card */
+.mood__face {
+  display: block;
+  inline-size: 44px; block-size: 44px;
+  margin: var(--s-5) auto 0;
+  color: var(--c);
+  transition: color var(--t-base) var(--e-out);
+}
+.mood__face svg { inline-size: 100%; block-size: 100%; }
+/* each expression is switched on per mood, so one SVG serves all five */
+.mood__face .eye-closed,
+.mood__face .mouth-open { display: none; }
+.mood[data-mood="0"] .mouth { d: path("M15 29c2-2.6 12-2.6 14 0"); }
+.mood[data-mood="1"] .mouth { d: path("M15.5 28h13"); }
+.mood[data-mood="3"] .eye { display: none; }
+.mood[data-mood="3"] .eye-closed { display: block; }
+.mood[data-mood="4"] .mouth { display: none; }
+.mood[data-mood="4"] .mouth-open { display: block; }
+
+/* Slider: a real range input sits transparent on top, so keyboard and
+   screen-reader support come for free while the visuals stay custom. */
+.mood__slider {
+  position: relative;
+  block-size: 26px;
+  margin-block-start: var(--s-5);
+  display: flex; align-items: center;
+}
+.mood__track, .mood__fill {
+  position: absolute; inset-inline: 0;
+  block-size: 14px; border-radius: var(--r-pill);
+}
+.mood__track { background: #EFEFF3; }
+.mood__fill {
+  background: var(--c);
+  inline-size: calc(var(--i) / 4 * 100%);
+  inset-inline-end: auto; inset-inline-start: 0;
+  transition: inline-size var(--t-base) var(--e-out), background-color var(--t-base) var(--e-out);
+}
+.mood__thumb {
+  position: absolute;
+  inset-inline-start: calc(var(--i) / 4 * 100%);
+  /* inset-inline-start puts the leading edge on the stop, so pull back half
+     a width to sit on it. That is -50% in LTR and +50% in RTL. */
+  translate: calc(var(--dir) * -50%) 0;
+  inline-size: 42px; block-size: 26px;
+  border-radius: var(--r-pill);
+  background: #fff;
+  border: 2.5px solid var(--c);
+  display: grid; place-items: center;
+  color: #17171C;
+  transition: inset-inline-start var(--t-base) var(--e-out), border-color var(--t-base) var(--e-out);
+}
+.mood__thumb svg { inline-size: 18px; block-size: 11px; }
+
+.mood__input {
+  position: absolute; inset: 0;
+  inline-size: 100%; block-size: 100%;
+  margin: 0; opacity: 0; cursor: pointer;
+  -webkit-appearance: none; appearance: none;
+}
+.mood__input:focus-visible ~ .mood__thumb {
+  outline: 3px solid var(--c-violet);
+  outline-offset: 3px;
+}
+
+/* Each label sits on the same stop as the thumb — 0, 25, 50, 75, 100% — so
+   the two always line up. A 5-column grid would centre them at 10/30/50/
+   70/90% instead, which is the gap that showed. */
+.mood__labels {
+  position: relative;
+  block-size: 1.1em;
+  margin-block-start: var(--s-3);
+  font-size: .625rem; letter-spacing: -.01em;
+  color: #8A8A96;
+  white-space: nowrap;
+}
+/* Arabic needs the extra size — its letterforms carry far less of their
+   meaning in the outline than Latin does at the same pixel height. */
+html[lang="ar"] .mood__labels { font-size: .75rem; letter-spacing: 0; }
+.mood__labels li {
+  position: absolute;
+  inset-block-start: 0;
+  transition: color var(--t-fast) var(--e-out);
+}
+/* All five are centred on their stop, so the spacing between them is equal.
+   Edge-aligning the outer two looked tidier but squeezed the end gaps to
+   38-42px against 51.5px in the middle. The outer labels now reach a little
+   past the track into the card's padding, which is what that padding is for. */
+.mood__labels li { inset-inline-start: calc(var(--stop) * 25%); translate: calc(var(--dir) * -50%) 0; }
+.mood__labels li:nth-child(1) { --stop: 0; }
+.mood__labels li:nth-child(2) { --stop: 1; }
+.mood__labels li:nth-child(3) { --stop: 2; }
+.mood__labels li:nth-child(4) { --stop: 3; }
+.mood__labels li:nth-child(5) { --stop: 4; }
+.mood[data-mood="0"] .mood__labels li:nth-child(1),
+.mood[data-mood="1"] .mood__labels li:nth-child(2),
+.mood[data-mood="2"] .mood__labels li:nth-child(3),
+.mood[data-mood="3"] .mood__labels li:nth-child(4),
+.mood[data-mood="4"] .mood__labels li:nth-child(5) { color: #17171C; font-weight: 700; }
+
+.mood__cta {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  margin-block-start: var(--s-5);
+  min-block-size: 36px;
+  border-radius: var(--r-pill);
+  background: #9968EE;
+  color: #fff;
+  font-size: .8125rem; font-weight: 600;
+}
+.mood__cta svg { inline-size: 14px; block-size: 14px; flex: none; }
+
+/* Keep the card's own copy clear of the check-in panel */
+.fcard--peach .fcard__head,
+.fcard--peach .fcard__text { max-inline-size: 46%; }
+@media (max-width: 559px) {
+  .mood { position: static; translate: none; inline-size: 100%; margin-block-start: var(--s-5); }
+  .fcard--peach .fcard__head,
+  .fcard--peach .fcard__text { max-inline-size: none; }
+}
+
+
+/* ---------- 24. Your day: scroll-driven ---------- */
+
+/* CSS only lays this out. GSAP owns every moving value, and ScrollTrigger
+   does the pinning — CSS `position: sticky` proved unreliable here.
+   Without JS the panels simply stack, each painting its own time of day. */
+.daysx { margin-block-start: 0; }
+
+.daysx__stage {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-xl);
+  isolation: isolate;
+}
+
+.daysx__sky, .daysx__stars, .daysx__arc {
+  position: absolute; inset: 0;
+  pointer-events: none;
+}
+
+/* Three skies stacked and cross-faded, rather than one gradient whose
+   colours get interpolated — opacity is far safer to animate. */
+.daysx__sky { z-index: 0; }
+.daysx__sky--dawn  { background: linear-gradient(180deg, #FCE7D4 0%, #F7C9A6 100%); }
+.daysx__sky--noon  { background: linear-gradient(180deg, #E6F1FE 0%, #AECBF3 100%); opacity: 0; }
+.daysx__sky--night { background: linear-gradient(180deg, #241E45 0%, #0E1026 100%); opacity: 0; }
+
+.daysx__stars {
+  z-index: 1; opacity: 0;
+  background-image:
+    radial-gradient(1.6px 1.6px at 12% 18%, #fff, transparent),
+    radial-gradient(1.4px 1.4px at 28% 34%, #fff, transparent),
+    radial-gradient(1.8px 1.8px at 44% 12%, #fff, transparent),
+    radial-gradient(1.3px 1.3px at 61% 28%, #fff, transparent),
+    radial-gradient(1.7px 1.7px at 76% 16%, #fff, transparent),
+    radial-gradient(1.4px 1.4px at 88% 32%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 20% 48%, #fff, transparent),
+    radial-gradient(1.3px 1.3px at 68% 46%, #fff, transparent);
+}
+
+/* The arc mirrors in Arabic so the sun rises on the side you read from.
+   The sun is a circle, so flipping the container is invisible on it. */
+.daysx__arc { z-index: 1; }
+[dir="rtl"] .daysx__arc { transform: scaleX(-1); }
+.daysx__sun {
+  position: absolute;
+  inline-size: 88px; block-size: 88px;
+  border-radius: 50%;
+  left: 12%; top: 74%;
+  margin: -44px 0 0 -44px;
+  background: #FFC98A;
+  box-shadow: 0 0 60px 20px rgba(255, 186, 118, .5);
+}
+
+.daysx__inner { position: relative; z-index: 2; }
+.daysx__rail { display: none; }
+
+/* --- panels --- */
+.dpanel { padding-block: var(--s-9); max-inline-size: 34rem; }
+.dpanel__time {
+  display: inline-block; align-self: start;
+  font-size: .8125rem; font-weight: 600; letter-spacing: .06em;
+  padding: 6px var(--s-4);
+  border-radius: var(--r-pill);
+  background: var(--chip-bg);
+  margin-block-end: var(--s-5);
+}
+.dpanel__lede {
+  font-size: clamp(1.35rem, 1rem + 1.5vw, 2rem);
+  font-weight: 600; line-height: 1.35; letter-spacing: -.015em;
+  text-wrap: pretty;
+}
+html[lang="ar"] .dpanel__lede { font-weight: 500; }
+.dpanel__list { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-block: var(--s-6); }
+.dpanel__list li {
+  font-size: .875rem;
+  padding: 8px var(--s-4);
+  border-radius: var(--r-pill);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-line);
+}
+.dpanel__close { font-size: 1.0312rem; font-weight: 600; opacity: .9; text-wrap: pretty; }
+
+/* Each panel carries its own palette, so nothing has to be interpolated */
+.dpanel--morning { color: #3A2A1E; --chip-bg: rgba(255,255,255,.62); --chip-line: rgba(255,255,255,.5); }
+.dpanel--midday  { color: #16305A; --chip-bg: rgba(255,255,255,.62); --chip-line: rgba(255,255,255,.5); }
+.dpanel--night   { color: #EAF0FF; --chip-bg: rgba(255,255,255,.10); --chip-line: rgba(255,255,255,.18); }
+
+/* Stacked fallback: no JS, reduced motion, or a narrow screen */
+.daysx:not(.is-live) .dpanel { padding-inline: var(--s-6); border-radius: var(--r-lg); }
+.daysx:not(.is-live) .dpanel + .dpanel { margin-block-start: var(--s-4); }
+.daysx:not(.is-live) .dpanel--morning { background: linear-gradient(180deg, #FCE7D4, #F7C9A6); }
+.daysx:not(.is-live) .dpanel--midday  { background: linear-gradient(180deg, #E6F1FE, #AECBF3); }
+.daysx:not(.is-live) .dpanel--night   { background: linear-gradient(180deg, #241E45, #0E1026); }
+.daysx:not(.is-live) .daysx__sky,
+.daysx:not(.is-live) .daysx__stars,
+.daysx:not(.is-live) .daysx__arc { display: none; }
+
+/* --- live: ScrollTrigger pins the stage and scrubs the timeline --- */
+/* svh, so the stage does not resize when a phone's address bar slides away */
+.daysx.is-live .daysx__scroll { block-size: 340vh; block-size: 340svh; }
+.daysx.is-live .daysx__stage {
+  block-size: 100vh;
+  block-size: 100svh;
+  border-radius: 0;
+  display: grid; align-items: center;
+}
+.daysx.is-live .daysx__panels { position: relative; min-block-size: 66vh; }
+.daysx.is-live .dpanel {
+  position: absolute; inset-block: 0; inset-inline-start: 0;
+  inline-size: 100%;
+  padding-block: 0;
+  display: flex; flex-direction: column; justify-content: center;
+  opacity: 0;
+}
+.daysx.is-live .dpanel:first-child { opacity: 1; }
+
+.daysx.is-live .daysx__rail {
+  display: grid; gap: var(--s-3);
+  position: absolute;
+  inset-block-start: 50%; translate: 0 -50%;
+  inset-inline-end: 0;
+}
+/* The rail sits outside the panels, so currentColor gives it the section's
+   ink and it disappears against the night sky. It follows the day instead. */
+.daysx.is-live .daysx__rail li {
+  inline-size: 3px; block-size: 34px;
+  border-radius: var(--r-pill);
+  background: #241E45;
+  opacity: .22;
+  transition: opacity var(--t-base) var(--e-out), background-color var(--t-base) var(--e-out);
+}
+.daysx.is-live .daysx__stage.is-night .daysx__rail li { background: #EAF0FF; }
+.daysx.is-live .daysx__rail li.is-on { opacity: .85; }
+
+/* --- the day section on a phone ---
+   Not a cut-down version: the sky still fills the screen and the day still
+   turns as you scroll. What changes is the composition — the sun rides
+   high and small, the copy sits low and centred, and the progress rail
+   lies flat under it where a thumb is not covering it. */
+@media (max-width: 767px) {
+  .daysx { margin-block-start: var(--s-6); }
+
+  .daysx.is-live .daysx__scroll { block-size: 300vh; block-size: 300svh; }
+  .daysx.is-live .daysx__stage { align-items: end; }
+
+  .daysx.is-live .daysx__panels { min-block-size: 0; }
+  .daysx.is-live .dpanel {
+    position: absolute;
+    inset-block: auto 0;
+    inline-size: 100%;
+    display: block;
+    padding-block-end: var(--s-10);
+  }
+
+  .daysx__sun { inline-size: 58px; block-size: 58px; margin: -29px 0 0 -29px; }
+
+  .dpanel { max-inline-size: none; }
+  .dpanel__time { margin-block-end: var(--s-4); }
+  .dpanel__lede { font-size: 1.375rem; line-height: 1.4; }
+  .dpanel__list { margin-block: var(--s-5); gap: 6px; }
+  .dpanel__list li { font-size: .8125rem; padding: 7px var(--s-3); }
+  .dpanel__close { font-size: .9688rem; }
+
+  /* rail turns horizontal and sits at the foot of the stage */
+  .daysx.is-live .daysx__rail {
+    grid-auto-flow: column;
+    inset-block: auto var(--s-7);
+    inset-inline: 0;
+    translate: none;
+    justify-content: center;
+    gap: var(--s-2);
+  }
+  .daysx.is-live .daysx__rail li { inline-size: 26px; block-size: 3px; }
+
+  /* a floor of shade so the copy always has something to sit on */
+  .daysx.is-live .daysx__stage::after {
+    content: "";
+    position: absolute; inset-inline: 0; inset-block-end: 0;
+    block-size: 62%;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, .34) 55%, rgba(255, 255, 255, .5));
+  }
+  .daysx.is-live .daysx__stage.is-night::after {
+    background: linear-gradient(180deg, transparent, rgba(6, 8, 24, .38) 55%, rgba(6, 8, 24, .55));
+  }
+}
+
+/* ---------- 25. Habits card: garden scene ---------- */
+
+.scene {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  inline-size: 62%;
+  z-index: 0;
+  pointer-events: none;
+}
+@media (min-width: 560px)  { .scene { inline-size: 60%; } }
+@media (min-width: 1060px) { .scene { inline-size: 60%; } }
+
+/* The garden is a hard-edged rectangle, so its leading edge is faded into
+   the card tint. The other three bleed off the card and are clipped. */
+.scene__ground {
+  position: absolute;
+  inset-block-end: -12%;
+  inset-inline-end: -12%;
+  inline-size: 138%;
+  block-size: auto;
+  -webkit-mask-image: linear-gradient(to left, #000 58%, transparent 100%),
+                      linear-gradient(180deg, transparent 0%, #000 26%);
+  mask-image: linear-gradient(to left, #000 58%, transparent 100%),
+              linear-gradient(180deg, transparent 0%, #000 26%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+[dir="rtl"] .scene__ground {
+  -webkit-mask-image: linear-gradient(to right, #000 58%, transparent 100%),
+                      linear-gradient(180deg, transparent 0%, #000 26%);
+  mask-image: linear-gradient(to right, #000 58%, transparent 100%),
+              linear-gradient(180deg, transparent 0%, #000 26%);
+}
+
+/* Stands on the sand, a little in from the card's edge */
+.scene__char {
+  position: absolute;
+  inset-block-end: 16%;
+  inset-inline-end: 20%;
+  inline-size: 50%;
+  block-size: auto;
+  /* tight and low, so it reads as standing on the sand rather than hovering */
+  filter: drop-shadow(0 6px 8px rgba(92, 62, 96, .32));
+}
+
+/* keep the copy clear of the scene */
+.fcard--blush .fcard__head,
+.fcard--blush .fcard__text { position: relative; z-index: 2; max-inline-size: 44%; }
+@media (max-width: 559px) {
+  .scene { inline-size: 100%; position: relative; block-size: 210px; margin-block-start: var(--s-5); }
+  .fcard--blush .fcard__head,
+  .fcard--blush .fcard__text { max-inline-size: none; }
+}
+
+/* The sky opens and closes the way the hero does — a big rounded corner
+   curving away from the page, not a straight cut. The lead is dawn coloured
+   and the tail night coloured, because the day always starts and ends there,
+   so neither needs animating. */
+.daysx__tail { display: block; }
+/* Carries the heading and opens the sky, so the section starts on colour */
+.daysx__intro {
+  /* Tight on purpose: this replaces the heading block that used to sit on
+     the page above, so the section must not get taller for the move. */
+  padding-block: var(--s-7) var(--s-6);
+  background: linear-gradient(180deg, #FDF0E4 0%, #FCE7D4 100%);
+  border-start-start-radius: var(--r-xl);
+  border-start-end-radius: var(--r-xl);
+}
+.daysx__intro .head { margin-block-end: 0; }
+.daysx__intro .eyebrow { color: #8A6A52; }
+.daysx__intro .lede { color: #5E4535; }
+.daysx__tail {
+  block-size: 40px;
+  background: #0E1026;
+  border-end-start-radius: var(--r-xl);
+  border-end-end-radius: var(--r-xl);
+}
+@media (min-width: 768px) {
+  .daysx__tail { block-size: 56px; border-end-start-radius: 56px; border-end-end-radius: 56px; }
+  .daysx__intro { border-start-start-radius: 56px; border-start-end-radius: 56px; }
+}
+/* Stacked fallback paints its own backgrounds, so the ramps would not line up */
+.daysx:not(.is-live) .daysx__tail { display: none; }
+.daysx:not(.is-live) .daysx__intro { border-end-start-radius: var(--r-xl); border-end-end-radius: var(--r-xl); }
+
+/* ---------- 26. How it works: the Sukun map ---------- */
+
+/* Step two is "see your map", so the map is the middle column and the other
+   two steps flank it, rather than three phone mockups in a row. */
+.how {
+  display: grid;
+  gap: var(--s-6);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .how { grid-template-columns: 1fr 1.15fr 1fr; gap: var(--s-7); }
+}
+
+.hstep { position: relative; }
+/* Number and title share a line, so the badge reads as a marker on the
+   heading rather than a separate element stacked above it. */
+.hstep__head {
+  display: flex; align-items: center; gap: var(--s-3);
+  margin-block-end: var(--s-3);
+}
+.hstep__num {
+  display: grid; place-items: center;
+  inline-size: 30px; block-size: 30px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--line-soft);
+  color: var(--muted);
+  font-size: .8125rem; font-weight: 700;
+}
+.hstep__title { font-size: 1.25rem; font-weight: 700; letter-spacing: -.015em; }
+html[lang="ar"] .hstep__title { font-weight: 600; }
+.hstep__text {
+  margin-block-start: var(--s-3);
+  color: var(--ink-soft); font-size: .9688rem; line-height: 1.6;
+  text-wrap: pretty;
+}
+.hstep__chip {
+  display: inline-block;
+  margin-block-start: var(--s-4);
+  font-size: .8125rem; font-weight: 600;
+  padding: 7px var(--s-4);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-xs);
+}
+@media (min-width: 900px) {
+  /* the badge follows the text's own edge on each side */
+  .hstep--a { text-align: end; }
+  .hstep--a .hstep__head { flex-direction: row-reverse; justify-content: flex-start; }
+  .hstep--b { text-align: start; }
+}
+
+/* --- the map --- */
+.hmap { text-align: center; }
+/* No disc behind it — the chart sits straight on the page, so the shapes
+   read as data rather than as an illustration on a badge. */
+.hmap__disc {
+  position: relative;
+  inline-size: min(380px, 100%);
+  margin-inline: auto;
+  aspect-ratio: 1;
+  display: grid; place-items: center;
+}
+.hmap__svg { inline-size: 100%; block-size: 100%; overflow: visible; }
+
+.hmap__grid { color: #DFD9EE; stroke-width: 1; }
+.hmap__dots { color: #B7AEDA; }
+.hmap__labels {
+  color: var(--ink-soft);
+  font-size: 13px; font-weight: 600;
+  font-family: inherit;
+}
+
+/* Day 0 sits under today, filled with the brand gradient. Today is drawn
+   over it in translucent blue, so the baseline still reads through and the
+   growth between the two shapes is the thing you notice. */
+.hmap__base { fill: url(#sukunBase); stroke: rgba(255, 255, 255, .5); stroke-width: 1.5; }
+.hmap__now  { fill: rgba(137, 172, 238, .34); stroke: #5B8FE0; stroke-width: 2; }
+
+.hmap__legend {
+  display: flex; justify-content: center; gap: var(--s-5);
+  margin-block-start: var(--s-4);
+  font-size: .8125rem; color: var(--muted);
+}
+.hmap__key { display: inline-flex; align-items: center; gap: var(--s-2); }
+.hmap__key i { inline-size: 12px; block-size: 12px; border-radius: 4px; }
+.hmap__key--base i { background: var(--grad-brand); }
+.hmap__key--now i  { background: rgba(137, 172, 238, .6); border: 1px solid #5B8FE0; }
+
+/* The middle column runs taller than the side ones, so its caption is pulled
+   in tight against the map rather than left hanging below it. */
+.hmap__head { justify-content: center; margin-block-start: var(--s-4); }
+.hmap .hstep__title { margin-block-start: 0; }
+.hmap .hstep__text { max-inline-size: 34ch; margin-inline: auto; margin-block-start: var(--s-2); }
+
+/* The breathing card's only visual is the orb, and that is absolutely
+   positioned, so it adds no height. Every other card is held open by its
+   own content; this one needs telling, or it collapses to a strip. */
+@media (max-width: 559px) {
+  .fcard--night { min-block-size: 330px; }
+  /* below the copy, not behind it */
+  .orb { inline-size: 116px; inset-block-start: auto; inset-block-end: 8%; translate: none; inset-inline-end: 12%; }
+}
+
+/* On a phone the map stacks, so its caption reads first like the other two
+   steps do, rather than arriving after the chart it describes. */
+@media (max-width: 899px) {
+  .hmap { display: flex; flex-direction: column; }
+  .hmap__head { order: -2; margin-block-start: 0; }
+  .hmap .hstep__text { order: -1; margin-block-end: var(--s-5); }
+  .hmap__disc { order: 0; }
+  .hmap__legend { order: 1; }
+}
+
+/* ---------- 27. Audio journeys: pond and player arc ---------- */
+
+/* Same treatment as the breathing card: a photographic sky sits behind, its
+   edges already feathered in the asset, so it has no rectangle to hide. */
+.fcard--lilac { background: linear-gradient(180deg, #E8F2FC 0%, #DCEAF8 55%, #EAE3F6 100%); }
+/* Overrides the night card's height-driven sizing: this sky has to cover the
+   whole card, otherwise the tall source renders as a narrow band down the
+   middle with the card's own gradient either side of it. */
+.fcard__sky--water {
+  inline-size: 100%;
+  block-size: 100%;
+  left: 0;
+  transform: none;
+  object-fit: cover;
+  object-position: center 34%;
+  opacity: .95;
+}
+[dir="rtl"] .fcard__sky--water { transform: scaleX(-1); }
+
+.player {
+  position: absolute;
+  z-index: 1;
+  inset-block-end: -4%;
+  inset-inline-end: -6%;
+  inline-size: 66%;
+  aspect-ratio: 1;
+  display: grid; place-items: center;
+  pointer-events: none;
+}
+@media (min-width: 560px)  { .player { inline-size: 60%; } }
+@media (min-width: 1060px) { .player { inline-size: 58%; } }
+
+/* The arc is the played portion of the track, so it reads as a player */
+.player__arc {
+  position: absolute;
+  inline-size: 82%;
+  inset-block-start: 42%;
+  translate: 0 -50%;
+  opacity: .9;
+}
+/* the arc opens to one side, so it mirrors with the reading direction */
+[dir="rtl"] .player__arc { transform: scaleX(-1); }
+
+/* Bleeds off the card's bottom and outer edge; the top and inner edge are
+   feathered in the asset, so the pond has no visible border anywhere. */
+.player__pond {
+  position: absolute;
+  inset-block-end: 0;
+  inline-size: 118%;
+}
+
+/* The copy sits over a photograph, so it gets a scrim rather than relying on
+   whatever the image happens to do behind it. Without this it measured
+   exactly 4.5:1 — on the line, with no margin for a brighter frame. */
+.fcard--lilac::before {
+  content: "";
+  position: absolute; inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to var(--scrim-dir, left),
+    rgba(255, 255, 255, .93) 0%, rgba(255, 255, 255, .8) 36%, transparent 66%);
+}
+[dir="rtl"] .fcard--lilac { --scrim-dir: right; }
+
+.fcard--lilac .fcard__head,
+.fcard--lilac .fcard__text { position: relative; z-index: 2; max-inline-size: 46%; }
+/* A shade deeper than the shared lilac accent: this card's ground is a photo,
+   and the flat tint only cleared 3.9:1 over its darker passages. */
+.fcard--lilac .fcard__title,
+.fcard--lilac .fcard__icon,
+.fcard--lilac .fcard__text { color: #6B3F9E; }
+@media (max-width: 559px) {
+  /* Stacked here, so the copy runs the full width and a side scrim does
+     nothing for it — the shade comes down from the top instead. */
+  .fcard--lilac,
+  [dir="rtl"] .fcard--lilac { --scrim-dir: bottom; }
+  .fcard--lilac { min-block-size: 380px; }
+  .fcard--lilac .fcard__head,
+  .fcard--lilac .fcard__text { max-inline-size: none; }
+  .player { inline-size: 82%; inset-inline-end: 9%; }
+}
+
+/* ---------- 28. Copy legibility over the card scenes ---------- */
+
+/* Measured with the copy hidden, so these are the real grounds rather than
+   anti-aliased glyph edges. Three cards failed AA before this block. */
+
+/* On desktop the pond and copy never overlap, so the scene sits above the
+   scrim and keeps its full colour. Only on mobile, where the copy runs over
+   it, does the scrim have to come out on top. */
+.player { z-index: 2; }
+.fcard--lilac .fcard__head,
+.fcard--lilac .fcard__text { z-index: 3; }
+@media (max-width: 559px) { .player { z-index: 0; } }
+
+/* Night: the moon drifts behind the copy on a phone, taking it to 1.65:1 */
+.fcard--night::before {
+  content: "";
+  position: absolute; inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(2, 14, 30, .74) 0%, rgba(2, 14, 30, .42) 42%, transparent 72%);
+}
+@media (min-width: 560px) {
+  .fcard--night::before {
+    background: linear-gradient(to var(--scrim-dir, left),
+      rgba(2, 14, 30, .68) 0%, rgba(2, 14, 30, .34) 44%, transparent 70%);
+  }
+  [dir="rtl"] .fcard--night { --scrim-dir: right; }
+}
+
+/* Habits: sat at 4.40:1 against the garden on every width */
+.fcard--blush .fcard__title,
+.fcard--blush .fcard__icon,
+.fcard--blush .fcard__text { color: #9C3D68; }
+
+/* Sits on the rock in the pond. The rock's top surface reads at roughly 36%
+   up from the pond's base, so that is where the feet land. */
+.player__char {
+  position: absolute;
+  inset-block-end: 25.5%;
+  inline-size: 23%;
+  block-size: auto;
+  z-index: 1;
+  filter: drop-shadow(0 8px 10px rgba(70, 90, 130, .3));
+}
+@media (max-width: 559px) { .player__char { inline-size: 22%; } }
