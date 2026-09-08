@@ -1762,11 +1762,15 @@ html[lang="ar"] .dpanel__lede { font-weight: 500; }
 .daysx:not(.is-live) .daysx__arc { display: none; }
 
 /* --- live: ScrollTrigger pins the stage and scrubs the timeline --- */
-/* svh, so the stage does not resize when a phone's address bar slides away */
-.daysx.is-live .daysx__scroll { block-size: 340vh; block-size: 340svh; }
+/* lvh, not svh. Both are fixed values that ignore the address bar moving,
+   which is what the pin needs — but svh is the height with the bars showing,
+   so on iOS the sky stopped short of the screen once they retracted. lvh is
+   the height with them hidden, which is the state you are in while
+   scrolling, so the stage covers. */
+.daysx.is-live .daysx__scroll { block-size: 340vh; block-size: 340lvh; }
 .daysx.is-live .daysx__stage {
   block-size: 100vh;
-  block-size: 100svh;
+  block-size: 100lvh;
   border-radius: 0;
   display: grid; align-items: center;
 }
@@ -1806,7 +1810,7 @@ html[lang="ar"] .dpanel__lede { font-weight: 500; }
 @media (max-width: 767px) {
   .daysx { margin-block-start: var(--s-6); }
 
-  .daysx.is-live .daysx__scroll { block-size: 300vh; block-size: 300svh; }
+  .daysx.is-live .daysx__scroll { block-size: 300vh; block-size: 300lvh; }
   .daysx.is-live .daysx__stage { align-items: end; }
 
   .daysx.is-live .daysx__panels { min-block-size: 0; }

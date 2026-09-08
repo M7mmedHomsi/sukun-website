@@ -74,8 +74,8 @@ window.SUKUN_I18N = {
     "s2.text": "ستة محاور تُظهر أين أنت اليوم، وتنمو مع كل تسجيل حقيقي.",
     "s2.num": "٢",
     "s2.float": "٤٤ ← ٥٧",
-    "s3.title": "ابدأ أول جلسة",
-    "s3.text": "جلسة قصيرة تناسب حالتك الآن، ثم خطة يوم تقدر عليها فعلًا.",
+    "s3.title": "ابدأ أول رحلة داخلية",
+    "s3.text": "رحلة قصيرة تناسب حالتك الآن، ثم خطة يوم تقدر عليها فعلًا.",
     "s3.num": "٣",
     "s3.float": "شهيق · ٣",
 
@@ -85,6 +85,7 @@ window.SUKUN_I18N = {
     "chip3": "اعرف ما ينفعك",
     "chip4": "قلّل التخمين",
     "chip5": "احترم إيقاعك",
+    "chip6": "ارفع وعيك",
 
     "quotes.eyebrow": "آراء",
     "quotes.title": "أشخاص بدأوا يهدؤون",
@@ -121,7 +122,7 @@ window.SUKUN_I18N = {
     "founder.p3": "سُكون صُمم ليكون تلك المساحة. مكانًا تتوقف فيه، تتنفّس، تكتب، تتعلّم، تستكشف، تستعيد تركيزك، وتعود إلى يومك.",
     "founder.p4": "لأن السلام الداخلي ليس مكانًا تصل إليه. إنه شيء تتعلّم أن تصنع له مساحة كل يوم.",
     "founder.byName": "فريق سُكون",
-    "founder.byRole": "بالتعاون مع مدرّبة معتمدة في البرمجة اللغوية العصبية",
+    "founder.byRole": "بالتعاون مع مدرّبة مختصة معتمدة في البرمجة اللغوية العصبية والتنويم الإيحائي",
 
     "privacy.title": "تأمّلاتك تبقى لك.",
     "privacy.sub": "سُكون مبني على تسجيلات خاصة وأذونات واضحة. ما تكتبه لك وحدك، ولا نبيع بياناتك لأحد.",
@@ -191,7 +192,6 @@ window.SUKUN_I18N = {
     "a11y.phoneHome": "شاشة سُكون الرئيسية",
     "a11y.phoneOnboarding": "أحد أسئلة التعارف في تطبيق سُكون",
     "a11y.phoneMap": "شاشة خريطة سُكون",
-    "a11y.phoneSession": "شاشة جلسة التنفّس الأولى",
     "a11y.phoneHabits": "شاشة العادات في تطبيق سُكون",
     "a11y.phoneCheckin": "شاشة تسجيل المزاج اليومي",
     "mood.label": "تسجيل يومي",
@@ -315,8 +315,8 @@ window.SUKUN_I18N = {
     "s2.text": "Six axes show where you are today, and they grow with every real check-in.",
     "s2.num": "2",
     "s2.float": "44 → 57",
-    "s3.title": "Start your first session",
-    "s3.text": "A short session that suits how you feel now, then a day plan you can actually keep.",
+    "s3.title": "Start your first inner journey",
+    "s3.text": "A short journey that suits how you feel now, then a day plan you can actually keep.",
     "s3.num": "3",
     "s3.float": "Inhale · 3",
 
@@ -326,6 +326,7 @@ window.SUKUN_I18N = {
     "chip3": "See what helps",
     "chip4": "Lower the guesswork",
     "chip5": "Respect your pace",
+    "chip6": "Raise your awareness",
 
     "quotes.eyebrow": "Early readers",
     "quotes.title": "People who started slowing down",
@@ -362,7 +363,7 @@ window.SUKUN_I18N = {
     "founder.p3": "Sukun was built to be that space. Somewhere to stop, breathe, write, learn, explore, gather your focus, and return to your day.",
     "founder.p4": "Because inner peace is not a place you arrive at. It is something you learn to make room for, every day.",
     "founder.byName": "The Sukun team",
-    "founder.byRole": "With a certified NLP practitioner",
+    "founder.byRole": "With a certified practitioner in NLP and hypnotherapy",
 
     "privacy.title": "Your reflections stay yours.",
     "privacy.sub": "Sukun is built on private check-ins and clear permissions. What you write belongs to you, and we never sell your data.",
@@ -432,7 +433,6 @@ window.SUKUN_I18N = {
     "a11y.phoneHome": "The Sukun home screen",
     "a11y.phoneOnboarding": "One of the Sukun onboarding questions",
     "a11y.phoneMap": "The Sukun Map screen",
-    "a11y.phoneSession": "The first breathing session screen",
     "a11y.phoneHabits": "The Sukun habits screen",
     "a11y.phoneCheckin": "The daily mood check-in screen",
     "mood.label": "Daily check-in",
