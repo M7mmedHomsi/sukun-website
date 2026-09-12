@@ -361,8 +361,28 @@
     var fields = {
       name: $("#wl-name", form),
       email: $("#wl-email", form),
-      country: $("#wl-country", form)
+      country: $("#wl-country", form),
+      countryOther: $("#wl-country-other", form)
     };
+
+    // "Other" opens a text field, and what they type is what we send as the
+    // country — the API takes one country string and has nowhere else to put it.
+    var otherRow = $("#wl-other-row", form);
+    function isOther() { return fields.country && fields.country.value === "Other"; }
+
+    function syncOther(focusIt) {
+      if (!otherRow || !fields.countryOther) return;
+      var on = isOther();
+      otherRow.hidden = !on;
+      fields.countryOther.required = on;
+      if (on) { if (focusIt) fields.countryOther.focus(); }
+      else { fields.countryOther.value = ""; clearInvalid(fields.countryOther); }
+    }
+
+    if (fields.country) {
+      fields.country.addEventListener("change", function () { syncOther(true); });
+      syncOther(false); // a browser-restored selection survives a reload
+    }
 
     function fieldWrap(input) { return input.closest(".field"); }
 
@@ -400,6 +420,7 @@
       if (key === "name")    { ok = value.length > 0 && value.length <= 200; msg = "form.errName"; }
       if (key === "email")   { ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value) && value.length <= 200; msg = "form.errEmail"; }
       if (key === "country") { ok = value.length > 0; msg = "form.errCountry"; }
+      if (key === "countryOther") { ok = !isOther() || (value.length > 0 && value.length <= 200); msg = "form.errCountryOther"; }
 
       if (!ok && mark) setInvalid(input, msg); else if (ok) clearInvalid(input);
       return ok;
@@ -434,7 +455,7 @@
       // Honeypot: a filled hidden field means a bot. Pretend success.
       if (honey && honey.value) { showDone("form.doneTitle", "form.doneText"); return; }
 
-      var order = ["name", "email", "country"];
+      var order = ["name", "email", "country", "countryOther"];
       var firstBad = null;
       order.forEach(function (key) {
         if (!validate(key, true) && !firstBad) firstBad = fields[key];
@@ -450,7 +471,7 @@
       var payload = {
         name: fields.name.value.trim(),
         email: fields.email.value.trim(),
-        country: fields.country.value,
+        country: isOther() ? fields.countryOther.value.trim() : fields.country.value,
         source: form.getAttribute("data-source") || CONFIG.SOURCE
       };
 

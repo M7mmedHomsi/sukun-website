@@ -1187,6 +1187,16 @@ html[lang="ar"] .marquee__track > * { direction: rtl; }
 .form__row { display: grid; gap: var(--s-3); }
 @media (min-width: 480px) { .form__row--2 { grid-template-columns: 1fr 1fr; } }
 .form__row + .form__row { margin-block-start: var(--s-3); }
+/* .form__row sets display, so it beats the UA rule for [hidden] on its own. */
+.form__row[hidden] { display: none; }
+/* Appears only when "another country" is picked, so it slides in rather than
+   making the rest of the form jump. */
+.form__row--other { animation: otherIn .28s cubic-bezier(.22, .61, .36, 1) both; }
+@keyframes otherIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .form__row--other { animation: none; } }
 
 .field { display: block; }
 .field__label {
