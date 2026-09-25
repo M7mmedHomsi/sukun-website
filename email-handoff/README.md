@@ -3,11 +3,14 @@
 When someone joins the waitlist, send them the welcome email. Everything here
 is ready to drop into the existing `supabase/functions/waitlist/` function.
 
-The send has to happen inside that function, not on the website: the Resend API
-key is a secret, and a static site can't hold one — anything the browser has,
-any visitor can read. The function is also the only place that already knows
-whether a signup was **new** or a **duplicate**, which is what stops people
-getting a second welcome email every time they resubmit the form.
+It can't be sent from the browser — the Resend API key is a secret, and
+anything a static page holds, any visitor can read. A serverless function on
+the marketing site's host could hold one, and that was considered; the waitlist
+function won because it fires on the real insert rather than on a second call
+the browser might never make, it already knows whether a signup was **new** or
+a **duplicate** (which is what stops people getting another welcome email every
+time they resubmit), and it needs no public mail-sending endpoint that strangers
+could point at arbitrary addresses.
 
 ## What to copy
 
