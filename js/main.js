@@ -472,7 +472,11 @@
         name: fields.name.value.trim(),
         email: fields.email.value.trim(),
         country: isOther() ? fields.countryOther.value.trim() : fields.country.value,
-        source: form.getAttribute("data-source") || CONFIG.SOURCE
+        source: form.getAttribute("data-source") || CONFIG.SOURCE,
+        // Not stored — the waitlist function reads it to pick which welcome
+        // email to send, so people are written to in the language they signed
+        // up in. See email-handoff/README.md.
+        lang: lang === "en" ? "en" : "ar"
       };
 
       if (submit) {
@@ -480,15 +484,29 @@
         submit.textContent = t("form.submitBusy");
       }
 
-      fetch(CONFIG.WAITLIST_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      })
-        .then(function (res) {
+      function post(data) {
+        return fetch(CONFIG.WAITLIST_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        }).then(function (res) {
           return res.json().catch(function () { return {}; }).then(function (body) {
             return { ok: res.ok, status: res.status, body: body };
           });
+        });
+      }
+
+      post(payload)
+        .then(function (r) {
+          // lang is new, and the endpoint is deployed separately. If a strict
+          // validator rejects it, drop it and retry rather than failing a
+          // signup over which welcome email to send.
+          var code = r.body && r.body.error && r.body.error.code;
+          if (!r.ok && code === "validation_failed" && "lang" in payload) {
+            delete payload.lang;
+            return post(payload);
+          }
+          return r;
         })
         .then(function (r) {
           if (!r.ok || r.body.success === false) {
