@@ -65,12 +65,16 @@ than `"en"` falls back to Arabic, so a missing value is safe.
 
 ```bash
 supabase secrets set RESEND_API_KEY="re_..."
-supabase secrets set WAITLIST_POSTAL_ADDRESS="Sukun, <street, city, country>"
+supabase secrets set RESEND_AUDIENCE_ID="<audience uuid>"
+supabase secrets set UNSUBSCRIBE_SECRET="$(openssl rand -hex 32)"
 supabase functions deploy waitlist --no-verify-jwt
 ```
 
 Create the key in Resend with **Sending access**, not Full access — this
-function only ever sends.
+function only ever sends and manages contacts.
+
+`UNSUBSCRIBE_SECRET` must be **the same value** set on Vercel; see the
+unsubscribe section below. Generate it once and set it in both places.
 
 Optional overrides, all with working defaults in `send-welcome.ts`:
 
@@ -78,8 +82,44 @@ Optional overrides, all with working defaults in `send-welcome.ts`:
 |---|---|
 | `WAITLIST_FROM` | `سُكون <hello@sukunlife.app>` |
 | `WAITLIST_REPLY_TO` | `hello@sukunlife.app` |
-| `WAITLIST_UNSUBSCRIBE_URL` | `mailto:hello@sukunlife.app?subject=Unsubscribe` |
-| `WAITLIST_POSTAL_ADDRESS` | `Sukun` |
+| `WAITLIST_UNSUBSCRIBE_BASE` | `https://sukunlife.app/api/unsubscribe` |
+| `WAITLIST_POSTAL_ADDRESS` | `Dubai - United Arab Emirates` |
+
+## Unsubscribe
+
+One-click unsubscribe (RFC 8058) is live, and it does not touch Supabase.
+
+`send-welcome.ts` signs a token per recipient — `base64url({e,l}).HMAC-SHA256`
+— and puts `https://sukunlife.app/api/unsubscribe?t=<token>` in both the
+`List-Unsubscribe` header and the email footer. The endpoint lives in the
+website repo at `api/unsubscribe.js` (Vercel), verifies the signature, and
+marks the contact `unsubscribed: true` in the Resend audience.
+
+Signing matters: without it, the URL would be a plain email address and anyone
+could unsubscribe anyone by editing it. Verification is timing-safe, so the
+signature can't be brute-forced a byte at a time. If `UNSUBSCRIBE_SECRET` is
+missing the code falls back to a `mailto:` and drops the one-click header
+rather than shipping an unsigned link.
+
+**On Vercel**, set three environment variables:
+
+| Variable | Value |
+|---|---|
+| `RESEND_API_KEY` | same key |
+| `RESEND_AUDIENCE_ID` | same audience uuid |
+| `UNSUBSCRIBE_SECRET` | **the same secret as Supabase** |
+
+A mismatch between the two secrets means every unsubscribe link 400s, so check
+it after deploying: click the footer link in a test email and you should get the
+confirmation page, not an error.
+
+`GET` deliberately only shows a confirmation page with a button; it never
+unsubscribes on its own, because virus scanners and mail previews fetch links
+and would otherwise opt people out who never clicked. The `POST` acts.
+
+Because the audience is also the list a launch broadcast sends to, an
+unsubscribe there is honoured automatically by future campaigns — no extra
+suppression list to maintain.
 
 ## Testing without spamming anyone
 
@@ -104,36 +144,30 @@ Note that a repeat test with the same address returns `already_joined: true`
 and sends nothing, which is correct. Delete the row to test the new-signup path
 again.
 
-## Things that still need a decision
+## Before the first real send
 
-1. **The postal address.** Both templates ended at `· Sukun` with no address.
-   Commercial email is generally required to carry a real physical one, and its
-   absence is a spam-filter signal. Set `WAITLIST_POSTAL_ADDRESS` before any
-   real send.
+1. **Create the Resend audience** and put its id in both Supabase and Vercel.
+   Without it the email still sends, but nobody is added to the launch list and
+   unsubscribes have nowhere to be recorded.
 
-2. **One-click unsubscribe.** Unsubscribe is currently a `mailto:`, which is
-   RFC-valid and fine at waitlist volume. Gmail and Yahoo require an HTTPS
-   one-click endpoint for bulk senders (over ~5,000/day), so before the launch
-   announcement this should become a real URL — the site is on Vercel, so a
-   small `/api/unsubscribe` route plus a Resend Audience is the natural home.
-   The `List-Unsubscribe` and `List-Unsubscribe-Post` headers are already being
-   sent and will just need the URL swapped.
+2. **Generate `UNSUBSCRIBE_SECRET` once** and set the identical value in both
+   places. This is the single most likely thing to be got wrong.
 
-3. **The launch-day gift.** Both emails promise *"reserved under this email and
-   unlocks automatically when you sign in on launch day"* / *"محفوظة باسم بريدك
-   الإلكتروني هذا، وتُفعَّل تلقائياً عند تسجيل دخولك يوم الإطلاق"*. That's a
-   commitment the app has to honour: on launch, an account whose email is in
-   `waitlist_signups` should get a month of Premium without doing anything.
-   Worth putting on the backlog now rather than finding it on launch day.
-
-4. **Free-tier limits.** Resend's free plan is 100 emails/day and 3,000/month.
+3. **Free-tier limits.** Resend's free plan is 100 emails/day and 3,000/month.
    A launch push clears 100 quickly, and over the limit sends are rejected —
    which, with the fire-and-forget wiring above, fails silently. Watch the
    dashboard, or upgrade before promoting the form.
 
-5. **Domain warm-up.** `sukunlife.app` is newly verified, so it has no sending
+4. **Domain warm-up.** `sukunlife.app` is newly verified, so it has no sending
    reputation yet. The first few hundred are the most likely to land in spam.
    Confirm SPF, DKIM and DMARC are all green in Resend before volume.
+
+5. **The launch-day gift** is confirmed as going ahead. Both emails promise
+   *"reserved under this email and unlocks automatically when you sign in on
+   launch day"* / *"محفوظة باسم بريدك الإلكتروني هذا، وتُفعَّل تلقائياً عند
+   تسجيل دخولك يوم الإطلاق"*, so on launch an account whose email is in
+   `waitlist_signups` needs a month of Premium applied without the person doing
+   anything. Worth a ticket now rather than a scramble on the day.
 
 ## What was fixed in the templates
 
