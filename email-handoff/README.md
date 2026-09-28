@@ -85,7 +85,7 @@ Optional overrides, all with working defaults in `send-welcome.ts`:
 |---|---|
 | `WAITLIST_FROM` | `سُكون <hello@sukunlife.app>` |
 | `WAITLIST_REPLY_TO` | `hello@sukunlife.app` |
-| `WAITLIST_UNSUBSCRIBE_BASE` | `https://sukunlife.app/api/unsubscribe` |
+| `WAITLIST_UNSUBSCRIBE_BASE` | `https://www.sukunlife.app/api/unsubscribe` |
 | `WAITLIST_POSTAL_ADDRESS` | `Dubai - United Arab Emirates` |
 
 ## Unsubscribe

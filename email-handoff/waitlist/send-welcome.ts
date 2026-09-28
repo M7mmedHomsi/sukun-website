@@ -17,8 +17,11 @@ const POSTAL_ADDRESS =
 
 // One-click unsubscribe lives on the marketing site (Vercel). The secret is
 // shared with that endpoint, which verifies the signature before acting.
+// www is the canonical host — the apex 308-redirects to it. Human clicks would
+// follow either way, but the one-click POST is made by the mail provider, and
+// not all of them follow redirects, so point straight at the real thing.
 const UNSUBSCRIBE_BASE =
-  Deno.env.get("WAITLIST_UNSUBSCRIBE_BASE") ?? "https://sukunlife.app/api/unsubscribe";
+  Deno.env.get("WAITLIST_UNSUBSCRIBE_BASE") ?? "https://www.sukunlife.app/api/unsubscribe";
 const UNSUBSCRIBE_SECRET = Deno.env.get("UNSUBSCRIBE_SECRET") ?? "";
 
 // Optional. When set, each signup is also added to this Resend audience, which
