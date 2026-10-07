@@ -1,0 +1,27 @@
+# Sukun (سُكون)
+
+> Sukun is your mental wellbeing companion (مرافقك في رحلتك النفسية): an Arabic-first daily wellbeing app with original audio journeys, breathing exercises, habit tracking, mood check-ins, gentle reminders and cognitive games. It is in early access, coming soon to iOS and Android, with a waitlist open at https://www.sukunlife.app/#waitlist.
+
+The site is a single page, in Arabic by default. Add `?lang=en` for English, which is rendered in the browser.
+
+## What Sukun offers
+
+- Breathing exercises: a full 4-7-8 exercise and others, with a visual rhythm.
+- Audio journeys: guided audio experiences and meditations on relationships, confidence and change, voiced by a certified coach.
+- Daily habits: small habits to build or to quit, with streaks that never blame you for a missed day.
+- Mood tracking: one question a day, which draws your Sukun Map without scores to compare yourself against.
+- Gentle alarms and reminders: timely, in the tone of a friend rather than a counter.
+- Cognitive games: short games for focus and relaxation.
+
+## Good to know
+
+- Every line is written in Arabic first, in a warm Gulf tone, then recorded. English is a translation, never the original.
+- Sukun is a daily wellbeing app, not a replacement for therapy. It does not diagnose or treat, and it points people in real distress to support resources in their country.
+- Check-ins are private; Sukun never sells user data.
+
+## Links
+
+- [Home](https://www.sukunlife.app/)
+- [Features](https://www.sukunlife.app/#features)
+- [FAQ](https://www.sukunlife.app/#faq)
+- [Join the waitlist](https://www.sukunlife.app/#waitlist)
