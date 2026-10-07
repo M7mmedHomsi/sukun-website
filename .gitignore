@@ -13,6 +13,14 @@ assets/brand/Sukun Brand Guidlines/01_Brandbook/
 assets/audio/
 assets/design mockups/
 
+# Full licensed font files. The site serves its own woff2 subsets; everything
+# in the repo is publicly downloadable from the site, and these must not be.
+assets/brand/Sukun Brand Guidlines/arabic fonts/
+assets/brand/Sukun Brand Guidlines/arabic fonts-*.zip
+
+# Packaged copies of email-handoff/ for sending to the developers.
+/email-handoff*.zip
+
 # Optimised WebP is what the site loads; the PNG originals are the source.
 assets/images/screens/*.png
 assets/images/mascot/*.png

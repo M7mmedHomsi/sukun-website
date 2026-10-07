@@ -93,7 +93,7 @@ Optional overrides, all with working defaults in `send-welcome.ts`:
 One-click unsubscribe (RFC 8058) is live, and it does not touch Supabase.
 
 `send-welcome.ts` signs a token per recipient — `base64url({e,l}).HMAC-SHA256`
-— and puts `https://sukunlife.app/api/unsubscribe?t=<token>` in both the
+— and puts `https://www.sukunlife.app/api/unsubscribe?t=<token>` in both the
 `List-Unsubscribe` header and the email footer. The endpoint lives in the
 website repo at `api/unsubscribe.js` (Vercel), verifies the signature, and
 marks the contact `unsubscribed: true` in the Resend audience.
