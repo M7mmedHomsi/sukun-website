@@ -1,0 +1,74 @@
+/* ==========================================================================
+   Legal pages (privacy, terms, account deletion). Each page holds the
+   Arabic and the English text; html[lang] decides which one shows.
+   Builds on the tokens and fonts in styles.css.
+   ========================================================================== */
+
+html[lang="ar"] [data-only="en"],
+html[lang="en"] [data-only="ar"] { display: none !important; }
+
+.legal-header {
+  border-block-end: 1px solid var(--line);
+  background: var(--surface);
+}
+.legal-header .wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-4);
+  min-block-size: 72px;
+}
+.legal-header .brand__logo { block-size: 34px; inline-size: auto; }
+
+.legal {
+  max-width: var(--wrap-narrow);
+  margin-inline: auto;
+  padding: var(--s-8) var(--s-5) var(--s-10);
+}
+@media (min-width: 768px) { .legal { padding-inline: var(--s-7); } }
+
+.legal h1 {
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
+  color: var(--ink-deep);
+}
+.legal__date {
+  margin-block: var(--s-3) var(--s-7);
+  color: var(--muted);
+  font-size: .9375rem;
+}
+.legal h2 {
+  margin-block: var(--s-7) var(--s-3);
+  font-size: 1.3125rem;
+  color: var(--ink-deep);
+}
+html[lang="ar"] .legal h1,
+html[lang="ar"] .legal h2 { font-weight: 600; }
+.legal p, .legal li { color: var(--ink-soft); }
+.legal p { margin-block: 0 var(--s-4); }
+.legal ul, .legal ol { margin-block: 0 var(--s-4); padding-inline-start: var(--s-5); }
+.legal ul { list-style: disc; }
+.legal ol { list-style: decimal; }
+html[lang="ar"] .legal ol { list-style: arabic-indic; }
+.legal li { margin-block-end: var(--s-2); }
+.legal strong { color: var(--ink); font-weight: 600; }
+.legal a { color: var(--accent-ice); text-underline-offset: 3px; }
+
+.legal__note {
+  margin-block: var(--s-6);
+  padding: var(--s-5);
+  border-radius: var(--r-md);
+  background: var(--tint-lilac);
+  color: var(--ink-soft);
+}
+.legal__note p:last-child { margin-block-end: 0; }
+
+.legal-footer {
+  border-block-start: 1px solid var(--line);
+  padding-block: var(--s-6);
+  color: var(--muted);
+  font-size: .875rem;
+}
+.legal-footer .wrap {
+  display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5);
+  justify-content: space-between;
+}
+.legal-footer nav { display: flex; flex-wrap: wrap; gap: var(--s-4); }
+.legal-footer a { color: var(--muted); }
