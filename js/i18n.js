@@ -10,7 +10,7 @@ window.SUKUN_I18N = {
   /* ----------------------------- ARABIC ----------------------------- */
   ar: {
     "meta.title": "سُكون — مرافقك في رحلتك النفسية",
-    "meta.desc": "سُكون مرافقك في رحلتك النفسية: رحلات صوتية أصلية، تمارين تنفّس، متابعة عادات، منبّهات وتذكيرات، وألعاب معرفية. محتوى عربي أصلي غير مترجم بصوت مدرّبة معتمدة في البرمجة اللغوية العصبية. انضم لقائمة الانتظار.",
+    "meta.desc": "سُكون مرافقك في رحلتك النفسية: رحلات صوتية أصلية، تمارين تنفّس، متابعة عادات، منبّهات وتذكيرات، وألعاب معرفية. محتوى عربي أصلي غير مترجم. انضم لقائمة الانتظار.",
 
     "brand.name": "سُكون",
     "nav.features": "المميزات",
@@ -122,7 +122,6 @@ window.SUKUN_I18N = {
     "founder.p3": "سُكون صُمم ليكون تلك المساحة. مكانًا تتوقف فيه، تتنفّس، تكتب، تتعلّم، تستكشف، تستعيد تركيزك، وتعود إلى يومك.",
     "founder.p4": "لأن السلام الداخلي ليس مكانًا تصل إليه. إنه شيء تتعلّم أن تصنع له مساحة كل يوم.",
     "founder.byName": "فريق سُكون",
-    "founder.byRole": "بالتعاون مع مدرّبة مختصة معتمدة في البرمجة اللغوية العصبية والتنويم الإيحائي",
 
     "privacy.title": "تأمّلاتك تبقى لك.",
     "privacy.sub": "سُكون مبني على تسجيلات خاصة وأذونات واضحة. ما تكتبه لك وحدك، ولا نبيع بياناتك لأحد.",
@@ -254,7 +253,7 @@ window.SUKUN_I18N = {
   /* ----------------------------- ENGLISH ---------------------------- */
   en: {
     "meta.title": "Sukun — Your mental wellbeing companion",
-    "meta.desc": "Sukun is your mental wellbeing companion: original audio journeys, breathing exercises, habit tracking, gentle reminders and cognitive games. Written in Arabic first, voiced by a certified NLP practitioner. Join the waitlist.",
+    "meta.desc": "Sukun is your mental wellbeing companion: original audio journeys, breathing exercises, habit tracking, gentle reminders and cognitive games. Written in Arabic first. Join the waitlist.",
 
     "brand.name": "Sukun",
     "nav.features": "Features",
@@ -366,7 +365,6 @@ window.SUKUN_I18N = {
     "founder.p3": "Sukun was built to be that space. Somewhere to stop, breathe, write, learn, explore, gather your focus, and return to your day.",
     "founder.p4": "Because inner peace is not a place you arrive at. It is something you learn to make room for, every day.",
     "founder.byName": "The Sukun team",
-    "founder.byRole": "With a certified practitioner in NLP and hypnotherapy",
 
     "privacy.title": "Your reflections stay yours.",
     "privacy.sub": "Sukun is built on private check-ins and clear permissions. What you write belongs to you, and we never sell your data.",

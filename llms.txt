@@ -7,7 +7,7 @@ The site is a single page, in Arabic by default. Add `?lang=en` for English, whi
 ## What Sukun offers
 
 - Breathing exercises: a full 4-7-8 exercise and others, with a visual rhythm.
-- Audio journeys: guided audio experiences and meditations on relationships, confidence and change, voiced by a certified coach.
+- Audio journeys: original guided audio that takes you on an inner journey toward greater awareness.
 - Daily habits: small habits to build or to quit, with streaks that never blame you for a missed day.
 - Mood tracking: one question a day, which draws your Sukun Map without scores to compare yourself against.
 - Gentle alarms and reminders: timely, in the tone of a friend rather than a counter.

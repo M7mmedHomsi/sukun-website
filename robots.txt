@@ -6,7 +6,6 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /email-handoff/
-Disallow: /legacy/
 
 # Named explicitly so there is no doubt that AI readers may fetch the site.
 User-agent: OAI-SearchBot
@@ -22,6 +21,5 @@ User-agent: Bingbot
 Allow: /
 Disallow: /api/
 Disallow: /email-handoff/
-Disallow: /legacy/
 
 Sitemap: https://www.sukunlife.app/sitemap.xml
